@@ -18,8 +18,35 @@ public enum Defence {
     @Column(name = "defencevalue")
     private int defencevalue;
 
+    @ManyToOne
+    @JoinColumn(name = "character_id", nullable = false)
+    private Character character;
+
     Defence(int defencevalue) {
         this.defencevalue = defencevalue;
+    }
+
+    Defence() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setDefencevalue(int defencevalue) {
+        this.defencevalue = defencevalue;
+    }
+
+    public Character getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character = character;
     }
 
     public int getDefencevalue() {

@@ -1,5 +1,7 @@
 package com.syntaxshowdown.syntaxshown.components;
 
+import com.syntaxshowdown.syntaxshown.models.Attack;
+import com.syntaxshowdown.syntaxshown.models.Character;
 import com.syntaxshowdown.syntaxshown.repositories.AttackRepository;
 import com.syntaxshowdown.syntaxshown.repositories.CharacterRepository;
 import com.syntaxshowdown.syntaxshown.repositories.DefenceRepository;
@@ -27,8 +29,6 @@ public class DataLoader implements ApplicationRunner {
 
     }
     public void run(ApplicationArguments args) {
-        
-
 
 
     }

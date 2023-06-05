@@ -1,12 +1,14 @@
 package com.syntaxshowdown.syntaxshown.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "characters")
-public class Character {
+public class Character{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +24,12 @@ public class Character {
     @Column(name = "hp")
     private int hp;
 
+    @JsonIgnoreProperties({"character"})
+    @OneToMany(mappedBy = "character")
     private List<Attack>attackList;
+
+    @JsonIgnoreProperties({"character"})
+    @OneToMany(mappedBy = "character")
     private List<Defence>defenceList;
 
     public Character(String name, String type, int hp) {
@@ -90,5 +97,13 @@ public class Character {
 
     public void addDefence(Defence defence){
         this.defenceList.add(defence);
+    }
+
+    public int getNoOfAttacks(){
+        return this.attackList.size();
+    }
+
+    public int getNoOfDefences(){
+        return this.defenceList.size();
     }
 }
