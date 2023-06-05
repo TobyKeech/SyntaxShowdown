@@ -30,9 +30,6 @@ public class DataLoader implements ApplicationRunner {
     }
     public void run(ApplicationArguments args) {
 
-        Character html = new Character("html", "frontend", 100);
-        Character java = new Character("java", "backend", 100);
-        Character postgress = new Character("postgress", "database", 100);
 
     }
 }

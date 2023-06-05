@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "characters")
-public class Character {
+public class Character{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -97,5 +97,13 @@ public class Character {
 
     public void addDefence(Defence defence){
         this.defenceList.add(defence);
+    }
+
+    public int getNoOfAttacks(){
+        return this.attackList.size();
+    }
+
+    public int getNoOfDefences(){
+        return this.defenceList.size();
     }
 }
