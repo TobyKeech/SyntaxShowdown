@@ -1,5 +1,7 @@
 package com.syntaxshowdown.syntaxshown.components;
 
+import com.syntaxshowdown.syntaxshown.models.Attack;
+import com.syntaxshowdown.syntaxshown.models.Character;
 import com.syntaxshowdown.syntaxshown.repositories.AttackRepository;
 import com.syntaxshowdown.syntaxshown.repositories.CharacterRepository;
 import com.syntaxshowdown.syntaxshown.repositories.DefenceRepository;
@@ -27,9 +29,10 @@ public class DataLoader implements ApplicationRunner {
 
     }
     public void run(ApplicationArguments args) {
-        
 
-
+        Character html = new Character("html", "frontend", 100);
+        Character java = new Character("java", "backend", 100);
+        Character postgress = new Character("postgress", "database", 100);
 
     }
 }

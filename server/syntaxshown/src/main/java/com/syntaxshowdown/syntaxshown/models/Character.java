@@ -1,5 +1,7 @@
 package com.syntaxshowdown.syntaxshown.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +24,12 @@ public class Character {
     @Column(name = "hp")
     private int hp;
 
+    @JsonIgnoreProperties({"character"})
+    @OneToMany(mappedBy = "character")
     private List<Attack>attackList;
+
+    @JsonIgnoreProperties({"character"})
+    @OneToMany(mappedBy = "character")
     private List<Defence>defenceList;
 
     public Character(String name, String type, int hp) {
