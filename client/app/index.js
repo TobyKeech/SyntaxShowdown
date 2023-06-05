@@ -19,10 +19,10 @@ const index = () => {
       <View className="absolute top-5 right-8 flex items-center justify-center w-8 h-8 rounded-full border border-green-400">
         <Text className="text-green-400 text-2xl">i</Text>
       </View>
-      <View className="items-center justify-center">
-        <Text className="text-green-400 text-4xl p-10">Syntax Showdown</Text>
+      <View className="items-center justify-center absolute left-0 right-0 top-0 bottom-0">
+        <Text className="text-green-400 text-4xl p-10">syntax_showdown</Text>
         <View className="p-10 flex-row">
-          <Button color="#4ade80">npm start</Button>
+          <Button color="rgb(74 222 128)" titleStyle={{color: 'black'}}>npm start</Button>
         </View>
         <Hello />
       </View>
