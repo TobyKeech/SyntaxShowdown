@@ -4,10 +4,8 @@ import { useLayoutEffect } from "react";
 import React from "react";
 import Hello from "../components/Hello";
 import GlobalStyles from "../GlobalStyles";
-import { Button } from '@rneui/themed';
-import {
-    InformationCircleIcon
-  } from "react-native-heroicons/solid";
+import { Button } from "@rneui/themed";
+import { InformationCircleIcon } from "react-native-heroicons/solid";
 
 const index = () => {
   const navigation = useNavigation();
@@ -17,18 +15,17 @@ const index = () => {
     });
   }, []);
   return (
-    <View className="items-center bg-black justify-center" style={GlobalStyles.droidSafeArea}>
-      <Text
-        className="text-green-400 text-4xl p-10"
-
-      >
-        Syntax Showdown
-      </Text>
-      <View className="p-10 flex-row">
-      <Button color="#4ade80">npm start</Button>
-      <InformationCircleIcon color="#00CCBB"/>
+    <View className="bg-black" style={GlobalStyles.droidSafeArea}>
+      <View className="absolute top-5 right-8 flex items-center justify-center w-8 h-8 rounded-full border border-green-400">
+        <Text className="text-green-400 text-2xl">i</Text>
       </View>
-      <Hello />
+      <View className="items-center justify-center">
+        <Text className="text-green-400 text-4xl p-10">Syntax Showdown</Text>
+        <View className="p-10 flex-row">
+          <Button color="#4ade80">npm start</Button>
+        </View>
+        <Hello />
+      </View>
     </View>
   );
 };
