@@ -49,8 +49,11 @@ public enum Attack {
         this.id = id;
     }
 
-    public void setAttackvalue(int attackvalue) {
-        this.attackvalue = attackvalue;
+    public int getAttackvalue() {
+        return this.attackvalue;
+    }
+    public Attack getAttack() {
+        return attack;
     }
 
     public Defence getDefence() {
@@ -59,14 +62,6 @@ public enum Attack {
 
     public void setDefence(Defence defence) {
         this.defence = defence;
-    }
-
-    public Attack getAttack() {
-        return attack;
-    }
-
-    public int getAttackvalue() {
-        return attackvalue;
     }
 
 }
