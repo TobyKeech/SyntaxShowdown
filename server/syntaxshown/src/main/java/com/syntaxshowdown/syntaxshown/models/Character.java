@@ -1,20 +1,31 @@
 package com.syntaxshowdown.syntaxshown.models;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Characters {
+@Entity
+@Table(name = "characters")
+public class Character {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private Long id;
+
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "type")
     private String type;
 
+    @Column(name = "hp")
     private int hp;
 
     private List<Attack>attackList;
     private List<Defence>defenceList;
 
-    public Characters(String name, String type, int hp) {
+    public Character(String name, String type, int hp) {
         this.name = name;
         this.type = type;
         this.hp = hp;
@@ -22,7 +33,15 @@ public class Characters {
         this.defenceList = new ArrayList<Defence>();
     }
 
-    public Characters() {
+    public Character() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -63,5 +82,13 @@ public class Characters {
 
     public void setDefenceList(List<Defence> defenceList) {
         this.defenceList = defenceList;
+    }
+
+    public void addAttack(Attack attack){
+        this.attackList.add(attack);
+    }
+
+    public void addDefence(Defence defence){
+        this.defenceList.add(defence);
     }
 }

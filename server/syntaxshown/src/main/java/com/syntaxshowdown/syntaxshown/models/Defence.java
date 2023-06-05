@@ -12,4 +12,9 @@ public enum Defence {
     Defence(int defencevalue) {
         this.defencevalue = defencevalue;
     }
+
+    public int getDefencevalue() {
+        return defencevalue;
+    }
+
 }
