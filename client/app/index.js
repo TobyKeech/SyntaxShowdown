@@ -8,6 +8,8 @@ import { Button } from '@rneui/themed';
 import {
     InformationCircleIcon
   } from "react-native-heroicons/solid";
+import Ruby from "../assets/ruby.svg"
+import { Svg, SvgUri, Image } from "react-native-svg";
 
 const index = () => {
   const navigation = useNavigation();
@@ -20,7 +22,6 @@ const index = () => {
     <View className="items-center bg-black justify-center" style={GlobalStyles.droidSafeArea}>
       <Text
         className="text-green-400 text-4xl p-10"
-
       >
         Syntax Showdown
       </Text>
