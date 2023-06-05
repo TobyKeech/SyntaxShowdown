@@ -1,6 +1,16 @@
 package com.syntaxshowdown.syntaxshown.models;
 
+
+import org.springframework.data.repository.cdi.Eager;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "attacks")
 public enum Attack {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     DICTIONARY(50),
     CONST(50),
@@ -9,6 +19,9 @@ public enum Attack {
     ARRAY(10),
     LET(10),
     REDUCE(20);
+
+    private Long id;
+    @Column(name = "attackvalue")
     private int attackvalue;
 
     Attack(int attackvalue) {

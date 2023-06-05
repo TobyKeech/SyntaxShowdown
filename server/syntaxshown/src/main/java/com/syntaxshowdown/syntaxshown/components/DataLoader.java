@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
+
 @Profile("!test")
-//@Component //Comment this out if you do not to run the data loader.
+@Component //Comment this out if you do not to run the data loader.
 public class DataLoader implements ApplicationRunner {
 
     @Autowired
@@ -24,8 +26,10 @@ public class DataLoader implements ApplicationRunner {
     public DataLoader() {
 
     }
-
     public void run(ApplicationArguments args) {
+        
+
+
 
     }
 }
