@@ -4,6 +4,7 @@ import {
   Touchable,
   TouchableOpacity,
   Pressable,
+  SafeAreaView
 } from "react-native";
 import { Link, useNavigation } from "expo-router";
 import { useLayoutEffect, useState, useCallback } from "react";
@@ -14,7 +15,6 @@ import { InformationCircleIcon } from "react-native-heroicons/solid";
 import { Overlay } from "@rneui/themed";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { SafeAreaView } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
 
