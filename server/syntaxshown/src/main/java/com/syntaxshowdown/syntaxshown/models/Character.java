@@ -24,11 +24,11 @@ public class Character{
     @Column(name = "hp")
     private int hp;
 
-    @JsonIgnoreProperties({"character"})
+    @JsonIgnoreProperties({"characters"})
     @OneToMany(mappedBy = "character")
     private List<Attack>attackList;
 
-    @JsonIgnoreProperties({"character"})
+    @JsonIgnoreProperties({"characters"})
     @OneToMany(mappedBy = "character")
     private List<Defence>defenceList;
 
