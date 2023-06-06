@@ -25,9 +25,12 @@ const ShowdownScreen = () => {
       <View className="absolute top-5 right-5">
         <Bars3Icon size={50} color="rgb(74 222 128)"></Bars3Icon>
       </View>
-      <View className="absolute left-20 top-20 p-10 border-solid border-white">
-
+      <View>
+          <Text className="text-white absolute left-40 top-20 max-h-[20px] max-w-[20px] border border-solid border-white">
+            Player 1 used x against x for x damage
+          </Text>
       </View>
+      <View className="absolute right-40 top-20 p-20 border border-solid border-white"></View>
       <View className="absolute bottom-10 left-20">
         <Text className="text-white text-4xl">Player 1</Text>
       </View>
