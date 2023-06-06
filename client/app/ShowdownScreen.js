@@ -13,7 +13,11 @@ import GlobalStyles from "../GlobalStyles";
 import { Button } from "@rneui/themed";
 import { Overlay } from "@rneui/themed";
 import { Bars3Icon } from "react-native-heroicons/solid";
+<<<<<<< HEAD
 import { Link } from "expo-router";
+=======
+import { SafeAreaView } from "react-native";
+>>>>>>> main
 
 const ShowdownScreen = () => {
   const navigation = useNavigation();
@@ -29,7 +33,7 @@ const ShowdownScreen = () => {
   };
   return (
     // <ImageBackground source={require('client/assets/google.png')}>
-    <View className="bg-black" style={GlobalStyles.droidSafeArea}>
+    <SafeAreaView className="bg-black" style={GlobalStyles.droidSafeArea}>
       <View className="absolute top-5 right-5">
         <TouchableOpacity onPress={toggleOverlay}>
           <Bars3Icon size={50} color="rgb(74 222 128)"></Bars3Icon>
@@ -60,6 +64,7 @@ const ShowdownScreen = () => {
       <View className="items-center justify-center absolute left-0 right-0 bottom-10">
         <Text className="text-white text-5xl">VS</Text>
       </View>
+<<<<<<< HEAD
       <Overlay
         overlayStyle={{
           backgroundColor: "rgb(74 222 128)",
@@ -90,6 +95,9 @@ const ShowdownScreen = () => {
         </View>
       </Overlay>
     </View>
+=======
+    </SafeAreaView>
+>>>>>>> main
     // </ImageBackground>
   );
 };
