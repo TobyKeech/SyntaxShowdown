@@ -4,6 +4,7 @@ import {
   Touchable,
   TouchableOpacity,
   Pressable,
+  ImageBackground
 } from "react-native";
 import { useNavigation } from "expo-router";
 import { useLayoutEffect, useState } from "react";
@@ -21,16 +22,21 @@ const ShowdownScreen = () => {
     });
   }, []);
   return (
+    // <ImageBackground source={require('client/assets/google.png')}>
     <View className="bg-black" style={GlobalStyles.droidSafeArea}>
       <View className="absolute top-5 right-5">
         <Bars3Icon size={50} color="rgb(74 222 128)"></Bars3Icon>
       </View>
       <View>
-          <Text className="text-white absolute left-40 top-20 max-h-[20px] max-w-[20px] border border-solid border-white">
-            Player 1 used x against x for x damage
+          <Text className="text-white italic text-lg text absolute left-20 top-20 w-[200px] max-h-[200px] whitespace-normal border border-solid border-white">
+            Player 1 used x against player 2 for x damage
           </Text>
       </View>
-      <View className="absolute right-40 top-20 p-20 border border-solid border-white"></View>
+      <View>
+          <Text className="text-white italic text-lg absolute right-7 top-20 w-[200px] max-h-[200px] whitespace-normal border border-solid border-white">
+            Player 2 used x against player 1 for x damage
+          </Text>
+      </View>
       <View className="absolute bottom-10 left-20">
         <Text className="text-white text-4xl">Player 1</Text>
       </View>
@@ -47,6 +53,7 @@ const ShowdownScreen = () => {
         <Text className="text-white text-5xl">VS</Text>
       </View>
     </View>
+    // </ImageBackground>
   );
 };
 
