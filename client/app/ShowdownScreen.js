@@ -4,6 +4,7 @@ import {
   Touchable,
   TouchableOpacity,
   Pressable,
+  ImageBackground
 } from "react-native";
 import { useNavigation } from "expo-router";
 import { useLayoutEffect, useState } from "react";
@@ -21,6 +22,7 @@ const ShowdownScreen = () => {
     });
   }, []);
   return (
+    // <ImageBackground source={require('client/assets/google.png')}>
     <View className="bg-black" style={GlobalStyles.droidSafeArea}>
       <View className="absolute top-5 right-5">
         <Bars3Icon size={50} color="rgb(74 222 128)"></Bars3Icon>
@@ -51,6 +53,7 @@ const ShowdownScreen = () => {
         <Text className="text-white text-5xl">VS</Text>
       </View>
     </View>
+    // </ImageBackground>
   );
 };
 
