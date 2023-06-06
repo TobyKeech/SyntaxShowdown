@@ -62,12 +62,19 @@ const Index = () => {
             syntax_showdown
           </Text>
         </TouchableOpacity>
-        <View className="p-10 flex-row">
+        <View className="p-10 flex-column">
           <Link href="/ShowdownScreen" asChild>
             <Button
               color="rgb(74 222 128)"
               titleStyle={{ color: "black", fontFamily: "SyneMono" }}
               title={"npm start"}
+            />
+          </Link>
+          <Link href="/Fetch" asChild>
+            <Button
+              color="rgb(74 222 128)"
+              titleStyle={{ color: "black", fontFamily: "SyneMono" }}
+              title={"to fetch"}
             />
           </Link>
         </View>
