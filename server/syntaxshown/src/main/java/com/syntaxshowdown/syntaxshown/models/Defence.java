@@ -1,28 +1,29 @@
 package com.syntaxshowdown.syntaxshown.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "defences")
-public enum Defence {
+public class Defence {
 
     @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    JSONIGNORE(10),
-    GITPUSH(20),
-    GUARD(20),
-    FETCH(20);
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
+
+    @Column(name = "name")
+    private String name;
     @Column(name = "defencevalue")
     private int defencevalue;
 
-    @ManyToOne
-    @JoinColumn(name = "character_id", nullable = false)
-    private Character character;
 
-    Defence(int defencevalue) {
+
+    public Defence(String name, int defencevalue) {
+        this.name = name;
         this.defencevalue = defencevalue;
     }
 
@@ -37,16 +38,16 @@ public enum Defence {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setDefencevalue(int defencevalue) {
         this.defencevalue = defencevalue;
-    }
-
-    public Character getCharacter() {
-        return character;
-    }
-
-    public void setCharacter(Character character) {
-        this.character = character;
     }
 
     public int getDefencevalue() {

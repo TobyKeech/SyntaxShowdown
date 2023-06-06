@@ -11,12 +11,28 @@ public class TestCharacter {
     Character java;
     Character postgress;
 
+    Attack reduce;
+    Attack rmrf;
+    Attack gitPull;
+
+    Defence gitPush;
+    Defence filter;
+    Defence map;
+
     @Before
     public void setUp(){
 
         html = new Character("html", "frontend", 100);
         java = new Character("java", "backend", 100);
         postgress = new Character("postgress", "database", 100);
+
+        reduce = new Attack("gitPush", 50);
+        rmrf = new Attack("gitPush", 25);
+        gitPull = new Attack("gitPush", 10);
+
+        gitPush = new Defence("gitPush", 20);
+        filter = new Defence("gitPush", 20);
+        map = new Defence("gitPush", 20);
 
     }
 
@@ -35,31 +51,11 @@ public class TestCharacter {
         assertEquals(100, html.getHp());
     }
 
-    @Test
-    public void canAddAttacks(){
-        html.addAttack(Attack.LET);
-        html.addAttack(Attack.CONST);
-        html.addAttack(Attack.ARRAY);
-        assertEquals(3,html.getNoOfAttacks());
-    }
 
-    @Test
-    public void canAddDefence(){
-        java.addDefence(Defence.FETCH);
-        java.addDefence(Defence.GITPUSH);
-        java.addDefence(Defence.GUARD);
-        assertEquals(3, java.getNoOfDefences());
-    }
 
-    @Test
-    public void hasAttackvalue(){
-        assertEquals(10, Attack.LET.getAttackvalue());
-    }
 
-    @Test
-    public void hasDefenceValue(){
-        assertEquals(20, Defence.GUARD.getDefencevalue());
-    }
+
+
 
 
 
