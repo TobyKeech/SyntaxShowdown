@@ -14,6 +14,7 @@ import { InformationCircleIcon } from "react-native-heroicons/solid";
 import { Overlay } from "@rneui/themed";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
+import { SafeAreaView } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -44,7 +45,7 @@ const Index = () => {
   }
 
   return (
-    <View
+    <SafeAreaView
       className="bg-black"
       style={GlobalStyles.droidSafeArea}
       onLayout={onLayoutRootView}
@@ -95,7 +96,7 @@ const Index = () => {
           </Text>
         </Overlay>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
