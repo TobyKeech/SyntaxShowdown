@@ -4,7 +4,8 @@ import {
   Touchable,
   TouchableOpacity,
   Pressable,
-  SafeAreaView
+  SafeAreaView,
+  ScrollView,
 } from "react-native";
 import { Link, useNavigation } from "expo-router";
 import { useLayoutEffect, useState, useCallback } from "react";
@@ -15,6 +16,7 @@ import { InformationCircleIcon } from "react-native-heroicons/solid";
 import { Overlay } from "@rneui/themed";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
+import { Icon } from "@rneui/themed";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -51,19 +53,29 @@ const Index = () => {
     <SafeAreaView
       className="bg-black"
       style={GlobalStyles.droidSafeArea}
-      onLayout={onLayoutRootView}>
-      <View className="flex-row justify-end mr-5">
-        <InformationCircleIcon size={50} color="rgb(74 222 128)" />
+      onLayout={onLayoutRootView}
+    >
+      {/* </TouchableOpacity> */}
+      <View className="items-end mr-5">
+        {/* <TouchableOpacity onPress={() => {toggleOverlay}}> */}
+        {/* <InformationCircleIcon size={50} color="rgb(74 222 128)" /> */}
+        <Icon
+          size={50}
+          name="information-circle-sharp"
+          type="ionicon"
+          color="rgb(74 222 128)"
+          onPress={toggleOverlay}
+        />
       </View>
 
-      <View className="items-center justify-center absolute left-0 right-0 top-0 bottom-0">
-        <TouchableOpacity onPress={toggleOverlay}>
-          <Text
-            className="text-green-400 text-5xl p-10"
-            style={{ fontFamily: "SyneMono" }}>
-            syntax_showdown
-          </Text>
-        </TouchableOpacity>
+      <View className="items-center justify-center">
+        <Text
+          className="text-green-400 text-5xl pb-5"
+          style={{ fontFamily: "SyneMono" }}
+        >
+          syntax_showdown
+        </Text>
+
         <View className="p-10 flex-column">
           <Link href="/ShowdownScreen" asChild>
             <Button
@@ -90,7 +102,8 @@ const Index = () => {
           isVisible={visible}
           onBackdropPress={toggleOverlay}
           animationType="fade"
-          supportedOrientations={["landscape"]}>
+          supportedOrientations={["landscape"]}
+        >
           <Text className="mb-5">Showdown!</Text>
           <Text>
             This is going to be the info menu with all the information about how

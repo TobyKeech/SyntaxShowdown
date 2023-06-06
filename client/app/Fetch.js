@@ -22,10 +22,10 @@ const Fetch = () => {
   }, []);
   return (
     <SafeAreaView>
-      <ScrollView>
-    <View>
+    
       <Text>Fetch</Text>
       <FlatList
+      ListHeaderComponent={  <Text>Welcome</Text>}
           data={character}
           keyExtractor={({id}) => id}
           renderItem={({item}) => (
@@ -33,9 +33,8 @@ const Fetch = () => {
               {item.name}
             </Text>
           )}
-        />
-    </View>
-        </ScrollView>
+          />
+    
         </SafeAreaView>
   );
 };
