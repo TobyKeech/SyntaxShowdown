@@ -24,6 +24,9 @@ public class Character{
     @Column(name = "hp")
     private int hp;
 
+    @Column(name = "imgPath")
+    private String imgPath;
+
     @JsonIgnoreProperties({"character"})
     @OneToMany(mappedBy = "character")
     private List<Attack>attackList;
@@ -32,10 +35,11 @@ public class Character{
     @OneToMany(mappedBy = "character")
     private List<Defence>defenceList;
 
-    public Character(String name, String type, int hp) {
+    public Character(String name, String type, int hp, String imgPath) {
         this.name = name;
         this.type = type;
         this.hp = hp;
+        this.imgPath = imgPath;
         this.attackList = new ArrayList<Attack>();
         this.defenceList = new ArrayList<Defence>();
     }

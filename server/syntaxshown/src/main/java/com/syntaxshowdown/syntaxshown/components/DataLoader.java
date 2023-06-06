@@ -31,25 +31,25 @@ public class DataLoader implements ApplicationRunner {
     }
     public void run(ApplicationArguments args) {
 
-        Character html = new Character("HTML", "frontend", 100);
+        Character html = new Character("HTML", "frontend", 100, "../assets/html.svg");
         characterRepository.save(html);
-        Character css = new Character("CSS", "frontend", 100);
+        Character css = new Character("CSS", "frontend", 100, "../assets/css.svg");
         characterRepository.save(css);
-        Character js = new Character("Javascript", "frontend", 100);
+        Character js = new Character("Javascript", "frontend", 100, "../assets/javascript.svg");
         characterRepository.save(js);
 
-        Character java = new Character("Java", "backend", 100);
+        Character java = new Character("Java", "backend", 100, "../assets/java.svg" );
         characterRepository.save(java);
-        Character python = new Character("Python", "backend", 100);
+        Character python = new Character("Python", "backend", 100, "../assets/python.svg");
         characterRepository.save(python);
-        Character ruby = new Character("Ruby", "backend", 100);
+        Character ruby = new Character("Ruby", "backend", 100, "../assets/ruby.svg");
         characterRepository.save(ruby);
 
-        Character postgres = new Character("Postgres", "database", 100);
+        Character postgres = new Character("Postgres", "database", 100, "../assets/postgres.svg");
         characterRepository.save(postgres);
-        Character mongo = new Character("Mongodb", "database", 100);
+        Character mongo = new Character("Mongodb", "database", 100, "../assets/mongodb.svg");
         characterRepository.save(mongo);
-        Character arango = new Character("Arangodb", "database", 100);
+        Character arango = new Character("Arangodb", "database", 100, "../assets/arangodb.svg");
         characterRepository.save(arango);
 
         Attack gitPush = new Attack("GitPush", 20, html);
