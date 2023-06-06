@@ -63,9 +63,13 @@ const Index = () => {
           </Text>
         </TouchableOpacity>
         <View className="p-10 flex-row">
-            <Link href="/ShowdownScreen" asChild>
-          <Button color="rgb(74 222 128)" titleStyle={{ color: "black", fontFamily: "SyneMono"}} title={'npm start'} />
-            </Link>
+          <Link href="/ShowdownScreen" asChild>
+            <Button
+              color="rgb(74 222 128)"
+              titleStyle={{ color: "black", fontFamily: "SyneMono" }}
+              title={"npm start"}
+            />
+          </Link>
         </View>
 
         <Overlay
