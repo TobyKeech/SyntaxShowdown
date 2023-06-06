@@ -21,7 +21,6 @@ public class Defence {
     private int defencevalue;
 
     @ManyToOne
-    @JsonIgnoreProperties({"defences"})
     @JoinColumn(name = "character_id", nullable = false)
     private Character character;
 

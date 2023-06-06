@@ -23,7 +23,6 @@ public class Attack {
     private int attackvalue;
 
     @ManyToOne
-    @JsonIgnoreProperties({"defences"})
     @JoinColumn(name = "character_id", nullable = false)
     private Character character;
 
