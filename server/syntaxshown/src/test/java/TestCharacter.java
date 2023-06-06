@@ -26,13 +26,13 @@ public class TestCharacter {
         java = new Character("java", "backend", 100);
         postgress = new Character("postgress", "database", 100);
 
-        reduce = new Attack("gitPush", 50);
-        rmrf = new Attack("gitPush", 25);
-        gitPull = new Attack("gitPull", 10);
+        reduce = new Attack("gitPush", 50, html);
+        rmrf = new Attack("gitPush", 25, java);
+        gitPull = new Attack("gitPull", 10, postgress);
 
-        gitPush = new Defence("gitPush", 20);
-        filter = new Defence("gitPush", 20);
-        map = new Defence("gitPush", 20);
+        gitPush = new Defence("gitPush", 20, html);
+        filter = new Defence("gitPush", 20, java);
+        map = new Defence("gitPush", 20, postgress);
 
     }
 

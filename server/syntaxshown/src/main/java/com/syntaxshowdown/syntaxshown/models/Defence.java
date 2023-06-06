@@ -20,11 +20,16 @@ public class Defence {
     @Column(name = "defencevalue")
     private int defencevalue;
 
+    @ManyToOne
+    @JsonIgnoreProperties({"defences"})
+    @JoinColumn(name = "character_id", nullable = false)
+    private Character character;
 
 
-    public Defence(String name, int defencevalue) {
+    public Defence(String name, int defencevalue, Character character) {
         this.name = name;
         this.defencevalue = defencevalue;
+        this.character = character;
     }
 
     Defence() {
@@ -54,4 +59,11 @@ public class Defence {
         return defencevalue;
     }
 
+    public Character getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character = character;
+    }
 }

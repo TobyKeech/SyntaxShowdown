@@ -23,16 +23,14 @@ public class Attack {
     private int attackvalue;
 
     @ManyToOne
-    @JoinColumn(name = "attack_id", nullable = false)
-    private Attack attack;
+    @JsonIgnoreProperties({"defences"})
+    @JoinColumn(name = "character_id", nullable = false)
+    private Character character;
 
-    @ManyToOne
-    @JoinColumn(name = "defence_id", nullable = false)
-    private Defence defence;
-
-    public Attack(String name, int attackvalue) {
+    public Attack(String name, int attackvalue, Character character) {
         this.name = name;
         this.attackvalue = attackvalue;
+        this.character = character;
     }
 
     Attack() {
@@ -44,22 +42,6 @@ public class Attack {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Attack getAttack() {
-        return attack;
-    }
-
-    public void setAttack(Attack attack) {
-        this.attack = attack;
-    }
-
-    public Defence getDefence() {
-        return defence;
-    }
-
-    public void setDefence(Defence defence) {
-        this.defence = defence;
     }
 
     public String getName() {
@@ -78,4 +60,11 @@ public class Attack {
         this.attackvalue = attackvalue;
     }
 
+    public Character getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character = character;
+    }
 }
