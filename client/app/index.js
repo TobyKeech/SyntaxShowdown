@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   Pressable,
 } from "react-native";
-import { useNavigation } from "expo-router";
+import { Link, useNavigation } from "expo-router";
 import { useLayoutEffect, useState } from "react";
 import React from "react";
 import GlobalStyles from "../GlobalStyles";
@@ -39,7 +39,7 @@ const index = () => {
         </TouchableOpacity>
         <View className="p-10 flex-row">
           <Button color="rgb(74 222 128)" titleStyle={{ color: "black" }}>
-            npm start
+          <Link rel="stylesheet" href="/ShowdownScreen">npm start</Link>
           </Button>
         </View>
 
