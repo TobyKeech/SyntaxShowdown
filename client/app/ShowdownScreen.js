@@ -13,11 +13,8 @@ import GlobalStyles from "../GlobalStyles";
 import { Button } from "@rneui/themed";
 import { Overlay } from "@rneui/themed";
 import { Bars3Icon } from "react-native-heroicons/solid";
-<<<<<<< HEAD
 import { Link } from "expo-router";
-=======
-import { SafeAreaView } from "react-native";
->>>>>>> main
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const ShowdownScreen = () => {
   const navigation = useNavigation();
@@ -64,7 +61,6 @@ const ShowdownScreen = () => {
       <View className="items-center justify-center absolute left-0 right-0 bottom-10">
         <Text className="text-white text-5xl">VS</Text>
       </View>
-<<<<<<< HEAD
       <Overlay
         overlayStyle={{
           backgroundColor: "rgb(74 222 128)",
@@ -94,10 +90,7 @@ const ShowdownScreen = () => {
         </Link>
         </View>
       </Overlay>
-    </View>
-=======
     </SafeAreaView>
->>>>>>> main
     // </ImageBackground>
   );
 };
