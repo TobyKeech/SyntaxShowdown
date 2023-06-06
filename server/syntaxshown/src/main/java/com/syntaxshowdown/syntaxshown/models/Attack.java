@@ -5,37 +5,32 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "attacks")
-public enum Attack {
+
+public class Attack {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    DICTIONARY(50),
-    CONST(50),
-    RMRF(20),
-    MAP(10),
-    ARRAY(10),
-    LET(10),
-    REDUCE(20);
-
     private Long id;
+
+    @Column(name = "name")
+    private String name;
     @Column(name = "attackvalue")
     private int attackvalue;
 
     @ManyToOne
-    @JoinColumn(name = "attack_id", nullable = false)
-    private Attack attack;
+    @JsonIgnoreProperties({"defences"})
+    @JoinColumn(name = "character_id", nullable = false)
+    private Character character;
 
-    @ManyToOne
-    @JoinColumn(name = "defence_id", nullable = false)
-    private Defence defence;
-
-    Attack(int attackvalue) {
+    public Attack(String name, int attackvalue, Character character) {
+        this.name = name;
         this.attackvalue = attackvalue;
+        this.character = character;
     }
 
     Attack() {
@@ -49,19 +44,27 @@ public enum Attack {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getAttackvalue() {
         return this.attackvalue;
     }
-    public Attack getAttack() {
-        return attack;
+
+    public void setAttackvalue(int attackvalue) {
+        this.attackvalue = attackvalue;
     }
 
-    public Defence getDefence() {
-        return defence;
+    public Character getCharacter() {
+        return character;
     }
 
-    public void setDefence(Defence defence) {
-        this.defence = defence;
+    public void setCharacter(Character character) {
+        this.character = character;
     }
-
 }

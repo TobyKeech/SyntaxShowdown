@@ -11,12 +11,28 @@ public class TestCharacter {
     Character java;
     Character postgress;
 
+    Attack reduce;
+    Attack rmrf;
+    Attack gitPull;
+
+    Defence gitPush;
+    Defence filter;
+    Defence map;
+
     @Before
     public void setUp(){
 
         html = new Character("html", "frontend", 100);
         java = new Character("java", "backend", 100);
         postgress = new Character("postgress", "database", 100);
+
+        reduce = new Attack("gitPush", 50, html);
+        rmrf = new Attack("gitPush", 25, java);
+        gitPull = new Attack("gitPull", 10, postgress);
+
+        gitPush = new Defence("gitPush", 20, html);
+        filter = new Defence("gitPush", 20, java);
+        map = new Defence("gitPush", 20, postgress);
 
     }
 
@@ -36,30 +52,48 @@ public class TestCharacter {
     }
 
     @Test
-    public void canAddAttacks(){
-        html.addAttack(Attack.LET);
-        html.addAttack(Attack.CONST);
-        html.addAttack(Attack.ARRAY);
-        assertEquals(3,html.getNoOfAttacks());
+    public void attackHasName(){
+        assertEquals("gitPull", gitPull.getName());
+    }
+
+    @Test
+    public void attackHasValue(){
+        assertEquals(10, gitPull.getAttackvalue());
+    }
+
+    @Test
+    public void defenceHasName(){
+        assertEquals("gitPush", gitPush.getName());
+    }
+
+    @Test
+    public void defenceHasValue(){
+        assertEquals(20, gitPush.getDefencevalue());
+    }
+
+    @Test
+    public void canAddAttack(){
+       html.addAttack(gitPull);
+       html.addAttack(reduce);
+       html.addAttack(rmrf);
+       assertEquals(3, html.getNoOfAttacks());
     }
 
     @Test
     public void canAddDefence(){
-        java.addDefence(Defence.FETCH);
-        java.addDefence(Defence.GITPUSH);
-        java.addDefence(Defence.GUARD);
-        assertEquals(3, java.getNoOfDefences());
+        html.addDefence(gitPush);
+        html.addDefence(filter);
+        html.addDefence(map);
+        assertEquals(3, html.getNoOfDefences());
     }
 
-    @Test
-    public void hasAttackvalue(){
-        assertEquals(10, Attack.LET.getAttackvalue());
-    }
 
-    @Test
-    public void hasDefenceValue(){
-        assertEquals(20, Defence.GUARD.getDefencevalue());
-    }
+
+
+
+
+
+
 
 
 
