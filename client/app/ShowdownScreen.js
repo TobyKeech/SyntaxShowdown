@@ -22,6 +22,12 @@ const ShowdownScreen = () => {
   }, []);
   return (
     <View className="bg-black" style={GlobalStyles.droidSafeArea}>
+      <View className="absolute top-5 right-5">
+        <Bars3Icon size={50} color="rgb(74 222 128)"></Bars3Icon>
+      </View>
+      <View className="absolute left-20 top-20 p-10 border-solid border-white">
+
+      </View>
       <View className="absolute bottom-10 left-20">
         <Text className="text-white text-4xl">Player 1</Text>
       </View>
