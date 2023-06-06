@@ -31,36 +31,40 @@ public class DataLoader implements ApplicationRunner {
     }
     public void run(ApplicationArguments args) {
 
-        Character html = new Character("html", "frontend", 100);
+        Character html = new Character("HTML", "frontend", 100);
         characterRepository.save(html);
-        Character java = new Character("java", "backend", 100);
-        characterRepository.save(java);
-        Character postgress = new Character("postgress", "database", 100);
-        characterRepository.save(postgress);
+        Character css = new Character("CSS", "frontend", 100);
+        characterRepository.save(css);
+        Character js = new Character("Javascript", "frontend", 100);
+        characterRepository.save(js);
 
-        Attack gitPush = new Attack("gitPush", 20, html);
+        Character java = new Character("Java", "backend", 100);
+        characterRepository.save(java);
+        Character python = new Character("Python", "backend", 100);
+        characterRepository.save(python);
+        Character ruby = new Character("Ruby", "backend", 100);
+        characterRepository.save(ruby);
+
+        Character postgres = new Character("Postgres", "database", 100);
+        characterRepository.save(postgres);
+        Character mongo = new Character("Mongodb", "database", 100);
+        characterRepository.save(mongo);
+        Character arango = new Character("Arangodb", "database", 100);
+        characterRepository.save(arango);
+
+        Attack gitPush = new Attack("GitPush", 20, html);
         attackRepository.save(gitPush);
-        Attack reduce = new Attack("reduce", 30, java);
+        Attack reduce = new Attack("Reduce", 30, java);
         attackRepository.save(reduce);
-        Attack rmrf = new Attack("rmrf", 10, postgress);
+        Attack rmrf = new Attack("Rmrf", 10, postgres);
         attackRepository.save(rmrf);
 
-        Defence gitPull = new Defence("gitPull", 30, html);
+        Defence gitPull = new Defence("GitPull", 30, html);
         defenceRepository.save(gitPull);
-        Defence map = new Defence("map", 10, java);
+        Defence map = new Defence("Map", 10, java);
         defenceRepository.save(map);
-        Defence filter = new Defence("gitPull", 25, postgress);
+        Defence filter = new Defence("GitPull", 25, postgres);
         defenceRepository.save(filter);
-
-//        html.addAttack(gitPush);
-//        html.addAttack(reduce);
-//        html.addAttack(rmrf);
-//        characterRepository.save(html);
-//
-//        html.addDefence(gitPull);
-//        html.addDefence(map);
-//        html.addDefence(filter);
-//        characterRepository.save(html);
 
 
     }
