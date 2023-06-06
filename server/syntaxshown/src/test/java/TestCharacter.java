@@ -22,9 +22,9 @@ public class TestCharacter {
     @Before
     public void setUp(){
 
-        html = new Character("html", "frontend", 100);
-        java = new Character("java", "backend", 100);
-        postgress = new Character("postgress", "database", 100);
+        html = new Character("html", "frontend", 100,"hi");
+        java = new Character("java", "backend", 100, "test");
+        postgress = new Character("postgress", "database", 100, "test");
 
         reduce = new Attack("gitPush", 50, html);
         rmrf = new Attack("gitPush", 25, java);

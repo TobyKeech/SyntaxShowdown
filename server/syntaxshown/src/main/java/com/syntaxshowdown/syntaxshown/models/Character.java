@@ -110,4 +110,12 @@ public class Character{
     public int getNoOfDefences(){
         return this.defenceList.size();
     }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
 }
