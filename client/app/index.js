@@ -34,6 +34,9 @@ const Index = () => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
+      layout: {
+        orientation: ["landscape"],
+      },
     });
   }, []);
   const toggleOverlay = () => {
@@ -48,8 +51,7 @@ const Index = () => {
     <SafeAreaView
       className="bg-black"
       style={GlobalStyles.droidSafeArea}
-      onLayout={onLayoutRootView}
-    >
+      onLayout={onLayoutRootView}>
       <View className="flex-row justify-end mr-5">
         <InformationCircleIcon size={50} color="rgb(74 222 128)" />
       </View>
@@ -58,8 +60,7 @@ const Index = () => {
         <TouchableOpacity onPress={toggleOverlay}>
           <Text
             className="text-green-400 text-5xl p-10"
-            style={{ fontFamily: "SyneMono" }}
-          >
+            style={{ fontFamily: "SyneMono" }}>
             syntax_showdown
           </Text>
         </TouchableOpacity>
@@ -88,7 +89,8 @@ const Index = () => {
           }}
           isVisible={visible}
           onBackdropPress={toggleOverlay}
-        >
+          animationType="fade"
+          supportedOrientations={["landscape"]}>
           <Text className="mb-5">Showdown!</Text>
           <Text>
             This is going to be the info menu with all the information about how
