@@ -1,7 +1,8 @@
-import { View, Text, ActivityIndicator, FlatList } from "react-native";
+import { View, Text, ActivityIndicator, FlatList, SafeAreaView } from "react-native";
 import React from "react";
 import { useEffect, useState } from "react";
 import { getPoke } from "../services/CharacterServices";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Fetch = () => {
   const [character, setCharacter] = useState([]);
@@ -20,9 +21,11 @@ const Fetch = () => {
     fetchData();
   }, []);
   return (
-    <View>
+    <SafeAreaView>
+    
       <Text>Fetch</Text>
       <FlatList
+      ListHeaderComponent={  <Text>Welcome</Text>}
           data={character}
           keyExtractor={({id}) => id}
           renderItem={({item}) => (
@@ -30,8 +33,9 @@ const Fetch = () => {
               {item.name}
             </Text>
           )}
-        />
-    </View>
+          />
+    
+        </SafeAreaView>
   );
 };
 
