@@ -28,7 +28,7 @@ public class TestCharacter {
 
         reduce = new Attack("gitPush", 50);
         rmrf = new Attack("gitPush", 25);
-        gitPull = new Attack("gitPush", 10);
+        gitPull = new Attack("gitPull", 10);
 
         gitPush = new Defence("gitPush", 20);
         filter = new Defence("gitPush", 20);
@@ -50,6 +50,44 @@ public class TestCharacter {
     public void hasHp(){
         assertEquals(100, html.getHp());
     }
+
+    @Test
+    public void attackHasName(){
+        assertEquals("gitPull", gitPull.getName());
+    }
+
+    @Test
+    public void attackHasValue(){
+        assertEquals(10, gitPull.getAttackvalue());
+    }
+
+    @Test
+    public void defenceHasName(){
+        assertEquals("gitPush", gitPush.getName());
+    }
+
+    @Test
+    public void defenceHasValue(){
+        assertEquals(20, gitPush.getDefencevalue());
+    }
+
+    @Test
+    public void canAddAttack(){
+       html.addAttack(gitPull);
+       html.addAttack(reduce);
+       html.addAttack(rmrf);
+       assertEquals(3, html.getNoOfAttacks());
+    }
+
+    @Test
+    public void canAddDefence(){
+        html.addDefence(gitPush);
+        html.addDefence(filter);
+        html.addDefence(map);
+        assertEquals(3, html.getNoOfDefences());
+    }
+
+
 
 
 
