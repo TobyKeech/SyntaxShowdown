@@ -49,12 +49,9 @@ const Index = () => {
       style={GlobalStyles.droidSafeArea}
       onLayout={onLayoutRootView}
     >
-      {/* <View className="absolute top-5 right-8 flex items-center justify-center w-8 h-8 rounded-full border border-green-400"> */}
-      {/* <Text className="text-green-400 text-2xl">i</Text> */}
       <View className="flex-row justify-end mr-5">
-        <InformationCircleIcon size={50} color="green" />
+        <InformationCircleIcon size={50} color="rgb(74 222 128)" />
       </View>
-      {/* </View> */}
 
       <View className="items-center justify-center absolute left-0 right-0 top-0 bottom-0">
         <TouchableOpacity onPress={toggleOverlay}>
