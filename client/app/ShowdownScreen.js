@@ -55,7 +55,7 @@ const ShowdownScreen = () => {
   };
 
   return (
-    <ImageBackground source={require("../assets/google.png")} style={{flex: 1}}>
+    <ImageBackground source={require("../assets/terminalimg.jpg")} style={{flex: 1}}>
       <SafeAreaView style={GlobalStyles.droidSafeArea}>
         <View className="absolute top-5 right-5">
           <TouchableOpacity onPress={toggleOverlay}>
