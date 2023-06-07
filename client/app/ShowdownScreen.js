@@ -7,8 +7,8 @@ import {
   ImageBackground,
 } from "react-native";
 import { useNavigation } from "expo-router";
-import { useLayoutEffect, useState } from "react";
 import React from "react";
+import { useLayoutEffect, useState, useEffect } from "react";
 import GlobalStyles from "../GlobalStyles";
 import { Button } from "@rneui/themed";
 import { Overlay } from "@rneui/themed";
@@ -19,6 +19,27 @@ import Player from "../components/PlayerBox/Player";
 // Add reminder of which turn it is and which player is active
 
 const ShowdownScreen = () => {
+
+  const [characterData, setCharacterData] = useState(null)
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch("http://192.168.38.150:8080/characters/1");
+      const json = await response.json();
+      console.log("I was here")
+      setCharacterData(json);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  console.log(characterData)
+
+  useEffect(() => {
+    console.log("I was a massive stud")
+    fetchData();
+  }, []);
+
   const navigation = useNavigation();
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -30,6 +51,9 @@ const ShowdownScreen = () => {
   const toggleOverlay = () => {
     setVisible(!visible);
   };
+
+
+
   return (
     // <ImageBackground source={require('client/assets/google.png')}>
     <SafeAreaView className="bg-black" style={GlobalStyles.droidSafeArea}>
@@ -92,8 +116,12 @@ const ShowdownScreen = () => {
         </Link>
         </View>
       </Overlay>
-      <Player />
-      <Player />
+      <View>
+     
+       {characterData ? <Player character={characterData} /> : null}
+
+    </View>
+      {/* <Player /> */}
     </SafeAreaView>
     // </ImageBackground>
   );
