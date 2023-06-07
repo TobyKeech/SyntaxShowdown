@@ -1,7 +1,6 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import React from 'react'
 import PlayerHP from './PlayerHP'
-import PlayerImage from './PlayerImage'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 const Player = ({ character }) => {
@@ -17,13 +16,19 @@ const Player = ({ character }) => {
    </Text>
         
     </View>
+{/* <View> */}
+{/* console.log(character.imgPath)
+    <Image source = {require ({character.imgPath})}
 
+      style = {{width:200, height: 200}}
+      /> */}
+  
 
 
         <View>
     
-      <PlayerHP />
-      <PlayerImage />
+      <PlayerHP characterhp = {character}/>
+  
     </View>
 
     </SafeAreaView>
