@@ -44,6 +44,9 @@ const ShowdownScreen = () => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
+      layout: {
+        orientation: ["landscape"],
+      },
     });
   }, []);
 
@@ -55,8 +58,8 @@ const ShowdownScreen = () => {
 
 
   return (
-    // <ImageBackground source={require('client/assets/google.png')}>
-    <SafeAreaView className="bg-black" style={GlobalStyles.droidSafeArea}>
+    <ImageBackground source={require('../assets/html.png')}>
+    <SafeAreaView style={GlobalStyles.droidSafeArea}>
       <View className="absolute top-5 right-5">
         <TouchableOpacity onPress={toggleOverlay}>
           <Bars3Icon size={50} color="rgb(74 222 128)"></Bars3Icon>
@@ -123,7 +126,7 @@ const ShowdownScreen = () => {
     </View>
       {/* <Player /> */}
     </SafeAreaView>
-    // </ImageBackground>
+    </ImageBackground>
   );
 };
 

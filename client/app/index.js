@@ -91,6 +91,13 @@ const Index = () => {
               title={"to fetch"}
             />
           </Link>
+          <Link href="/FaceOff" asChild>
+            <Button
+              color="rgb(74 222 128)"
+              titleStyle={{ color: "black", fontFamily: "SyneMono" }}
+              title={"FaceOffTest"}
+            />
+          </Link>
         </View>
 
         <Overlay
