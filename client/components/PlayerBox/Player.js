@@ -1,38 +1,29 @@
-import { View, Text, Image } from 'react-native'
-import React from 'react'
-import PlayerHP from './PlayerHP'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { View, Text, Image } from "react-native";
+import React from "react";
+import PlayerHP from "./PlayerHP";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Player = ({ character }) => {
-
-  console.log("CHARACTER:", character)
+  console.log("CHARACTER:", character);
+  console.log(character.imgPath);
+  const characterimg = "../../assets/html.png";
 
   return (
     <SafeAreaView>
+      <View>
+        <Text className="text-white text-5xl pb-5">{character.name}</Text>
+      </View>
 
-    <View>
-    <Text>
-      {character.name}
-   </Text>
-        
-    </View>
-{/* <View> */}
-{/* console.log(character.imgPath)
-    <Image source = {require ({character.imgPath})}
+      <Image
+        source={require(characterimg)}
+        style={{ width: 100, height: 100 }}
+      />
 
-      style = {{width:200, height: 200}}
-      /> */}
-  
-
-
-        <View>
-    
-      <PlayerHP characterhp = {character}/>
-  
-    </View>
-
+      <View>
+        <PlayerHP characterhp={character} />
+      </View>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default Player
+export default Player;
