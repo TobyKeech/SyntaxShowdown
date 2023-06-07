@@ -1,10 +1,10 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const PlayerHP = () => {
+const PlayerHP = ({characterhp}) => {
   return (
     <View>
-      <Text>PlayerHP</Text>
+      <Text>{characterhp.hp}</Text>
     </View>
   )
 }

@@ -84,13 +84,7 @@ const Index = () => {
               title={"npm start"}
             />
           </Link>
-          <Link href="/Fetch" asChild>
-            <Button
-              color="rgb(74 222 128)"
-              titleStyle={{ color: "black", fontFamily: "SyneMono" }}
-              title={"to fetch"}
-            />
-          </Link>
+    
           <Link href="/FaceOff" asChild>
             <Button
               color="rgb(74 222 128)"
