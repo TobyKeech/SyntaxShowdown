@@ -15,6 +15,7 @@ import { Overlay } from "@rneui/themed";
 import { Bars3Icon } from "react-native-heroicons/solid";
 import { Link } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Player from "../components/PlayerBox/Player";
 // Add reminder of which turn it is and which player is active
 
 const ShowdownScreen = () => {
@@ -91,6 +92,8 @@ const ShowdownScreen = () => {
         </Link>
         </View>
       </Overlay>
+      <Player />
+      <Player />
     </SafeAreaView>
     // </ImageBackground>
   );
