@@ -51,68 +51,71 @@ const Index = () => {
   }
 
   return (
-    <ImageBackground source={require("../assets/terminalimg.jpg")} style={{flex: 1}}>
-
-    <SafeAreaView
-      style={GlobalStyles.droidSafeArea}
-      onLayout={onLayoutRootView}
-    >
-      <View className="items-end mr-5">
-        
-        <Icon
-          size={50}
-          name="information-circle-sharp"
-          type="ionicon"
-          color="rgb(74 222 128)"
-          onPress={toggleOverlay}
-        />
-      </View>
-
-      <View className="items-center justify-center">
-        <Text
-          className="text-green-400 text-5xl pb-5"
-          style={{ fontFamily: "SyneMono" }}
-        >
-          syntax_showdown
-        </Text>
-
-        <View className="p-10 flex-column">
-          <Link href="/ShowdownScreen" asChild>
-            <Button
-              color="black"
-              titleStyle={{ color: "rgb(74 222 128)", fontFamily: "SyneMono" }}
-              title={"npm start"}
-            />
-          </Link>
-    
-          <Link href="/FaceOff" asChild>
-            <Button
-              color="rgb(74 222 128)"
-              titleStyle={{ color: "black", fontFamily: "SyneMono" }}
-              title={"FaceOffTest"}
-            />
-          </Link>
+    <ImageBackground
+      source={require("../assets/terminalimg.jpg")}
+      style={{ flex: 1 }}>
+      <SafeAreaView
+        style={GlobalStyles.droidSafeArea}
+        onLayout={onLayoutRootView}>
+        <View className="items-end mr-5">
+          <Icon
+            size={50}
+            name="information-circle-sharp"
+            type="ionicon"
+            color="rgb(74 222 128)"
+            onPress={toggleOverlay}
+          />
         </View>
 
-        <Overlay
-          overlayStyle={{
-            backgroundColor: "rgb(74 222 128)",
-            alignItems: "center",
-            width: 400,
-          }}
-          isVisible={visible}
-          onBackdropPress={toggleOverlay}
-          animationType="fade"
-          supportedOrientations={["landscape"]}
-        >
-          <Text className="mb-5">Showdown!</Text>
-          <Text>
-            This is going to be the info menu with all the information about how
-            to play this game.
-          </Text>
-        </Overlay>
-      </View>
-    </SafeAreaView>
+        <View className="items-center justify-center">
+          <View className="bg-black  p-2">
+            <Text
+              className="text-green-400 text-6xl p-1"
+              style={{ fontFamily: "SyneMono" }}>
+              syntax_showdown
+            </Text>
+          </View>
+
+          <View className="p-10 flex-column">
+            <Link href="/ShowdownScreen" asChild>
+              <Button
+                color={"rgb(0 0 0)"}
+                titleStyle={{
+                  color: "rgb(74 222 128)",
+                  fontFamily: "SyneMono",
+                  fontSize: "35",
+                }}
+                title={"npm start"}
+              />
+            </Link>
+
+            <Link href="/FaceOff" asChild>
+              <Button
+                color="rgb(74 222 128)"
+                titleStyle={{ color: "black", fontFamily: "SyneMono" }}
+                title={"FaceOffTest"}
+              />
+            </Link>
+          </View>
+
+          <Overlay
+            overlayStyle={{
+              backgroundColor: "rgb(74 222 128)",
+              alignItems: "center",
+              width: 400,
+            }}
+            isVisible={visible}
+            onBackdropPress={toggleOverlay}
+            animationType="fade"
+            supportedOrientations={["landscape"]}>
+            <Text className="mb-5">Showdown!</Text>
+            <Text>
+              This is going to be the info menu with all the information about
+              how to play this game.
+            </Text>
+          </Overlay>
+        </View>
+      </SafeAreaView>
     </ImageBackground>
   );
 };

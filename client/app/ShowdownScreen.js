@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Pressable,
   ImageBackground,
+  Image
 } from "react-native";
 import { useNavigation } from "expo-router";
 import React from "react";
