@@ -93,7 +93,6 @@ const ShowdownScreen = () => {
         <View>
           {characterData ? <Player character={characterData} /> : null}
         </View>
-        {/* <Player /> */}
       </SafeAreaView>
     </ImageBackground>
   );
