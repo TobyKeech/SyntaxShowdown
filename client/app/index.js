@@ -17,6 +17,7 @@ import { Overlay } from "@rneui/themed";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { Icon } from "@rneui/themed";
+import { ImageBackground } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -50,15 +51,14 @@ const Index = () => {
   }
 
   return (
+    <ImageBackground source={require("../assets/terminalimg.jpg")} style={{flex: 1}}>
+
     <SafeAreaView
-      className="bg-black"
       style={GlobalStyles.droidSafeArea}
       onLayout={onLayoutRootView}
     >
-      {/* </TouchableOpacity> */}
       <View className="items-end mr-5">
-        {/* <TouchableOpacity onPress={() => {toggleOverlay}}> */}
-        {/* <InformationCircleIcon size={50} color="rgb(74 222 128)" /> */}
+        
         <Icon
           size={50}
           name="information-circle-sharp"
@@ -79,8 +79,8 @@ const Index = () => {
         <View className="p-10 flex-column">
           <Link href="/ShowdownScreen" asChild>
             <Button
-              color="rgb(74 222 128)"
-              titleStyle={{ color: "black", fontFamily: "SyneMono" }}
+              color="black"
+              titleStyle={{ color: "rgb(74 222 128)", fontFamily: "SyneMono" }}
               title={"npm start"}
             />
           </Link>
@@ -113,6 +113,7 @@ const Index = () => {
         </Overlay>
       </View>
     </SafeAreaView>
+    </ImageBackground>
   );
 };
 
