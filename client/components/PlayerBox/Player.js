@@ -10,26 +10,32 @@ const Player = ({ character }) => {
   return (
     <SafeAreaView>
 
-    <View>
-    <Text>
-      {character.name}
-   </Text>
-        
-    </View>
+  
 {/* <View> */}
 {/* console.log(character.imgPath)
     <Image source = {require ({character.imgPath})}
 
       style = {{width:200, height: 200}}
       /> */}
-  
 
 
-        <View>
+
+      <View>
+
+    <Text className=" text-green-400 text-3xl">
+      {character.name}
+   </Text>
+        
+    </View>
+
+
+    <View >
     
-      <PlayerHP characterhp = {character}/>
+       <PlayerHP characterhp = {character}/>
   
     </View>
+
+  
 
     </SafeAreaView>
   )
