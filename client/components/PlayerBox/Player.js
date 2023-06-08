@@ -18,8 +18,22 @@ const Player = ({ character }) => {
       />
 
       <View>
-        <PlayerHP characterhp={character} />
-      </View>
+
+    <Text className=" text-green-400 text-3xl">
+      {character.name}
+   </Text>
+        
+    </View>
+
+
+    <View >
+    
+       <PlayerHP characterhp = {character}/>
+  
+    </View>
+
+  
+
     </SafeAreaView>
   );
 };
