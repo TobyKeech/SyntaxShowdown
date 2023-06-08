@@ -24,7 +24,7 @@ const ShowdownScreen = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://172.20.10.4:8080/characters/1");
+      const response = await fetch("http://192.168.38.104:8080/characters/1");
       const json = await response.json();
       console.log("I was here");
       setCharacterData(json);
