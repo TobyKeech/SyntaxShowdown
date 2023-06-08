@@ -67,7 +67,11 @@ const ShowdownScreen = () => {
     setFaceoffVisible(!faceoffVisible);
   };
 
-  const [abilityvisiblep1, setAbilityVisiblep1] = useState(true);
+  const { width, height } = Dimensions.get("window");
+  const overlayWidth = width;
+  const overlayHeight = height;
+
+  const [abilityvisiblep1, setAbilityVisiblep1] = useState(false);
   const toggleAbilityOverlayp1 = () => {
     setAbilityVisiblep1(!abilityvisiblep1);
   };
@@ -137,7 +141,7 @@ const ShowdownScreen = () => {
             />
 
     <Button
-    onPress= {toggleAbilityOverlayp1}>
+    onPress= {toggleAbilityOverlayp2}>
               <FlatList
               data={characterData ? characterData.attackList : []}
               renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
@@ -153,34 +157,28 @@ const ShowdownScreen = () => {
     </Button>
       
           </View>
-
-
         </Overlay>
 
         <Overlay
-        overlayStyle={{
-            backgroundColor: "rgb(74 222 128)",
+          overlayStyle={{
             alignItems: "center",
-            width: 300,
+            width: overlayWidth,
+            height: overlayHeight,
+            backgroundColor: "rgb(0,0,0)",
           }}
-          isVisible={abilityvisiblep2}
-          onBackdropPress={toggleAbilityOverlayp2}
+          isVisible={abilityvisiblep1}
+          onBackdropPress={toggleAbilityOverlayp1}
           animationType="fade"
           supportedOrientations={["landscape"]}>
-          <Image source={require("../assets/versus.png")} style={{width: 300, height: 300}}/>
-          <View className="absolute bottom-10">
+
+            <View className="border-solid border-black border-2 m-5">
             <Button
               color="rgb(74 222 128)"
-              titleStyle={{
-                color: "black",
-                fontFamily: "SyneMono",
-                fontSize: 40,
-              }}
-              title={"Showdown!"}
-              onPress={toggleFaceOffOverlay}
+              titleStyle={{ color: "black", fontFamily: "SyneMono" }}
+              title={"Choose your Ability"}
             />
 
-    <Button
+<Button
     onPress={toggleAbilityOverlayp2}>
               <FlatList
               data={characterData ? characterData.attackList : []}
@@ -194,7 +192,33 @@ const ShowdownScreen = () => {
                   renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
                   />
     </Button>
+
       
+          </View>
+        </Overlay>
+
+        <Overlay
+          overlayStyle={{
+            alignItems: "center",
+            width: overlayWidth,
+            height: overlayHeight,
+            backgroundColor: "rgb(0,0,0)",
+          }}
+          isVisible={faceoffVisible}
+          animationType="slide"
+          supportedOrientations={["landscape"]}>
+          <Image source={require("../assets/versus.png")} style={{width: 300, height: 300}}/>
+          <View className="absolute bottom-10">
+            <Button
+              color="rgb(74 222 128)"
+              titleStyle={{
+                color: "black",
+                fontFamily: "SyneMono",
+                fontSize: 40,
+              }}
+              title={"Showdown!"}
+              onPress={toggleFaceOffOverlay}
+            />
           </View>
         </Overlay>
 
