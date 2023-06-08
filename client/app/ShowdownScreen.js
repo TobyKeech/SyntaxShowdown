@@ -28,8 +28,12 @@ const ShowdownScreen = () => {
   const fetchData = async () => {
     try {
       const [response1, response2] = await Promise.all([
-        fetch("https://syntax-showdown-app.delightfulisland-96df0ba2.uksouth.azurecontainerapps.io/characters/1"),
-        fetch("https://syntax-showdown-app.delightfulisland-96df0ba2.uksouth.azurecontainerapps.io/characters/2"),
+        fetch(
+          "https://syntax-showdown-app.delightfulisland-96df0ba2.uksouth.azurecontainerapps.io/characters/1"
+        ),
+        fetch(
+          "https://syntax-showdown-app.delightfulisland-96df0ba2.uksouth.azurecontainerapps.io/characters/2"
+        ),
       ]);
 
       const [json1, json2] = await Promise.all([
@@ -67,6 +71,11 @@ const ShowdownScreen = () => {
     setFaceoffVisible(!faceoffVisible);
   };
 
+  const [endScreenVisible, setEndScreenVisible] = useState(false);
+  const toggleEndScreenOverlay = () => {
+    setEndScreenVisible(!endScreenVisible);
+  };
+
   const { width, height } = Dimensions.get("window");
   const overlayWidth = width;
   const overlayHeight = height;
@@ -82,22 +91,25 @@ const ShowdownScreen = () => {
   };
 
   const onShowdownPressHandler = () => {
-    toggleFaceOffOverlay(), toggleAbilityOverlayp1()
-  }
+    toggleFaceOffOverlay(), toggleAbilityOverlayp1();
+  };
+
+  const endScreenHandler = () => {
+    const copy = { ...characterData };
+    copy.hp = 0;
+    setCharacterData(copy);
+  };
 
   const onp1AbilityPressHandle = () => {
-    toggleAbilityOverlayp1(), toggleAbilityOverlayp2()
-  }
-
-
+    toggleAbilityOverlayp1(), toggleAbilityOverlayp2();
+  };
 
   return (
-
     <ImageBackground
       source={require("../assets/terminalimg.jpg")}
-      style={{ flex: 1 }}>
+      style={{ flex: 1 }}
+    >
       <SafeAreaView style={GlobalStyles.droidSafeArea}>
-
         <View className="absolute top-5 right-5">
           <TouchableOpacity onPress={toggleMenuOverlay}>
             <Bars3Icon size={50} color="rgb(74 222 128)"></Bars3Icon>
@@ -112,7 +124,8 @@ const ShowdownScreen = () => {
           }}
           isVisible={menuVisible}
           animationType="fade"
-          supportedOrientations={["landscape"]}>
+          supportedOrientations={["landscape"]}
+        >
           <View className="border-solid border-black border-2 m-5">
             <Button
               color="rgb(74 222 128)"
@@ -140,8 +153,8 @@ const ShowdownScreen = () => {
           }}
           isVisible={abilityvisiblep1}
           animationType="fade"
-          supportedOrientations={["landscape"]}>
-
+          supportedOrientations={["landscape"]}
+        >
           <View className="border-solid border-black border-2 m-5">
             <Button
               color="rgb(74 222 128)"
@@ -149,22 +162,21 @@ const ShowdownScreen = () => {
               title={"Choose your Ability"}
             />
 
-            {characterData ? (
-              characterData.attackList.map((item) => (
-                <Button key={item.id} onPress={onp1AbilityPressHandle}>
-                  <Text>{item.name}</Text>
-                </Button>
-              ))
-            ) : null}
+            {characterData
+              ? characterData.attackList.map((item) => (
+                  <Button key={item.id} onPress={onp1AbilityPressHandle}>
+                    <Text>{item.name}</Text>
+                  </Button>
+                ))
+              : null}
 
-            {characterData ? (
-              characterData.defenceList.map((item) => (
-                <Button key={item.id} onPress={onp1AbilityPressHandle}>
-                  <Text>{item.name}</Text>
-                </Button>
-              ))
-            ) : null}
-
+            {characterData
+              ? characterData.defenceList.map((item) => (
+                  <Button key={item.id} onPress={onp1AbilityPressHandle}>
+                    <Text>{item.name}</Text>
+                  </Button>
+                ))
+              : null}
           </View>
         </Overlay>
 
@@ -177,8 +189,8 @@ const ShowdownScreen = () => {
           }}
           isVisible={abilityvisiblep2}
           animationType="fade"
-          supportedOrientations={["landscape"]}>
-
+          supportedOrientations={["landscape"]}
+        >
           <View className="border-solid border-black border-2 m-5">
             <Button
               color="rgb(74 222 128)"
@@ -186,22 +198,21 @@ const ShowdownScreen = () => {
               title={"Choose your Ability"}
             />
 
-            {secondCharacterData ? (
-              secondCharacterData.attackList.map((item) => (
-                <Button key={item.id} onPress={toggleAbilityOverlayp2}>
-                  <Text>{item.name}</Text>
-                </Button>
-              ))
-            ) : null}
+            {secondCharacterData
+              ? secondCharacterData.attackList.map((item) => (
+                  <Button key={item.id} onPress={toggleAbilityOverlayp2}>
+                    <Text>{item.name}</Text>
+                  </Button>
+                ))
+              : null}
 
-            {secondCharacterData ? (
-              secondCharacterData.defenceList.map((item) => (
-                <Button key={item.id} onPress={toggleAbilityOverlayp2}>
-                  <Text>{item.name}</Text>
-                </Button>
-              ))
-            ) : null}
-
+            {secondCharacterData
+              ? secondCharacterData.defenceList.map((item) => (
+                  <Button key={item.id} onPress={toggleAbilityOverlayp2}>
+                    <Text>{item.name}</Text>
+                  </Button>
+                ))
+              : null}
           </View>
         </Overlay>
 
@@ -214,8 +225,12 @@ const ShowdownScreen = () => {
           }}
           isVisible={faceoffVisible}
           animationType="slide"
-          supportedOrientations={["landscape"]}>
-          <Image source={require("../assets/versus.png")} style={{ width: 300, height: 300 }} />
+          supportedOrientations={["landscape"]}
+        >
+          <Image
+            source={require("../assets/versus.png")}
+            style={{ width: 300, height: 300 }}
+          />
           <View className="absolute bottom-10">
             <Button
               color="rgb(74 222 128)"
@@ -230,11 +245,73 @@ const ShowdownScreen = () => {
           </View>
         </Overlay>
 
+        {characterData && secondCharacterData ? (
+          <Overlay
+            overlayStyle={{
+              alignItems: "center",
+              width: overlayWidth,
+              height: overlayHeight,
+              backgroundColor: "rgb(0,0,0)",
+            }}
+            isVisible={endScreenVisible}
+            animationType="slide"
+            supportedOrientations={["landscape"]}
+          >
+            <Text className="text-white">Winner:</Text>
+            {secondCharacterData.hp === 0 ? (
+              <Image
+                source={{ uri: characterData.imgPath }}
+                style={{ width: 200, height: 100 }}
+              />
+            ) : null}
+            {characterData.hp === 0 ? (
+              <Image
+                source={{ uri: secondCharacterData.imgPath }}
+                style={{ width: 200, height: 100 }}
+              />
+            ) : null}
+
+            <View className="absolute bottom-10">
+              <Button
+                color="rgb(74 222 128)"
+                titleStyle={{
+                  color: "black",
+                  fontFamily: "SyneMono",
+                  fontSize: 20,
+                }}
+                title={"Kill p2"}
+                onPress={endScreenHandler}
+              />
+              <View className=" flex-column">
+                <Link href="/" asChild>
+                  <Button
+                    color={"rgb(0 0 0)"}
+                    titleStyle={{
+                      color: "rgb(74 222 128)",
+                      fontFamily: "SyneMono",
+                      fontSize: 35,
+                    }}
+                    title={"Title Screen"}
+                  />
+                </Link>
+              </View>
+            </View>
+          </Overlay>
+        ) : null}
+
         <View className="flex-row">
           {characterData ? <Player character={characterData} /> : null}
           {secondCharacterData ? (
             <Player character={secondCharacterData} />
           ) : null}
+        </View>
+        <View className=" absolute bottom-10 right-8">
+          <Text
+            onPress={toggleEndScreenOverlay}
+            className="text-white flex-end text-xl"
+          >
+            Endscreen
+          </Text>
         </View>
       </SafeAreaView>
     </ImageBackground>
