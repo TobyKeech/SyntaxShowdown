@@ -22,12 +22,14 @@ import Player from "../components/PlayerBox/Player";
 const ShowdownScreen = () => {
   const [characterData, setCharacterData] = useState(null);
   const [secondCharacterData, setSecondCharacterData] = useState(null);
+  const first = Math.floor(Math.random() * 9) +1;
+  const second = Math.floor(Math.random() * 9) +1;
 
   const fetchData = async () => {
     try {
       const [response1, response2] = await Promise.all([
-        fetch("http://172.20.10.4:8080/characters/1"),
-        fetch("http://172.20.10.4:8080/characters/2")
+        fetch(`http://192.168.38.104:8080/characters/${first}`),
+        fetch(`http://192.168.38.104:8080/characters/${second}`)
       ]);
 
       const [json1, json2] = await Promise.all([
