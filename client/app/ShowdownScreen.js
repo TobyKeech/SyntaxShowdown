@@ -77,18 +77,18 @@ const ShowdownScreen = () => {
   };
 
   const [abilityvisiblep2, setAbilityVisiblep2] = useState(false);
-  const toggleAbilityOverlayp2= () => {
+  const toggleAbilityOverlayp2 = () => {
     setAbilityVisiblep2(!abilityvisiblep2);
   };
 
-    const onShowdownPressHandler = () => {
-      toggleFaceOffOverlay(), toggleAbilityOverlayp1()
-    }
+  const onShowdownPressHandler = () => {
+    toggleFaceOffOverlay(), toggleAbilityOverlayp1()
+  }
 
-    const onp1AbilityPressHandle = ()=>{
-      toggleAbilityOverlayp1(), toggleAbilityOverlayp2()
-    }
-  
+  const onp1AbilityPressHandle = () => {
+    toggleAbilityOverlayp1(), toggleAbilityOverlayp2()
+  }
+
 
 
   return (
@@ -142,29 +142,29 @@ const ShowdownScreen = () => {
           animationType="fade"
           supportedOrientations={["landscape"]}>
 
-            <View className="border-solid border-black border-2 m-5">
+          <View className="border-solid border-black border-2 m-5">
             <Button
               color="rgb(74 222 128)"
               titleStyle={{ color: "black", fontFamily: "SyneMono" }}
               title={"Choose your Ability"}
             />
 
-    <Button
-    onPress= {onp1AbilityPressHandle}>
-              <FlatList
-              data={characterData ? characterData.attackList : []}
-              renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
-              />
-    </Button>
+            {characterData ? (
+              characterData.attackList.map((item) => (
+                <Button key={item.id} onPress={onp1AbilityPressHandle}>
+                  <Text>{item.name}</Text>
+                </Button>
+              ))
+            ) : null}
 
-    <Button
-    onPress={onp1AbilityPressHandle}>
-            <FlatList
-                  data={characterData ? characterData.defenceList : []}
-                  renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
-                  />
-    </Button>
-      
+            {characterData ? (
+              characterData.defenceList.map((item) => (
+                <Button key={item.id} onPress={onp1AbilityPressHandle}>
+                  <Text>{item.name}</Text>
+                </Button>
+              ))
+            ) : null}
+
           </View>
         </Overlay>
 
@@ -179,29 +179,29 @@ const ShowdownScreen = () => {
           animationType="fade"
           supportedOrientations={["landscape"]}>
 
-            <View className="border-solid border-black border-2 m-5">
+          <View className="border-solid border-black border-2 m-5">
             <Button
               color="rgb(74 222 128)"
               titleStyle={{ color: "black", fontFamily: "SyneMono" }}
               title={"Choose your Ability"}
             />
 
-<Button
-    onPress={toggleAbilityOverlayp2}>
-              <FlatList
-              data={secondCharacterData ? secondCharacterData.attackList : []}
-              renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
-              />
-    </Button>
+            {secondCharacterData ? (
+              secondCharacterData.attackList.map((item) => (
+                <Button key={item.id} onPress={toggleAbilityOverlayp2}>
+                  <Text>{item.name}</Text>
+                </Button>
+              ))
+            ) : null}
 
-    <Button>
-            <FlatList
-                  data={secondCharacterData ? secondCharacterData.defenceList : []}
-                  renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
-                  />
-    </Button>
+            {secondCharacterData ? (
+              secondCharacterData.defenceList.map((item) => (
+                <Button key={item.id} onPress={toggleAbilityOverlayp2}>
+                  <Text>{item.name}</Text>
+                </Button>
+              ))
+            ) : null}
 
-      
           </View>
         </Overlay>
 
@@ -215,7 +215,7 @@ const ShowdownScreen = () => {
           isVisible={faceoffVisible}
           animationType="slide"
           supportedOrientations={["landscape"]}>
-          <Image source={require("../assets/versus.png")} style={{width: 300, height: 300}}/>
+          <Image source={require("../assets/versus.png")} style={{ width: 300, height: 300 }} />
           <View className="absolute bottom-10">
             <Button
               color="rgb(74 222 128)"
