@@ -76,7 +76,7 @@ const Index = () => {
             </Text>
           </View>
 
-          <View className="p-10 flex-column">
+          <View className="p-10 pt-20 flex-column">
             <Link href="/ShowdownScreen" asChild>
               <Button
                 color={"rgb(0 0 0)"}
@@ -86,14 +86,6 @@ const Index = () => {
                   fontSize: 35,
                 }}
                 title={"npm start"}
-              />
-            </Link>
-
-            <Link href="/FaceOff" asChild>
-              <Button
-                color="rgb(74 222 128)"
-                titleStyle={{ color: "black", fontFamily: "SyneMono" }}
-                title={"FaceOffTest"}
               />
             </Link>
           </View>

@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   Pressable,
   ImageBackground,
-  Image
+  Image,
+  Dimensions,
 } from "react-native";
 import { useNavigation } from "expo-router";
 import React from "react";
@@ -27,12 +28,12 @@ const ShowdownScreen = () => {
     try {
       const [response1, response2] = await Promise.all([
         fetch("http://172.20.10.4:8080/characters/1"),
-        fetch("http://172.20.10.4:8080/characters/2")
+        fetch("http://172.20.10.4:8080/characters/2"),
       ]);
 
       const [json1, json2] = await Promise.all([
         response1.json(),
-        response2.json()
+        response2.json(),
       ]);
 
       setCharacterData(json1);
@@ -56,27 +57,37 @@ const ShowdownScreen = () => {
     });
   }, []);
 
-  const [visible, setVisible] = useState(false);
-  const toggleOverlay = () => {
-    setVisible(!visible);
+  const [menuVisible, setMenuVisible] = useState(false);
+  const toggleMenuOverlay = () => {
+    setMenuVisible(!menuVisible);
+  };
+  const [faceoffVisible, setFaceoffVisible] = useState(true);
+  const toggleFaceOffOverlay = () => {
+    setFaceoffVisible(!faceoffVisible);
   };
 
+  const { width, height } = Dimensions.get("window");
+  const overlayWidth = width;
+  const overlayHeight = height;
+
   return (
-    <ImageBackground source={require("../assets/terminalimg.jpg")} style={{ flex: 1 }}>
+    <ImageBackground
+      source={require("../assets/terminalimg.jpg")}
+      style={{ flex: 1 }}>
       <SafeAreaView style={GlobalStyles.droidSafeArea}>
         <View className="absolute top-5 right-5">
-          <TouchableOpacity onPress={toggleOverlay}>
+          <TouchableOpacity onPress={toggleMenuOverlay}>
             <Bars3Icon size={50} color="rgb(74 222 128)"></Bars3Icon>
           </TouchableOpacity>
         </View>
+
         <Overlay
           overlayStyle={{
             backgroundColor: "rgb(74 222 128)",
             alignItems: "center",
             width: 300,
           }}
-          isVisible={visible}
-          onBackdropPress={toggleOverlay}
+          isVisible={menuVisible}
           animationType="fade"
           supportedOrientations={["landscape"]}>
           <View className="border-solid border-black border-2 m-5">
@@ -84,7 +95,7 @@ const ShowdownScreen = () => {
               color="rgb(74 222 128)"
               titleStyle={{ color: "black", fontFamily: "SyneMono" }}
               title={"resume"}
-              onPress={toggleOverlay}
+              onPress={toggleMenuOverlay}
             />
           </View>
           <View className="border-solid border-2 border-black m-5">
@@ -97,16 +108,37 @@ const ShowdownScreen = () => {
             </Link>
           </View>
         </Overlay>
+        <Overlay
+          overlayStyle={{
+            alignItems: "center",
+            width: overlayWidth,
+            height: overlayHeight,
+            backgroundColor: "rgb(0,0,0)",
+          }}
+          isVisible={faceoffVisible}
+          animationType="slide"
+          supportedOrientations={["landscape"]}>
+          <Image source={require("../assets/versus.png")} style={{width: 300, height: 300}}/>
+          <View className="absolute bottom-10">
+            <Button
+              color="rgb(74 222 128)"
+              titleStyle={{
+                color: "black",
+                fontFamily: "SyneMono",
+                fontSize: 40,
+              }}
+              title={"Showdown!"}
+              onPress={toggleFaceOffOverlay}
+            />
+          </View>
+        </Overlay>
 
-        <View className= "flex-row">
-
-
+        <View className="flex-row">
           {characterData ? <Player character={characterData} /> : null}
-          {secondCharacterData ? <Player character={secondCharacterData} /> : null}
-
-
+          {secondCharacterData ? (
+            <Player character={secondCharacterData} />
+          ) : null}
         </View>
-
       </SafeAreaView>
     </ImageBackground>
   );
