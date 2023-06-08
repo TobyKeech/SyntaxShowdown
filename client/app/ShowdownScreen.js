@@ -81,8 +81,18 @@ const ShowdownScreen = () => {
     setAbilityVisiblep2(!abilityvisiblep2);
   };
 
+    const onShowdownPressHandler = () => {
+      toggleFaceOffOverlay(), toggleAbilityOverlayp1()
+    }
+
+    const onp1AbilityPressHandle = ()=>{
+      toggleAbilityOverlayp1(), toggleAbilityOverlayp2()
+    }
+  
+
 
   return (
+
     <ImageBackground
       source={require("../assets/terminalimg.jpg")}
       style={{ flex: 1 }}>
@@ -129,7 +139,6 @@ const ShowdownScreen = () => {
             backgroundColor: "rgb(0,0,0)",
           }}
           isVisible={abilityvisiblep1}
-          onBackdropPress={toggleAbilityOverlayp1}
           animationType="fade"
           supportedOrientations={["landscape"]}>
 
@@ -141,7 +150,7 @@ const ShowdownScreen = () => {
             />
 
     <Button
-    onPress= {toggleAbilityOverlayp2}>
+    onPress= {onp1AbilityPressHandle}>
               <FlatList
               data={characterData ? characterData.attackList : []}
               renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
@@ -149,7 +158,7 @@ const ShowdownScreen = () => {
     </Button>
 
     <Button
-    onPress={toggleAbilityOverlayp2}>
+    onPress={onp1AbilityPressHandle}>
             <FlatList
                   data={characterData ? characterData.defenceList : []}
                   renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
@@ -166,8 +175,7 @@ const ShowdownScreen = () => {
             height: overlayHeight,
             backgroundColor: "rgb(0,0,0)",
           }}
-          isVisible={abilityvisiblep1}
-          onBackdropPress={toggleAbilityOverlayp1}
+          isVisible={abilityvisiblep2}
           animationType="fade"
           supportedOrientations={["landscape"]}>
 
@@ -181,14 +189,14 @@ const ShowdownScreen = () => {
 <Button
     onPress={toggleAbilityOverlayp2}>
               <FlatList
-              data={characterData ? characterData.attackList : []}
+              data={secondCharacterData ? secondCharacterData.attackList : []}
               renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
               />
     </Button>
 
     <Button>
             <FlatList
-                  data={characterData ? characterData.defenceList : []}
+                  data={secondCharacterData ? secondCharacterData.defenceList : []}
                   renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
                   />
     </Button>
@@ -217,7 +225,7 @@ const ShowdownScreen = () => {
                 fontSize: 40,
               }}
               title={"Showdown!"}
-              onPress={toggleFaceOffOverlay}
+              onPress={onShowdownPressHandler}
             />
           </View>
         </Overlay>
