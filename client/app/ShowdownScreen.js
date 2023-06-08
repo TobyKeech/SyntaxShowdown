@@ -62,7 +62,7 @@ const ShowdownScreen = () => {
   };
 
   return (
-    <ImageBackground source={require("../assets/terminalimg.jpg")} style={{flex: 1}}>
+    <ImageBackground source={require("../assets/terminalimg.jpg")} style={{ flex: 1 }}>
       <SafeAreaView style={GlobalStyles.droidSafeArea}>
         <View className="absolute top-5 right-5">
           <TouchableOpacity onPress={toggleOverlay}>
@@ -98,13 +98,14 @@ const ShowdownScreen = () => {
           </View>
         </Overlay>
 
-        <View>
-          {characterData ? <Player character={characterData} /> : null}
-        </View>
+        <View className= "flex-row">
 
-        {/* <View>
-          {secondCharacterData ? <Player character2= {secondCharacterData}/>:null}
-        </View> */}
+
+          {characterData ? <Player character={characterData} /> : null}
+          {secondCharacterData ? <Player character={secondCharacterData} /> : null}
+
+
+        </View>
 
       </SafeAreaView>
     </ImageBackground>
