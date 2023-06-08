@@ -83,7 +83,7 @@ const Index = () => {
                 titleStyle={{
                   color: "rgb(74 222 128)",
                   fontFamily: "SyneMono",
-                  fontSize: "35",
+                  fontSize: 35,
                 }}
                 title={"npm start"}
               />
