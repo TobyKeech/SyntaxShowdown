@@ -3,9 +3,7 @@ import React from 'react'
 import PlayerHP from './PlayerHP'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-const Player = ({ character }) => {
-
-  console.log("CHARACTER:", character)
+const Player = ({ character}) => {
 
   return (
     <SafeAreaView>
