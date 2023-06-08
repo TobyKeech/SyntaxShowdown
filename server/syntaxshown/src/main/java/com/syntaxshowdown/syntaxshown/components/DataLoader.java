@@ -31,7 +31,7 @@ public class DataLoader implements ApplicationRunner {
     }
     public void run(ApplicationArguments args) {
 
-        Character html = new Character("HTML", "frontend", 100, "../../assets/html.png");
+        Character html = new Character("HTML", "frontend", 100, "https://i.ibb.co/xq05jfj/html.png");
         characterRepository.save(html);
         Character css = new Character("CSS", "frontend", 100, "../../assets/css.png");
         characterRepository.save(css);

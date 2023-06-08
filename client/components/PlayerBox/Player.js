@@ -5,11 +5,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const Player = ({ character }) => {
   console.log("CHARACTER:", character);
-  console.log(character.imgPath);
-  const characterimg = `${character.imgPath}`;
-  console.log(characterimg);
-  const characterimg2= "../../assets/html.png"
-
 
   return (
     <SafeAreaView>
@@ -18,7 +13,7 @@ const Player = ({ character }) => {
       </View>
 
       <Image
-        source={{uri: "https://i.ibb.co/xq05jfj/html.png"}}
+        source={{uri: character.imgPath}}
         style={{ width: 100, height: 100 }}
       />
 
