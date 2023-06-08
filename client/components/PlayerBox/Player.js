@@ -9,31 +9,18 @@ const Player = ({ character }) => {
   return (
     <SafeAreaView>
       <View>
-        <Text className="text-white text-5xl pb-5">{character.name}</Text>
+        <Text className=" text-green-400 text-3xl">{character.name}</Text>
       </View>
 
       <Image
-        source={{uri: character.imgPath}}
-        style={{ width: 100, height: 100 }}
+        source={{ uri: character.imgPath }}
+        style={{ width: 200, height: 100 }}
       />
 
+
       <View>
-
-    <Text className=" text-green-400 text-3xl">
-      {character.name}
-   </Text>
-        
-    </View>
-
-
-    <View >
-    
-       <PlayerHP characterhp = {character}/>
-  
-    </View>
-
-  
-
+        <PlayerHP characterhp={character} />
+      </View>
     </SafeAreaView>
   );
 };
