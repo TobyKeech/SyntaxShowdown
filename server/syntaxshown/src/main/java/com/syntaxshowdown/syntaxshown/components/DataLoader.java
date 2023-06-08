@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Profile("!test")
-//@Component //Comment this out if you do not to run the data loader.
+@Component //Comment this out if you do not to run the data loader.
 public class DataLoader implements ApplicationRunner {
 
     @Autowired
@@ -31,7 +31,7 @@ public class DataLoader implements ApplicationRunner {
     }
     public void run(ApplicationArguments args) {
 
-        Character html = new Character("HTML", "frontend", 100, "https://i.ibb.co/xq05jfj/html.png");
+        Character html = new Character("HTML", "frontend", 100, "https://i.ibb.co/GWN62pv/html.png  ");
         characterRepository.save(html);
         Character css = new Character("CSS", "frontend", 100, "../../assets/css.png");
         characterRepository.save(css);
