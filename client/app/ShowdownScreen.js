@@ -67,16 +67,14 @@ const ShowdownScreen = () => {
     setFaceoffVisible(!faceoffVisible);
   };
 
-<<<<<<< HEAD
   const { width, height } = Dimensions.get("window");
   const overlayWidth = width;
   const overlayHeight = height;
-=======
+  
   const [abilityvisible, setAbilityVisible] = useState(true);
   const toggleAbilityOverlay = () => {
     setAbilityVisible(!abilityvisible);
   };
->>>>>>> main
 
   return (
     <ImageBackground
