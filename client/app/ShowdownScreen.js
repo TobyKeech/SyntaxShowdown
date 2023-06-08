@@ -17,6 +17,7 @@ import { Bars3Icon } from "react-native-heroicons/solid";
 import { Link } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Player from "../components/PlayerBox/Player";
+import { FlatList } from "react-native-gesture-handler";
 // Add reminder of which turn it is and which player is active
 
 const ShowdownScreen = () => {
@@ -61,14 +62,21 @@ const ShowdownScreen = () => {
     setVisible(!visible);
   };
 
+  const [abilityvisible, setAbilityVisible] = useState(true);
+  const toggleAbilityOverlay = () => {
+    setAbilityVisible(!abilityvisible);
+  };
+
   return (
     <ImageBackground source={require("../assets/terminalimg.jpg")} style={{ flex: 1 }}>
       <SafeAreaView style={GlobalStyles.droidSafeArea}>
+
         <View className="absolute top-5 right-5">
           <TouchableOpacity onPress={toggleOverlay}>
             <Bars3Icon size={50} color="rgb(74 222 128)"></Bars3Icon>
           </TouchableOpacity>
         </View>
+
         <Overlay
           overlayStyle={{
             backgroundColor: "rgb(74 222 128)",
@@ -97,14 +105,52 @@ const ShowdownScreen = () => {
             </Link>
           </View>
         </Overlay>
+          
+        <Overlay
+        overlayStyle={{
+            backgroundColor: "rgb(74 222 128)",
+            alignItems: "center",
+            width: 300,
+          }}
+          isVisible={abilityvisible}
+          onBackdropPress={toggleAbilityOverlay}
+          animationType="fade"
+          supportedOrientations={["landscape"]}>
+
+            <View className="border-solid border-black border-2 m-5">
+            <Button
+              color="rgb(74 222 128)"
+              titleStyle={{ color: "black", fontFamily: "SyneMono" }}
+              title={"Choose your Ability"}
+              onPress={toggleAbilityOverlay}
+            />
+
+    <Button>
+      <FlatList
+      data={characterData ? characterData.attackList : []}
+      renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
+      />
+    </Button>
+
+    <Button>
+<FlatList
+      data={characterData ? characterData.defenceList : []}
+      renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
+      />
+      </Button>
+
+
+
+      
+          </View>
+
+
+        </Overlay>
+
 
         <View className= "flex-row">
-
-
           {characterData ? <Player character={characterData} /> : null}
           {secondCharacterData ? <Player character={secondCharacterData} /> : null}
-
-
         </View>
 
       </SafeAreaView>
