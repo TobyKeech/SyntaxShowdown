@@ -62,10 +62,16 @@ const ShowdownScreen = () => {
     setVisible(!visible);
   };
 
-  const [abilityvisible, setAbilityVisible] = useState(true);
-  const toggleAbilityOverlay = () => {
-    setAbilityVisible(!abilityvisible);
+  const [abilityvisiblep1, setAbilityVisiblep1] = useState(true);
+  const toggleAbilityOverlayp1 = () => {
+    setAbilityVisiblep1(!abilityvisiblep1);
   };
+
+  const [abilityvisiblep2, setAbilityVisiblep2] = useState(false);
+  const toggleAbilityOverlayp2= () => {
+    setAbilityVisiblep2(!abilityvisiblep2);
+  };
+
 
   return (
     <ImageBackground source={require("../assets/terminalimg.jpg")} style={{ flex: 1 }}>
@@ -112,8 +118,8 @@ const ShowdownScreen = () => {
             alignItems: "center",
             width: 300,
           }}
-          isVisible={abilityvisible}
-          onBackdropPress={toggleAbilityOverlay}
+          isVisible={abilityvisiblep1}
+          onBackdropPress={toggleAbilityOverlayp1}
           animationType="fade"
           supportedOrientations={["landscape"]}>
 
@@ -122,25 +128,62 @@ const ShowdownScreen = () => {
               color="rgb(74 222 128)"
               titleStyle={{ color: "black", fontFamily: "SyneMono" }}
               title={"Choose your Ability"}
-              onPress={toggleAbilityOverlay}
             />
 
-    <Button>
-      <FlatList
-      data={characterData ? characterData.attackList : []}
-      renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
-      />
+    <Button
+    onPress= {toggleAbilityOverlayp1}>
+              <FlatList
+              data={characterData ? characterData.attackList : []}
+              renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
+              />
+    </Button>
+
+    <Button
+    onPress={toggleAbilityOverlayp2}>
+            <FlatList
+                  data={characterData ? characterData.defenceList : []}
+                  renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
+                  />
+    </Button>
+      
+          </View>
+
+
+        </Overlay>
+
+        <Overlay
+        overlayStyle={{
+            backgroundColor: "rgb(74 222 128)",
+            alignItems: "center",
+            width: 300,
+          }}
+          isVisible={abilityvisiblep2}
+          onBackdropPress={toggleAbilityOverlayp2}
+          animationType="fade"
+          supportedOrientations={["landscape"]}>
+
+            <View className="border-solid border-black border-2 m-5">
+            <Button
+              color="rgb(74 222 128)"
+              titleStyle={{ color: "black", fontFamily: "SyneMono" }}
+              title={"Choose your Ability"}
+              onPress={toggleAbilityOverlayp2}
+            />
+
+    <Button
+    onPress={toggleAbilityOverlayp2}>
+              <FlatList
+              data={characterData ? characterData.attackList : []}
+              renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
+              />
     </Button>
 
     <Button>
-<FlatList
-      data={characterData ? characterData.defenceList : []}
-      renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
-      />
-      </Button>
-
-
-
+            <FlatList
+                  data={characterData ? characterData.defenceList : []}
+                  renderItem={({ item }) => <Text key={item.id}>{item.name}</Text>}
+                  />
+    </Button>
       
           </View>
 
