@@ -28,8 +28,8 @@ const ShowdownScreen = () => {
   const fetchData = async () => {
     try {
       const [response1, response2] = await Promise.all([
-        fetch("http://172.20.10.4:8080/characters/1"),
-        fetch("http://172.20.10.4:8080/characters/2"),
+        fetch("https://syntax-showdown-app.delightfulisland-96df0ba2.uksouth.azurecontainerapps.io/characters/1"),
+        fetch("https://syntax-showdown-app.delightfulisland-96df0ba2.uksouth.azurecontainerapps.io/characters/2"),
       ]);
 
       const [json1, json2] = await Promise.all([
