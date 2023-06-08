@@ -21,22 +21,28 @@ import Player from "../components/PlayerBox/Player";
 
 const ShowdownScreen = () => {
   const [characterData, setCharacterData] = useState(null);
+  const [secondCharacterData, setSecondCharacterData] = useState(null);
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://192.168.38.104:8080/characters/1");
-      const json = await response.json();
-      console.log("I was here");
-      setCharacterData(json);
+      const [response1, response2] = await Promise.all([
+        fetch("http://172.20.10.4:8080/characters/1"),
+        fetch("http://172.20.10.4:8080/characters/2")
+      ]);
+
+      const [json1, json2] = await Promise.all([
+        response1.json(),
+        response2.json()
+      ]);
+
+      setCharacterData(json1);
+      setSecondCharacterData(json2);
     } catch (error) {
       console.error(error);
     }
   };
 
-  console.log(characterData);
-
   useEffect(() => {
-    console.log("I was a massive stud");
     fetchData();
   }, []);
 
@@ -91,9 +97,15 @@ const ShowdownScreen = () => {
             </Link>
           </View>
         </Overlay>
+
         <View>
           {characterData ? <Player character={characterData} /> : null}
         </View>
+
+        {/* <View>
+          {secondCharacterData ? <Player character2= {secondCharacterData}/>:null}
+        </View> */}
+
       </SafeAreaView>
     </ImageBackground>
   );
