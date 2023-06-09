@@ -167,7 +167,7 @@ const ShowdownScreen = () => {
 
             {characterData
               ? characterData.attackList.map((item) => (
-                <Button color="rgb(229,76,32)" key={item.id} onPress={onp1AbilityPressHandle}>
+                <Button style={{ borderWidth: 2, borderColor: 'white' }} color="rgb(229,76,32)" key={item.id} onPress={onp1AbilityPressHandle}>
                   <Text className="text-white" style={{ fontFamily: "SyneMono" }}>{item.name}</Text>
                 </Button>
               ))
@@ -179,7 +179,7 @@ const ShowdownScreen = () => {
 
             {characterData
               ? characterData.defenceList.map((item) => (
-                <Button color="rgb(36,75,221)" key={item.id} onPress={onp1AbilityPressHandle}>
+                <Button style={{ borderWidth: 2, borderColor: 'white' }} color="rgb(36,75,221)" key={item.id} onPress={onp1AbilityPressHandle}>
                   <Text className="text-white" style={{ fontFamily: "SyneMono" }}>{item.name}</Text>
                 </Button>
               ))
@@ -212,7 +212,7 @@ const ShowdownScreen = () => {
 
             {secondCharacterData
               ? secondCharacterData.attackList.map((item) => (
-                <Button color="rgb(229,76,32)" key={item.id} onPress={toggleAbilityOverlayp2}>
+                <Button style={{ borderWidth: 2, borderColor: 'white' }} color="rgb(229,76,32)" key={item.id} onPress={toggleAbilityOverlayp2}>
                   <Text className="text-white" style={{ fontFamily: "SyneMono" }}>{item.name}</Text>
                 </Button>
               ))
@@ -224,7 +224,7 @@ const ShowdownScreen = () => {
 
             {secondCharacterData
               ? secondCharacterData.defenceList.map((item) => (
-                <Button color="rgb(36,75,221)" key={item.id} onPress={toggleAbilityOverlayp2}>
+                <Button  style={{ borderWidth: 2, borderColor: 'white' }} color="rgb(36,75,221)" key={item.id} onPress={toggleAbilityOverlayp2}>
                   <Text className="text-white" style={{ fontFamily: "SyneMono" }}>{item.name}</Text>
                 </Button>
               ))
