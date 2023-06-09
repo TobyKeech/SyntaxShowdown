@@ -17,7 +17,7 @@ const Player = ({ character }) => {
       />
 
       <View>
-        <Text className=" text-white text-3xl">{character.name}</Text>
+        <Text style={{ fontFamily: "SyneMono" }} className=" text-white text-3xl">{character.name}</Text>
       </View>
 
 
