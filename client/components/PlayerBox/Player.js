@@ -9,19 +9,22 @@ const Player = ({ character }) => {
 
   return (
     <SafeAreaView>
-      <View>
-        <Text className=" text-green-400 text-3xl">{character.name}</Text>
-      </View>
+
 
       <Image
         source={{ uri: character.imgPath }}
-        style={{ width: 200, height: 100 }}
+        style={{ width: 250, height: 250 }}
       />
 
-
       <View>
+        <Text className=" text-white text-3xl">{character.name}</Text>
+      </View>
+
+
+      <View style="flex: 1; justify-content: flex-end" >
         <PlayerHP characterhp={character} />
       </View>
+
     </SafeAreaView>
   );
 };
