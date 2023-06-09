@@ -107,8 +107,7 @@ const ShowdownScreen = () => {
   return (
     <ImageBackground
       source={require("../assets/terminalimg.jpg")}
-      style={{ flex: 1 }}
-    >
+      style={{ flex: 1 }}>
       <SafeAreaView style={GlobalStyles.droidSafeArea}>
         <View className="absolute top-5 right-5">
           <TouchableOpacity onPress={toggleMenuOverlay}>
@@ -124,8 +123,7 @@ const ShowdownScreen = () => {
           }}
           isVisible={menuVisible}
           animationType="fade"
-          supportedOrientations={["landscape"]}
-        >
+          supportedOrientations={["landscape"]}>
           <View className="border-solid border-black border-2 m-5">
             <Button
               color="rgb(74 222 128)"
@@ -153,8 +151,7 @@ const ShowdownScreen = () => {
           }}
           isVisible={abilityvisiblep1}
           animationType="fade"
-          supportedOrientations={["landscape"]}
-        >
+          supportedOrientations={["landscape"]}>
           <View className="border-solid border-black border-2 m-5">
             <Button
               color="rgb(74 222 128)"
@@ -167,22 +164,40 @@ const ShowdownScreen = () => {
 
             {characterData
               ? characterData.attackList.map((item) => (
-                <Button style={{ borderWidth: 2, borderColor: 'white' }} color="rgb(229,76,32)" key={item.id} onPress={onp1AbilityPressHandle}>
-                  <Text className="text-white" style={{ fontFamily: "SyneMono" }}>{item.name}</Text>
-                </Button>
-              ))
+                  <Button
+                    style={{ borderWidth: 2, borderColor: "white" }}
+                    color="rgb(229,76,32)"
+                    key={item.id}
+                    onPress={onp1AbilityPressHandle}>
+                    <Text
+                      className="text-white"
+                      style={{ fontFamily: "SyneMono" }}>
+                      {item.name}
+                    </Text>
+                  </Button>
+                ))
               : null}
 
             <View className=" bg-green-400 items-center justify-center">
-              <Text style={{ fontFamily: "SyneMono" }}>Choose your Defence</Text>
+              <Text style={{ fontFamily: "SyneMono" }}>
+                Choose your Defence
+              </Text>
             </View>
 
             {characterData
               ? characterData.defenceList.map((item) => (
-                <Button style={{ borderWidth: 2, borderColor: 'white' }} color="rgb(36,75,221)" key={item.id} onPress={onp1AbilityPressHandle}>
-                  <Text className="text-white" style={{ fontFamily: "SyneMono" }}>{item.name}</Text>
-                </Button>
-              ))
+                  <Button
+                    style={{ borderWidth: 2, borderColor: "white" }}
+                    color="rgb(36,75,221)"
+                    key={item.id}
+                    onPress={onp1AbilityPressHandle}>
+                    <Text
+                      className="text-white"
+                      style={{ fontFamily: "SyneMono" }}>
+                      {item.name}
+                    </Text>
+                  </Button>
+                ))
               : null}
           </View>
         </Overlay>
@@ -196,8 +211,7 @@ const ShowdownScreen = () => {
           }}
           isVisible={abilityvisiblep2}
           animationType="fade"
-          supportedOrientations={["landscape"]}
-        >
+          supportedOrientations={["landscape"]}>
           <View className="border-solid border-black border-2 m-5">
             <Button
               color="rgb(74 222 128)"
@@ -209,44 +223,74 @@ const ShowdownScreen = () => {
               <Text style={{ fontFamily: "SyneMono" }}>Choose your Attack</Text>
             </View>
 
-
             {secondCharacterData
               ? secondCharacterData.attackList.map((item) => (
-                <Button style={{ borderWidth: 2, borderColor: 'white' }} color="rgb(229,76,32)" key={item.id} onPress={toggleAbilityOverlayp2}>
-                  <Text className="text-white" style={{ fontFamily: "SyneMono" }}>{item.name}</Text>
-                </Button>
-              ))
+                  <Button
+                    style={{ borderWidth: 2, borderColor: "white" }}
+                    color="rgb(229,76,32)"
+                    key={item.id}
+                    onPress={toggleAbilityOverlayp2}>
+                    <Text
+                      className="text-white"
+                      style={{ fontFamily: "SyneMono" }}>
+                      {item.name}
+                    </Text>
+                  </Button>
+                ))
               : null}
 
-              <View className=" bg-green-400 items-center justify-center">
-              <Text style={{ fontFamily: "SyneMono" }}>Choose your Defence</Text>
+            <View className=" bg-green-400 items-center justify-center">
+              <Text style={{ fontFamily: "SyneMono" }}>
+                Choose your Defence
+              </Text>
             </View>
 
             {secondCharacterData
               ? secondCharacterData.defenceList.map((item) => (
-                <Button  style={{ borderWidth: 2, borderColor: 'white' }} color="rgb(36,75,221)" key={item.id} onPress={toggleAbilityOverlayp2}>
-                  <Text className="text-white" style={{ fontFamily: "SyneMono" }}>{item.name}</Text>
-                </Button>
-              ))
+                  <Button
+                    style={{ borderWidth: 2, borderColor: "white" }}
+                    color="rgb(36,75,221)"
+                    key={item.id}
+                    onPress={toggleAbilityOverlayp2}>
+                    <Text
+                      className="text-white"
+                      style={{ fontFamily: "SyneMono" }}>
+                      {item.name}
+                    </Text>
+                  </Button>
+                ))
               : null}
           </View>
         </Overlay>
-
+        {characterData && secondCharacterData ? (
         <Overlay
           overlayStyle={{
             alignItems: "center",
             width: overlayWidth,
             height: overlayHeight,
-            backgroundColor: "rgb(0,0,0)",
+            backgroundColor: "grey",
           }}
           isVisible={faceoffVisible}
           animationType="slide"
-          supportedOrientations={["landscape"]}
-        >
-          <Image
-            source={require("../assets/versus.png")}
-            style={{ width: 300, height: 300 }}
-          />
+          supportedOrientations={["landscape"]}>
+          <View className="absolute left-10 bottom-10">
+            <Image
+              source={{ uri: characterData.imgPath }}
+              style={{ width: 250, height: 400 }}
+            />
+          </View>
+          <View className="absolute right-10 bottom-10">
+            <Image
+              source={{ uri: secondCharacterData.imgPath }}
+              style={{ width: 250, height: 400 }}
+            />
+          </View>
+          <View>
+            <Image
+              source={require("../assets/versus.png")}
+              style={{ width: 300, height: 300 }}
+            />
+          </View>
           <View className="absolute bottom-10">
             <Button
               color="rgb(74 222 128)"
@@ -260,6 +304,7 @@ const ShowdownScreen = () => {
             />
           </View>
         </Overlay>
+        ) : null}
 
         {characterData && secondCharacterData ? (
           <Overlay
@@ -271,8 +316,7 @@ const ShowdownScreen = () => {
             }}
             isVisible={endScreenVisible}
             animationType="slide"
-            supportedOrientations={["landscape"]}
-          >
+            supportedOrientations={["landscape"]}>
             <Text className="text-white">Winner:</Text>
             {secondCharacterData.hp === 0 ? (
               <Image
@@ -324,8 +368,7 @@ const ShowdownScreen = () => {
         <View className=" absolute bottom-10 right-8">
           <Text
             onPress={toggleEndScreenOverlay}
-            className="text-white flex-end text-xl"
-          >
+            className="text-white flex-end text-xl">
             Endscreen
           </Text>
         </View>
