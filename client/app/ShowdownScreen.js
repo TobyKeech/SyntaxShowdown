@@ -159,7 +159,7 @@ const ShowdownScreen = () => {
             <Button
               color="rgb(74 222 128)"
               titleStyle={{ color: "black", fontFamily: "SyneMono" }}
-              title={"Choose your Ability"}
+              title={" P1:Choose your Ability"}
             />
             <View className="  bg-green-400 items-center justify-center">
               <Text style={{ fontFamily: "SyneMono" }}>Choose your Attack</Text>
@@ -202,7 +202,7 @@ const ShowdownScreen = () => {
             <Button
               color="rgb(74 222 128)"
               titleStyle={{ color: "black", fontFamily: "SyneMono" }}
-              title={"Choose your Ability"}
+              title={"P2:Choose your Ability"}
             />
 
             <View className="  bg-green-400 items-center justify-center">
