@@ -24,6 +24,7 @@ import { FlatList } from "react-native-gesture-handler";
 const ShowdownScreen = () => {
   const [characterData, setCharacterData] = useState(null);
   const [secondCharacterData, setSecondCharacterData] = useState(null);
+  const [showPage, setShowPage] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -263,47 +264,57 @@ const ShowdownScreen = () => {
           </View>
         </Overlay>
         {characterData && secondCharacterData ? (
-        <Overlay
-          overlayStyle={{
-            alignItems: "center",
-            width: overlayWidth,
-            height: overlayHeight,
-            backgroundColor: "grey",
-          }}
-          isVisible={faceoffVisible}
-          animationType="slide"
-          supportedOrientations={["landscape"]}>
-          <View className="absolute left-10 bottom-10">
-            <Image
-              source={{ uri: characterData.imgPath }}
-              style={{ width: 250, height: 400 }}
-            />
-          </View>
-          <View className="absolute right-10 bottom-10">
-            <Image
-              source={{ uri: secondCharacterData.imgPath }}
-              style={{ width: 250, height: 400 }}
-            />
-          </View>
-          <View>
-            <Image
-              source={require("../assets/versus.png")}
-              style={{ width: 300, height: 300 }}
-            />
-          </View>
-          <View className="absolute bottom-10">
-            <Button
-              color="rgb(74 222 128)"
-              titleStyle={{
-                color: "black",
-                fontFamily: "SyneMono",
-                fontSize: 40,
-              }}
-              title={"Showdown!"}
-              onPress={onShowdownPressHandler}
-            />
-          </View>
-        </Overlay>
+          <Overlay
+            overlayStyle={{
+              alignItems: "center",
+              width: overlayWidth,
+              height: overlayHeight,
+              backgroundColor: "grey",
+            }}
+            isVisible={faceoffVisible}
+            animationType="slide"
+            supportedOrientations={["landscape"]}>
+            <View className="absolute left-10 bottom-20">
+              <Image
+                source={{ uri: characterData.imgPath }}
+                style={{ width: 250, height: 400 }}
+              />
+            </View>
+            <View className="absolute right-10 bottom-20">
+              <Image
+                source={{ uri: secondCharacterData.imgPath }}
+                style={{ width: 250, height: 400 }}
+              />
+            </View>
+            <View className="absolute left-24 bottom-10">
+              <Text className="text-5xl italic font-semibold">
+                {characterData.name}
+              </Text>
+            </View>
+            <View className="absolute right-32 bottom-10">
+              <Text className="text-5xl italic font-semibold">
+                {secondCharacterData.name}
+              </Text>
+            </View>
+            <View>
+              <Image
+                source={require("../assets/versus.png")}
+                style={{ width: 300, height: 300 }}
+              />
+            </View>
+            <View className="absolute bottom-10">
+              <Button
+                color="rgb(74 222 128)"
+                titleStyle={{
+                  color: "black",
+                  fontFamily: "SyneMono",
+                  fontSize: 40,
+                }}
+                title={"Showdown!"}
+                onPress={onShowdownPressHandler}
+              />
+            </View>
+          </Overlay>
         ) : null}
 
         {characterData && secondCharacterData ? (
