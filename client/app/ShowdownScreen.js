@@ -147,7 +147,7 @@ const ShowdownScreen = () => {
             alignItems: "center",
             width: overlayWidth,
             height: overlayHeight,
-            backgroundColor: "rgb(0,0,0)",
+            backgroundColor: "bg-opacity-50",
           }}
           isVisible={abilityvisiblep1}
           animationType="fade"
@@ -207,7 +207,7 @@ const ShowdownScreen = () => {
             alignItems: "center",
             width: overlayWidth,
             height: overlayHeight,
-            backgroundColor: "rgb(0,0,0)",
+            backgroundColor: "bg-opacity-50",
           }}
           isVisible={abilityvisiblep2}
           animationType="fade"
@@ -359,7 +359,7 @@ const ShowdownScreen = () => {
           </Overlay>
         ) : null}
 
-        <View className="flex-row">
+        <View style="flex: 1; justify-content: flex-end" className="flex-row">
           {characterData ? <Player character={characterData} /> : null}
           {secondCharacterData ? (
             <Player character={secondCharacterData} />
