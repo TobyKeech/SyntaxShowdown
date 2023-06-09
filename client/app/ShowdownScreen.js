@@ -161,21 +161,28 @@ const ShowdownScreen = () => {
               titleStyle={{ color: "black", fontFamily: "SyneMono" }}
               title={"Choose your Ability"}
             />
+            <View className="  bg-green-400 items-center justify-center">
+              <Text style={{ fontFamily: "SyneMono" }}>Choose your Attack</Text>
+            </View>
 
             {characterData
               ? characterData.attackList.map((item) => (
-                  <Button key={item.id} onPress={onp1AbilityPressHandle}>
-                    <Text>{item.name}</Text>
-                  </Button>
-                ))
+                <Button color="rgb(229,76,32)" key={item.id} onPress={onp1AbilityPressHandle}>
+                  <Text className="text-white" style={{ fontFamily: "SyneMono" }}>{item.name}</Text>
+                </Button>
+              ))
               : null}
+
+            <View className=" bg-green-400 items-center justify-center">
+              <Text style={{ fontFamily: "SyneMono" }}>Choose your Defence</Text>
+            </View>
 
             {characterData
               ? characterData.defenceList.map((item) => (
-                  <Button key={item.id} onPress={onp1AbilityPressHandle}>
-                    <Text>{item.name}</Text>
-                  </Button>
-                ))
+                <Button color="rgb(36,75,221)" key={item.id} onPress={onp1AbilityPressHandle}>
+                  <Text className="text-white" style={{ fontFamily: "SyneMono" }}>{item.name}</Text>
+                </Button>
+              ))
               : null}
           </View>
         </Overlay>
@@ -198,20 +205,29 @@ const ShowdownScreen = () => {
               title={"Choose your Ability"}
             />
 
+            <View className="  bg-green-400 items-center justify-center">
+              <Text style={{ fontFamily: "SyneMono" }}>Choose your Attack</Text>
+            </View>
+
+
             {secondCharacterData
               ? secondCharacterData.attackList.map((item) => (
-                  <Button key={item.id} onPress={toggleAbilityOverlayp2}>
-                    <Text>{item.name}</Text>
-                  </Button>
-                ))
+                <Button color="rgb(229,76,32)" key={item.id} onPress={toggleAbilityOverlayp2}>
+                  <Text className="text-white" style={{ fontFamily: "SyneMono" }}>{item.name}</Text>
+                </Button>
+              ))
               : null}
+
+              <View className=" bg-green-400 items-center justify-center">
+              <Text style={{ fontFamily: "SyneMono" }}>Choose your Defence</Text>
+            </View>
 
             {secondCharacterData
               ? secondCharacterData.defenceList.map((item) => (
-                  <Button key={item.id} onPress={toggleAbilityOverlayp2}>
-                    <Text>{item.name}</Text>
-                  </Button>
-                ))
+                <Button color="rgb(36,75,221)" key={item.id} onPress={toggleAbilityOverlayp2}>
+                  <Text className="text-white" style={{ fontFamily: "SyneMono" }}>{item.name}</Text>
+                </Button>
+              ))
               : null}
           </View>
         </Overlay>
