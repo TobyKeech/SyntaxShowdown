@@ -33,7 +33,7 @@ const ShowdownScreen = () => {
           "https://syntax-showdown-app.delightfulisland-96df0ba2.uksouth.azurecontainerapps.io/characters/1"
         ),
         fetch(
-          "https://syntax-showdown-app.delightfulisland-96df0ba2.uksouth.azurecontainerapps.io/characters/2"
+          "https://syntax-showdown-app.delightfulisland-96df0ba2.uksouth.azurecontainerapps.io/characters/4"
         ),
       ]);
 
@@ -277,22 +277,22 @@ const ShowdownScreen = () => {
             <View className="absolute left-10 bottom-20">
               <Image
                 source={{ uri: characterData.imgPath }}
-                style={{ width: 250, height: 400 }}
+                style={{ width: 250, height: 380 }}
               />
             </View>
             <View className="absolute right-10 bottom-20">
               <Image
                 source={{ uri: secondCharacterData.imgPath }}
-                style={{ width: 250, height: 400 }}
+                style={{ width: 250, height: 380 }}
               />
             </View>
             <View className="absolute left-24 bottom-10">
-              <Text className="text-5xl italic font-semibold">
+              <Text style={{ fontFamily: "SyneMono" }} className="text-5xl italic font-semibold">
                 {characterData.name}
               </Text>
             </View>
             <View className="absolute right-32 bottom-10">
-              <Text className="text-5xl italic font-semibold">
+              <Text style={{ fontFamily: "SyneMono" }} className="text-5xl italic font-semibold">
                 {secondCharacterData.name}
               </Text>
             </View>

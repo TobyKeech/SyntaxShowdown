@@ -69,7 +69,7 @@ const Index = () => {
 
         <View className="items-center justify-center">
           <View className="bg-black  p-2">
-            <Text
+            <Text 
               className="text-green-400 text-6xl p-1"
               style={{ fontFamily: "SyneMono" }}>
               syntax_showdown
@@ -100,10 +100,17 @@ const Index = () => {
             onBackdropPress={toggleOverlay}
             animationType="fade"
             supportedOrientations={["landscape"]}>
-            <Text className="mb-5">Showdown!</Text>
-            <Text>
-              This is going to be the info menu with all the information about
-              how to play this game.
+            <Text style={{ fontFamily: "SyneMono" }} className="mb-5">
+              Welcome to syntax showdown
+            </Text>
+            <Text style={{ fontFamily: "SyneMono", textAlign: 'center' }} className="mb-5">
+              This is a turned based battle game where you will take on a programming language and fight to the the death. 
+            </Text>
+            <Text style={{ fontFamily: "SyneMono", textAlign: 'center' }} className="mb-5">
+              You have two attacks and two defences per langauge.
+            </Text>
+            <Text style={{ fontFamily: "SyneMono", textAlign: 'center' }} className="mb-5">
+              Choose your abilities carefully to defeat your opponent.
             </Text>
           </Overlay>
         </View>
