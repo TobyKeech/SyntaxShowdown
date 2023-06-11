@@ -1,14 +1,14 @@
 # SyntaxShowdown
 
-#Getting Started
+# Getting Started
 Follow the steps below to run the application:
 
-Clone the repository:
+1) Clone the repository:
 git clone git@github.com:TobyKeech/SyntaxShowdown.git
 cd SyntaxShowdown
 Install the dependencies:
 
-npm install
+2) npm install
 Start the Spring backend server : this server is currenly hosted should this may not need to be performed
 
 Make sure you have the JDK installed and set up correctly.
@@ -17,24 +17,24 @@ Navigate to the Spring backend folder:
 cd server
 Build and run the Spring server: this server is currenly hosted should this may not need to be performed
 
-#Start the React Native application using Expo:
+# Start the React Native application using Expo:
 
 Open a new terminal window/tab.
 Navigate to the React Native app folder:
 
 cd client
 
-Start the Expo development server:
+# Start the Expo development server:
 
 expo start
 
 Use the Expo app on your mobile device or an emulator to scan the QR code shown in the terminal, or choose an alternative option provided by Expo.
 The application should now be running on your device or emulator. You can make changes to the code and see the updates live as you save the files.
 
-Additional Configuration
+# Additional Configuration
 If you need to configure any environment variables or make changes to the application's settings, please refer to the relevant files in the repository.
 
-Troubleshooting
+# Troubleshooting
 If you encounter any issues during the installation or running of the application, try the following steps:
 
 Make sure you have all the prerequisites installed and set up correctly.
