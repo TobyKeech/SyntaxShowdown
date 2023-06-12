@@ -121,8 +121,10 @@ const ShowdownScreen = () => {
   };
 
   const onShowdownPressHandler = () => {
-    toggleFaceOffOverlay()
-    setTimeout(() => {toggleAbilityOverlayp1()}, 2000)
+    toggleFaceOffOverlay();
+    setTimeout(() => {
+      toggleAbilityOverlayp1();
+    }, 2000);
   };
 
   const endScreenHandler = () => {
@@ -147,9 +149,9 @@ const ShowdownScreen = () => {
     if (abilityp2.value < 0) {
       copyCharacterData.hp = characterData.hp + abilityp2.value;
     } else {
-      copySecondCharacterData.hp = secondCharacterData.hp + abilityp2.value
+      copySecondCharacterData.hp = secondCharacterData.hp + abilityp2.value;
     }
-  
+
     if (abilityp1.value < 0) {
       copySecondCharacterData.hp = copySecondCharacterData.hp + abilityp1.value;
     } else {
@@ -157,13 +159,14 @@ const ShowdownScreen = () => {
     }
     setCharacterData(copyCharacterData);
     setSecondCharacterData(copySecondCharacterData);
-    if (copyCharacterData.hp <= 0 || copySecondCharacterData.hp <=0 ){
-      toggleEndScreenOverlay()
+    if (copyCharacterData.hp <= 0 || copySecondCharacterData.hp <= 0) {
+      toggleEndScreenOverlay();
     } else {
-    setTimeout(() => {toggleAbilityOverlayp1()}, 2000)
+      setTimeout(() => {
+        toggleAbilityOverlayp1();
+      }, 2000);
     }
-    
-  }
+  };
 
   return (
     <ImageBackground
@@ -245,7 +248,7 @@ const ShowdownScreen = () => {
                     <Text
                       className="text-white"
                       style={{ fontFamily: "SyneMono" }}>
-                      {item.name}
+                      {item.name} - DMG:{Math.abs(item.value)}
                     </Text>
                   </Button>
                 ))
@@ -275,7 +278,7 @@ const ShowdownScreen = () => {
                     <Text
                       className="text-white"
                       style={{ fontFamily: "SyneMono" }}>
-                      {item.name}
+                      {item.name} - PROT:{item.value}
                     </Text>
                   </Button>
                 ))
@@ -337,7 +340,7 @@ const ShowdownScreen = () => {
                     <Text
                       className="text-white"
                       style={{ fontFamily: "SyneMono" }}>
-                      {item.name}
+                      {item.name} - DMG:{Math.abs(item.value)}
                     </Text>
                   </Button>
                 ))
@@ -366,8 +369,8 @@ const ShowdownScreen = () => {
                     }}>
                     <Text
                       className="text-white"
-                      style={{ fontFamily: "SyneMono" }}>
-                      {item.name}
+                      style={{ fontFamily: "SyneMono", lineHeight: "auto" }}>
+                      {item.name} - PROT:{item.value}
                     </Text>
                   </Button>
                 ))
@@ -445,7 +448,7 @@ const ShowdownScreen = () => {
         {characterData && secondCharacterData ? (
           <Overlay
             overlayStyle={{
-              justifyContent:"space-between",
+              justifyContent: "space-between",
               flexDirection: "column",
               alignItems: "center",
               width: overlayWidth,
@@ -456,32 +459,34 @@ const ShowdownScreen = () => {
             animationType="slide"
             supportedOrientations={["landscape"]}>
             <Text className="text-white">Winner:</Text>
-            {secondCharacterData.hp <= 0 && secondCharacterData.hp < characterData.hp ? (
+            {secondCharacterData.hp <= 0 &&
+            secondCharacterData.hp < characterData.hp ? (
               <Image
                 source={{ uri: characterData.imgPath }}
                 style={{ width: 200, height: 100 }}
               />
             ) : null}
-            {characterData.hp <= 0 && characterData.hp < secondCharacterData.hp ? (
+            {characterData.hp <= 0 &&
+            characterData.hp < secondCharacterData.hp ? (
               <Image
                 source={{ uri: secondCharacterData.imgPath }}
                 style={{ width: 200, height: 100 }}
               />
             ) : null}
 
-              <View>
-                <Link href="/" asChild>
-                  <Button
-                    color={"rgb(0 0 0)"}
-                    titleStyle={{
-                      color: "rgb(74 222 128)",
-                      fontFamily: "SyneMono",
-                      fontSize: 35,
-                    }}
-                    title={"Title Screen"}
-                  />
-                </Link>
-              </View>
+            <View>
+              <Link href="/" asChild>
+                <Button
+                  color={"rgb(0 0 0)"}
+                  titleStyle={{
+                    color: "rgb(74 222 128)",
+                    fontFamily: "SyneMono",
+                    fontSize: 35,
+                  }}
+                  title={"Title Screen"}
+                />
+              </Link>
+            </View>
           </Overlay>
         ) : null}
 
