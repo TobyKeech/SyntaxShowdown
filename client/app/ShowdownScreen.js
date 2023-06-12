@@ -468,35 +468,36 @@ const ShowdownScreen = () => {
               alignItems: "center",
               width: overlayWidth,
               height: overlayHeight,
-              backgroundColor: "rgb(0,0,0)",
+              backgroundColor: "(74 222 128)",
             }}
             isVisible={endScreenVisible}
             animationType="slide"
             supportedOrientations={["landscape"]}>
-            <Text className="text-white">Winner:</Text>
+            <Text style={{ fontSize: 30, fontFamily: "SyneMono" }} className="text-green-400">Winner:</Text>
             {secondCharacterData.hp <= 0 &&
             secondCharacterData.hp < characterData.hp ? (
               <Image
                 source={{ uri: characterData.imgPath }}
-                style={{ width: 200, height: 100 }}
+                style={{ width: 300, height: 200 }}
               />
             ) : null}
             {characterData.hp <= 0 &&
             characterData.hp < secondCharacterData.hp ? (
               <Image
                 source={{ uri: secondCharacterData.imgPath }}
-                style={{ width: 200, height: 100 }}
+                style={{ width: 300, height: 200 }}
               />
             ) : null}
 
-            <View>
+
+            <View className="p-10 pt-22 flex-column" >
               <Link href="/" asChild>
                 <Button
-                  color={"rgb(0 0 0)"}
+                  color={"rgb(74 222 128)"}
                   titleStyle={{
-                    color: "rgb(74 222 128)",
+                    color: "white",
                     fontFamily: "SyneMono",
-                    fontSize: 35,
+                    fontSize: 29,
                   }}
                   title={"Title Screen"}
                 />
