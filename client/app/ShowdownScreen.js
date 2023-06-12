@@ -27,8 +27,10 @@ const ShowdownScreen = () => {
   const [showPage, setShowPage] = useState(false);
   const [abilityp1, setAbilityp1] = useState(null);
   const [abilityp2, setAbilityp2] = useState(null);
-  const [clickedAttackButtons, setClickedAttackButtons] = useState([]);
-  const [clickedDefenseButtons, setClickedDefenseButtons] = useState([]);
+  const [clickedAttackButtonsP1, setClickedAttackButtonsP1] = useState([]);
+  const [clickedDefenseButtonsP1, setClickedDefenseButtonsP1] = useState([]);
+  const [clickedAttackButtonsP2, setClickedAttackButtonsP2] = useState([]);
+  const [clickedDefenseButtonsP2, setClickedDefenseButtonsP2] = useState([]);
 
   
 
@@ -71,15 +73,25 @@ const ShowdownScreen = () => {
     });
   }, []);
 
-  const handleAttackClick = (index) => {
-    const updatedButtons = [...clickedAttackButtons];
+  const handleAttackClickP1 = (index) => {
+    const updatedButtons = [...clickedAttackButtonsP1];
     updatedButtons[index] = true;
-    setClickedAttackButtons(updatedButtons);
+    setClickedAttackButtonsP1(updatedButtons);
   };
-  const handleDefenseClick = (index) => {
-    const updatedButtons = [...clickedDefenseButtons];
+  const handleDefenseClickP1 = (index) => {
+    const updatedButtons = [...clickedDefenseButtonsP1];
     updatedButtons[index] = true;
-    setClickedDefenseButtons(updatedButtons);
+    setClickedDefenseButtonsP1(updatedButtons);
+  };
+  const handleAttackClickP2 = (index) => {
+    const updatedButtons = [...clickedAttackButtonsP2];
+    updatedButtons[index] = true;
+    setClickedAttackButtonsP2(updatedButtons);
+  };
+  const handleDefenseClickP2 = (index) => {
+    const updatedButtons = [...clickedDefenseButtonsP2];
+    updatedButtons[index] = true;
+    setClickedDefenseButtonsP2(updatedButtons);
   };
 
   const [menuVisible, setMenuVisible] = useState(false);
@@ -214,10 +226,10 @@ const ShowdownScreen = () => {
               ? characterData.attackList.map((item, index) => (
                   <Button
                     style={{ borderWidth: 2, borderColor: "black" }}
-                    color={clickedAttackButtons[index] ? "pink" : "rgb(36, 75, 221)"}
+                    color={clickedAttackButtonsP1[index] ? "pink" : "rgb(36, 75, 221)"}
                     key={item.id}
                     onPress={() => {
-                      handleAttackClick(index)
+                      handleAttackClickP1(index)
                       setAbilityp1(item);
                     }}>
                     <Text
@@ -239,10 +251,10 @@ const ShowdownScreen = () => {
               ? characterData.defenceList.map((item, index) => (
                   <Button
                     style={{ borderWidth: 2, borderColor: "black" }}
-                    color={clickedDefenseButtons[index] ? "pink" : "rgb(36, 75, 221)"}
+                    color={clickedDefenseButtonsP1[index] ? "pink" : "rgb(36, 75, 221)"}
                     key={item.id}
                     onPress={() => {
-                      handleDefenseClick(index)
+                      handleDefenseClickP1(index)
                       setAbilityp1(item);
                     }}>
                     <Text
@@ -291,10 +303,10 @@ const ShowdownScreen = () => {
               ? secondCharacterData.attackList.map((item, index) => (
                   <Button
                     style={{ borderWidth: 2, borderColor: "black" }}
-                    color={clickedAttackButtons[index] ? "pink" : "rgb(36, 75, 221)"}v
+                    color={clickedAttackButtonsP2[index] ? "pink" : "rgb(36, 75, 221)"}v
                     key={item.id}
                     onPress={() => {
-                      handleAttackClick(index)
+                      handleAttackClickP2(index)
                       setAbilityp2(item);
                     }}>
                     <Text
@@ -316,10 +328,10 @@ const ShowdownScreen = () => {
               ? secondCharacterData.defenceList.map((item, index) => (
                   <Button
                     style={{ borderWidth: 2, borderColor: "black" }}
-                    color={clickedDefenseButtons[index] ? "pink" : "rgb(36, 75, 221)"}
+                    color={clickedDefenseButtonsP2[index] ? "pink" : "rgb(36, 75, 221)"}
                     key={item.id}
                     onPress={() => {
-                      handleDefenseClick(index)
+                      handleDefenseClickP2(index)
                       setAbilityp2(item);
                     }}>
                     <Text
