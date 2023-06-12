@@ -19,7 +19,7 @@ import { Link } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Player from "../components/PlayerBox/Player";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
-// Add reminder of which turn it is and which player is active
+// Have to account for tie
 
 const ShowdownScreen = () => {
   const [characterData, setCharacterData] = useState(null);
@@ -382,7 +382,7 @@ const ShowdownScreen = () => {
                     }}>
                     <Text
                       className="text-white"
-                      style={{ fontFamily: "SyneMono", lineHeight: "auto" }}>
+                      style={{ fontFamily: "SyneMono"}}>
                       {item.name} - PROT:{item.value}
                     </Text>
                   </Button>
