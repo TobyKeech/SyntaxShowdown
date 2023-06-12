@@ -58,7 +58,7 @@ public class TestCharacter {
 
     @Test
     public void attackHasValue(){
-        assertEquals(10, gitPull.getAttackvalue());
+        assertEquals(10, gitPull.getValue());
     }
 
     @Test
@@ -68,7 +68,7 @@ public class TestCharacter {
 
     @Test
     public void defenceHasValue(){
-        assertEquals(20, gitPush.getDefencevalue());
+        assertEquals(20, gitPush.getValue());
     }
 
     @Test
