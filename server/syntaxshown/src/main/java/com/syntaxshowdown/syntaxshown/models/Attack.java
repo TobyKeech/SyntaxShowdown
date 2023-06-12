@@ -19,16 +19,16 @@ public class Attack {
 
     @Column(name = "name")
     private String name;
-    @Column(name = "attackvalue")
-    private int attackvalue;
+    @Column(name = "value")
+    private int value;
 
     @ManyToOne
     @JoinColumn(name = "character_id", nullable = false)
     private Character character;
 
-    public Attack(String name, int attackvalue, Character character) {
+    public Attack(String name, int value, Character character) {
         this.name = name;
-        this.attackvalue = attackvalue;
+        this.value = value;
         this.character = character;
     }
 
@@ -51,12 +51,12 @@ public class Attack {
         this.name = name;
     }
 
-    public int getAttackvalue() {
-        return this.attackvalue;
+    public int getValue() {
+        return this.value;
     }
 
-    public void setAttackvalue(int attackvalue) {
-        this.attackvalue = attackvalue;
+    public void setValue(int value) {
+        this.value = value;
     }
 
     public Character getCharacter() {

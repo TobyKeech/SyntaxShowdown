@@ -17,17 +17,17 @@ public class Defence {
 
     @Column(name = "name")
     private String name;
-    @Column(name = "defencevalue")
-    private int defencevalue;
+    @Column(name = "value")
+    private int value;
 
     @ManyToOne
     @JoinColumn(name = "character_id", nullable = false)
     private Character character;
 
 
-    public Defence(String name, int defencevalue, Character character) {
+    public Defence(String name, int value, Character character) {
         this.name = name;
-        this.defencevalue = defencevalue;
+        this.value = value;
         this.character = character;
     }
 
@@ -50,12 +50,12 @@ public class Defence {
         this.name = name;
     }
 
-    public void setDefencevalue(int defencevalue) {
-        this.defencevalue = defencevalue;
+    public void setValue(int value) {
+        this.value = value;
     }
 
-    public int getDefencevalue() {
-        return defencevalue;
+    public int getValue() {
+        return this.value;
     }
 
     public Character getCharacter() {
