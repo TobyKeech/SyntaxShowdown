@@ -24,17 +24,12 @@ import { FlatList, ScrollView } from "react-native-gesture-handler";
 const ShowdownScreen = () => {
   const [characterData, setCharacterData] = useState(null);
   const [secondCharacterData, setSecondCharacterData] = useState(null);
-  const [showPage, setShowPage] = useState(false);
   const [abilityp1, setAbilityp1] = useState(null);
   const [abilityp2, setAbilityp2] = useState(null);
-  const [clickedAttackButtonsP1, setClickedAttackButtonsP1] = useState([]);
-  const [clickedDefenseButtonsP1, setClickedDefenseButtonsP1] = useState([]);
-  const [clickedAttackButtonsP2, setClickedAttackButtonsP2] = useState([]);
-  const [clickedDefenseButtonsP2, setClickedDefenseButtonsP2] = useState([]);
-
-  
-
-  
+  const [selectedAttackIndexP1, setSelectedAttackIndexP1] = useState(null);
+  const [selectedDefenseIndexP1, setSelectedDefenseIndexP1] = useState(null);
+  const [selectedAttackIndexP2, setSelectedAttackIndexP2] = useState(null);
+  const [selectedDefenseIndexP2, setSelectedDefenseIndexP2] = useState(null);
 
   const fetchData = async () => {
     try {
@@ -74,24 +69,27 @@ const ShowdownScreen = () => {
   }, []);
 
   const handleAttackClickP1 = (index) => {
-    const updatedButtons = [...clickedAttackButtonsP1];
-    updatedButtons[index] = true;
-    setClickedAttackButtonsP1(updatedButtons);
+    setSelectedAttackIndexP1(index);
+    setSelectedDefenseIndexP1(null); // Reset defense selection
+    setAbilityp1(characterData.attackList[index]);
   };
+
   const handleDefenseClickP1 = (index) => {
-    const updatedButtons = [...clickedDefenseButtonsP1];
-    updatedButtons[index] = true;
-    setClickedDefenseButtonsP1(updatedButtons);
+    setSelectedDefenseIndexP1(index);
+    setSelectedAttackIndexP1(null); // Reset attack selection
+    setAbilityp1(characterData.defenceList[index]);
   };
+
   const handleAttackClickP2 = (index) => {
-    const updatedButtons = [...clickedAttackButtonsP2];
-    updatedButtons[index] = true;
-    setClickedAttackButtonsP2(updatedButtons);
+    setSelectedAttackIndexP2(index);
+    setSelectedDefenseIndexP2(null); // Reset defense selection
+    setAbilityp2(secondCharacterData.attackList[index]);
   };
+
   const handleDefenseClickP2 = (index) => {
-    const updatedButtons = [...clickedDefenseButtonsP2];
-    updatedButtons[index] = true;
-    setClickedDefenseButtonsP2(updatedButtons);
+    setSelectedDefenseIndexP2(index);
+    setSelectedAttackIndexP2(null); // Reset attack selection
+    setAbilityp2(secondCharacterData.defenceList[index]);
   };
 
   const [menuVisible, setMenuVisible] = useState(false);
@@ -155,8 +153,8 @@ const ShowdownScreen = () => {
     if (abilityp1.value < 0) {
       copySecondCharacterData.hp = copySecondCharacterData.hp + abilityp1.value;
     } else {
-      copyCharacterData.hp = copyCharacterData.hp + abilityp1.value
-    }    
+      copyCharacterData.hp = copyCharacterData.hp + abilityp1.value;
+    }
     setCharacterData(copyCharacterData);
     setSecondCharacterData(copySecondCharacterData);
     if (copyCharacterData.hp <= 0 || copySecondCharacterData.hp <=0 ){
@@ -216,9 +214,11 @@ const ShowdownScreen = () => {
           animationType="fade"
           supportedOrientations={["landscape"]}>
           <View className=" bg-black border-solid border-black border-2 m-5">
-         <View className = "items-center justify-center">
-          <Text style={{ color:"white", fontFamily: "SyneMono" }}>P1:Choose your Ability</Text>
-          </View>
+            <View className="items-center justify-center">
+              <Text style={{ color: "white", fontFamily: "SyneMono" }}>
+                P1:Choose your Ability
+              </Text>
+            </View>
             <View
               color="rgb(74 222 128)"
               titleStyle={{ color: "black", fontFamily: "SyneMono" }}
@@ -231,10 +231,15 @@ const ShowdownScreen = () => {
               ? characterData.attackList.map((item, index) => (
                   <Button
                     style={{ borderWidth: 2, borderColor: "black" }}
-                    color={clickedAttackButtonsP1[index] ? "pink" : "rgb(36, 75, 221)"}
+                    color={
+                      selectedAttackIndexP1 === index
+                        ? "pink"
+                        : "rgb(36, 75, 221)"
+                    }
                     key={item.id}
                     onPress={() => {
-                      handleAttackClickP1(index)
+                      handleDefenseClickP1(index);
+                      handleAttackClickP1(index);
                       setAbilityp1(item);
                     }}>
                     <Text
@@ -256,10 +261,15 @@ const ShowdownScreen = () => {
               ? characterData.defenceList.map((item, index) => (
                   <Button
                     style={{ borderWidth: 2, borderColor: "black" }}
-                    color={clickedDefenseButtonsP1[index] ? "pink" : "rgb(36, 75, 221)"}
+                    color={
+                      selectedDefenseIndexP1 === index
+                        ? "pink"
+                        : "rgb(36, 75, 221)"
+                    }
                     key={item.id}
                     onPress={() => {
-                      handleDefenseClickP1(index)
+                      handleAttackClickP1(index);
+                      handleDefenseClickP1(index);
                       setAbilityp1(item);
                     }}>
                     <Text
@@ -294,9 +304,11 @@ const ShowdownScreen = () => {
           animationType="fade"
           supportedOrientations={["landscape"]}>
           <View className=" bg-black border-solid border-black border-2 m-5 ">
-          <View className = "items-center justify-center">
-          <Text style={{ color:"white", fontFamily: "SyneMono" }}>P2:Choose your Ability</Text>
-          </View>
+            <View className="items-center justify-center">
+              <Text style={{ color: "white", fontFamily: "SyneMono" }}>
+                P2:Choose your Ability
+              </Text>
+            </View>
             <View
               color="rgb(74 222 128)"
               titleStyle={{ color: "black", fontFamily: "SyneMono" }}
@@ -311,10 +323,15 @@ const ShowdownScreen = () => {
               ? secondCharacterData.attackList.map((item, index) => (
                   <Button
                     style={{ borderWidth: 2, borderColor: "black" }}
-                    color={clickedAttackButtonsP2[index] ? "pink" : "rgb(36, 75, 221)"}v
+                    color={
+                      selectedAttackIndexP2 === index
+                        ? "pink"
+                        : "rgb(36, 75, 221)"
+                    }
                     key={item.id}
                     onPress={() => {
-                      handleAttackClickP2(index)
+                      handleDefenseClickP2(index);
+                      handleAttackClickP2(index);
                       setAbilityp2(item);
                     }}>
                     <Text
@@ -336,10 +353,15 @@ const ShowdownScreen = () => {
               ? secondCharacterData.defenceList.map((item, index) => (
                   <Button
                     style={{ borderWidth: 2, borderColor: "black" }}
-                    color={clickedDefenseButtonsP2[index] ? "pink" : "rgb(36, 75, 221)"}
+                    color={
+                      selectedDefenseIndexP2 === index
+                        ? "pink"
+                        : "rgb(36, 75, 221)"
+                    }
                     key={item.id}
                     onPress={() => {
-                      handleDefenseClickP2(index)
+                      handleAttackClickP2(index);
+                      handleDefenseClickP2(index);
                       setAbilityp2(item);
                     }}>
                     <Text
