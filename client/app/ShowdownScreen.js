@@ -18,7 +18,7 @@ import { Bars3Icon } from "react-native-heroicons/solid";
 import { Link } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Player from "../components/PlayerBox/Player";
-import { FlatList } from "react-native-gesture-handler";
+import { FlatList, ScrollView } from "react-native-gesture-handler";
 // Add reminder of which turn it is and which player is active
 
 const ShowdownScreen = () => {
@@ -118,17 +118,14 @@ const ShowdownScreen = () => {
     const copySecondCharacterData = { ...secondCharacterData };
     if (abilityp2.value < 0) {
       copyCharacterData.hp = characterData.hp + abilityp2.value;
-    }
-
-    else {
-      copySecondCharacterData.hp = secondCharacterData + abilityp2.value
+    } else {
+      copySecondCharacterData.hp = secondCharacterData.hp + abilityp2.value
     }
 
     if (abilityp1.value < 0) {
-      copySecondCharacterData.hp = secondCharacterData.hp + abilityp1.value;
-    }
-    else {
-      copyCharacterData.hp = characterData + abilityp1.value
+      copySecondCharacterData.hp = copySecondCharacterData.hp + abilityp1.value;
+    } else {
+      copyCharacterData.hp = copyCharacterData.hp + abilityp1.value
     }    
     setCharacterData(copyCharacterData);
     setSecondCharacterData(copySecondCharacterData);
