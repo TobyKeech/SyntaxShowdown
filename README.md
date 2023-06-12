@@ -4,11 +4,11 @@
 Follow the steps below to run the application:
 
 1) Clone the repository:
-git clone git@github.com:TobyKeech/SyntaxShowdown.git
-cd SyntaxShowdown
-Install the dependencies:
+2) git clone git@github.com:TobyKeech/SyntaxShowdown.git
+3) d SyntaxShowdown
+4) Install the dependencies:
 
-2) npm install
+4) npm install
 Start the Spring backend server : this server is currenly hosted should this may not need to be performed
 
 Make sure you have the JDK installed and set up correctly.
