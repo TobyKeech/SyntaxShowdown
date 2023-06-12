@@ -125,20 +125,23 @@ const ShowdownScreen = () => {
     setTimeout(() => {toggleAbilityOverlayp1()}, 2000)
   };
 
-  const endScreenHandler = () => {
-    const copy = { ...characterData };
-    copy.hp = 0;
-    setCharacterData(copy);
-  };
-
   const onp1AbilityPressHandle = () => {
-    toggleAbilityOverlayp1(), toggleAbilityOverlayp2();
+    if (selectedAttackIndexP1 !== null || selectedDefenseIndexP1 !==null ){
+      toggleAbilityOverlayp1()
+      toggleAbilityOverlayp2()
+    } else {
+      alert("Please select an attack or a defence!")
+    }
     // P1 selected ability
   };
 
   const onp2AbilityPressHandle = () => {
+    if (selectedAttackIndexP2 !== null || selectedDefenseIndexP2 !==null ){
     handleDamage();
-    toggleAbilityOverlayp2();
+    toggleAbilityOverlayp2()
+    } else  {
+      alert("Please select an attack or a defence!")
+    };
   };
 
   const handleDamage = () => {
