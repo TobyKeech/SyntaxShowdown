@@ -27,6 +27,14 @@ const ShowdownScreen = () => {
   const [showPage, setShowPage] = useState(false);
   const [abilityp1, setAbilityp1] = useState(null);
   const [abilityp2, setAbilityp2] = useState(null);
+  const [clickedAttackButtonsP1, setClickedAttackButtonsP1] = useState([]);
+  const [clickedDefenseButtonsP1, setClickedDefenseButtonsP1] = useState([]);
+  const [clickedAttackButtonsP2, setClickedAttackButtonsP2] = useState([]);
+  const [clickedDefenseButtonsP2, setClickedDefenseButtonsP2] = useState([]);
+
+  
+
+  
 
   const fetchData = async () => {
     try {
@@ -64,6 +72,27 @@ const ShowdownScreen = () => {
       },
     });
   }, []);
+
+  const handleAttackClickP1 = (index) => {
+    const updatedButtons = [...clickedAttackButtonsP1];
+    updatedButtons[index] = true;
+    setClickedAttackButtonsP1(updatedButtons);
+  };
+  const handleDefenseClickP1 = (index) => {
+    const updatedButtons = [...clickedDefenseButtonsP1];
+    updatedButtons[index] = true;
+    setClickedDefenseButtonsP1(updatedButtons);
+  };
+  const handleAttackClickP2 = (index) => {
+    const updatedButtons = [...clickedAttackButtonsP2];
+    updatedButtons[index] = true;
+    setClickedAttackButtonsP2(updatedButtons);
+  };
+  const handleDefenseClickP2 = (index) => {
+    const updatedButtons = [...clickedDefenseButtonsP2];
+    updatedButtons[index] = true;
+    setClickedDefenseButtonsP2(updatedButtons);
+  };
 
   const [menuVisible, setMenuVisible] = useState(false);
   const toggleMenuOverlay = () => {
@@ -118,8 +147,10 @@ const ShowdownScreen = () => {
     const copySecondCharacterData = { ...secondCharacterData };
     if (abilityp2.value < 0) {
       copyCharacterData.hp = characterData.hp + abilityp2.value;
-    } else {
-      copySecondCharacterData.hp = secondCharacterData.hp + abilityp2.value
+    }
+
+    else {
+      copySecondCharacterData.hp = secondCharacterData + abilityp2.value
     }
 
     if (abilityp1.value < 0) {
@@ -129,13 +160,14 @@ const ShowdownScreen = () => {
     }    
     setCharacterData(copyCharacterData);
     setSecondCharacterData(copySecondCharacterData);
-  }
+  };
+
+  
 
   return (
     <ImageBackground
       source={require("../assets/terminalimg.jpg")}
-      style={{ flex: 1 }}
-    >
+      style={{ flex: 1 }}>
       <SafeAreaView style={GlobalStyles.droidSafeArea}>
         <View className="absolute top-5 right-5">
           <TouchableOpacity onPress={toggleMenuOverlay}>
@@ -151,8 +183,7 @@ const ShowdownScreen = () => {
           }}
           isVisible={menuVisible}
           animationType="fade"
-          supportedOrientations={["landscape"]}
-        >
+          supportedOrientations={["landscape"]}>
           <View className="border-solid border-black border-2 m-5">
             <Button
               color="rgb(74 222 128)"
@@ -180,10 +211,9 @@ const ShowdownScreen = () => {
           }}
           isVisible={abilityvisiblep1}
           animationType="fade"
-          supportedOrientations={["landscape"]}
-        >
+          supportedOrientations={["landscape"]}>
           <View className="border-solid border-black border-2 m-5">
-            <Button
+            <View
               color="rgb(74 222 128)"
               titleStyle={{ color: "black", fontFamily: "SyneMono" }}
               title={" P1:Choose your Ability"}
@@ -193,17 +223,18 @@ const ShowdownScreen = () => {
             </View>
 
             {characterData
-              ? characterData.attackList.map((item) => (
+              ? characterData.attackList.map((item, index) => (
                   <Button
-                    style={{ borderWidth: 2, borderColor: "white" }}
-                    color="rgb(229,76,32)"
+                    style={{ borderWidth: 2, borderColor: "black" }}
+                    color={clickedAttackButtonsP1[index] ? "pink" : "rgb(36, 75, 221)"}
                     key={item.id}
-                    onPress={() =>  setAbilityp1(item)}
-                  >
+                    onPress={() => {
+                      handleAttackClickP1(index)
+                      setAbilityp1(item);
+                    }}>
                     <Text
                       className="text-white"
-                      style={{ fontFamily: "SyneMono" }}
-                    >
+                      style={{ fontFamily: "SyneMono" }}>
                       {item.name}
                     </Text>
                   </Button>
@@ -217,38 +248,33 @@ const ShowdownScreen = () => {
             </View>
 
             {characterData
-              ? characterData.defenceList.map((item) => (
+              ? characterData.defenceList.map((item, index) => (
                   <Button
-                    style={{ borderWidth: 2, borderColor: "white" }}
-                    color="rgb(36,75,221)"
+                    style={{ borderWidth: 2, borderColor: "black" }}
+                    color={clickedDefenseButtonsP1[index] ? "pink" : "rgb(36, 75, 221)"}
                     key={item.id}
                     onPress={() => {
+                      handleDefenseClickP1(index)
                       setAbilityp1(item);
-                    }}
-                  >
+                    }}>
                     <Text
                       className="text-white"
-                      style={{ fontFamily: "SyneMono" }}
-                    >
+                      style={{ fontFamily: "SyneMono" }}>
                       {item.name}
                     </Text>
                   </Button>
                 ))
               : null}
-              <Button
-                    style={{ borderWidth: 2, borderColor: "white" }}
-                    color="rgb(36,75,221)"
-                    onPress={() => {
-                      onp1AbilityPressHandle();
-                    }}
-                  >
-                    <Text
-                      className="text-white"
-                      style={{ fontFamily: "SyneMono" }}
-                    >
-                      Finish turn
-                    </Text>
-                  </Button>
+            <Button
+              style={{ borderWidth: 2, borderColor: "black" }}
+              color="rgb(36,75,221)"
+              onPress={() => {
+                onp1AbilityPressHandle();
+              }}>
+              <Text className="text-white" style={{ fontFamily: "SyneMono" }}>
+                Finish turn
+              </Text>
+            </Button>
           </View>
         </Overlay>
 
@@ -261,10 +287,9 @@ const ShowdownScreen = () => {
           }}
           isVisible={abilityvisiblep2}
           animationType="fade"
-          supportedOrientations={["landscape"]}
-        >
+          supportedOrientations={["landscape"]}>
           <View className="border-solid border-black border-2 m-5">
-            <Button
+            <View
               color="rgb(74 222 128)"
               titleStyle={{ color: "black", fontFamily: "SyneMono" }}
               title={"P2:Choose your Ability"}
@@ -275,19 +300,18 @@ const ShowdownScreen = () => {
             </View>
 
             {secondCharacterData
-              ? secondCharacterData.attackList.map((item) => (
+              ? secondCharacterData.attackList.map((item, index) => (
                   <Button
-                    style={{ borderWidth: 2, borderColor: "white" }}
-                    color="rgb(229,76,32)"
+                    style={{ borderWidth: 2, borderColor: "black" }}
+                    color={clickedAttackButtonsP2[index] ? "pink" : "rgb(36, 75, 221)"}v
                     key={item.id}
                     onPress={() => {
+                      handleAttackClickP2(index)
                       setAbilityp2(item);
-                    }}
-                  >
+                    }}>
                     <Text
                       className="text-white"
-                      style={{ fontFamily: "SyneMono" }}
-                    >
+                      style={{ fontFamily: "SyneMono" }}>
                       {item.name}
                     </Text>
                   </Button>
@@ -301,38 +325,33 @@ const ShowdownScreen = () => {
             </View>
 
             {secondCharacterData
-              ? secondCharacterData.defenceList.map((item) => (
+              ? secondCharacterData.defenceList.map((item, index) => (
                   <Button
-                    style={{ borderWidth: 2, borderColor: "white" }}
-                    color="rgb(36,75,221)"
+                    style={{ borderWidth: 2, borderColor: "black" }}
+                    color={clickedDefenseButtonsP2[index] ? "pink" : "rgb(36, 75, 221)"}
                     key={item.id}
                     onPress={() => {
+                      handleDefenseClickP2(index)
                       setAbilityp2(item);
-                    }}
-                  >
+                    }}>
                     <Text
                       className="text-white"
-                      style={{ fontFamily: "SyneMono" }}
-                    >
+                      style={{ fontFamily: "SyneMono" }}>
                       {item.name}
                     </Text>
                   </Button>
                 ))
               : null}
-              <Button
-                    style={{ borderWidth: 2, borderColor: "white" }}
-                    color="rgb(36,75,221)"
-                    onPress={() => {
-                      onp2AbilityPressHandle();
-                    }}
-                  >
-                    <Text
-                      className="text-white"
-                      style={{ fontFamily: "SyneMono" }}
-                    >
-                      Finish turn
-                    </Text>
-                  </Button>
+            <Button
+              style={{ borderWidth: 2, borderColor: "black" }}
+              color="rgb(36,75,221)"
+              onPress={() => {
+                onp2AbilityPressHandle();
+              }}>
+              <Text className="text-white" style={{ fontFamily: "SyneMono" }}>
+                Finish turn
+              </Text>
+            </Button>
           </View>
         </Overlay>
         {characterData && secondCharacterData ? (
@@ -345,8 +364,7 @@ const ShowdownScreen = () => {
             }}
             isVisible={faceoffVisible}
             animationType="slide"
-            supportedOrientations={["landscape"]}
-          >
+            supportedOrientations={["landscape"]}>
             <View className="absolute left-10 bottom-20">
               <Image
                 source={{ uri: characterData.imgPath }}
@@ -362,16 +380,14 @@ const ShowdownScreen = () => {
             <View className="absolute left-24 bottom-10">
               <Text
                 style={{ fontFamily: "SyneMono" }}
-                className="text-5xl italic font-semibold"
-              >
+                className="text-5xl italic font-semibold">
                 {characterData.name}
               </Text>
             </View>
             <View className="absolute right-32 bottom-10">
               <Text
                 style={{ fontFamily: "SyneMono" }}
-                className="text-5xl italic font-semibold"
-              >
+                className="text-5xl italic font-semibold">
                 {secondCharacterData.name}
               </Text>
             </View>
@@ -406,8 +422,7 @@ const ShowdownScreen = () => {
             }}
             isVisible={endScreenVisible}
             animationType="slide"
-            supportedOrientations={["landscape"]}
-          >
+            supportedOrientations={["landscape"]}>
             <Text className="text-white">Winner:</Text>
             {secondCharacterData.hp === 0 ? (
               <Image
@@ -459,8 +474,7 @@ const ShowdownScreen = () => {
         <View className=" absolute bottom-10 right-8">
           <Text
             onPress={toggleEndScreenOverlay}
-            className="text-white flex-end text-xl"
-          >
+            className="text-white flex-end text-xl">
             Endscreen
           </Text>
         </View>
