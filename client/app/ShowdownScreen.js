@@ -123,7 +123,8 @@ const ShowdownScreen = () => {
   };
 
   const onShowdownPressHandler = () => {
-    toggleFaceOffOverlay(), toggleAbilityOverlayp1();
+    toggleFaceOffOverlay()
+    setTimeout(() => {toggleAbilityOverlayp1()}, 2000)
   };
 
   const endScreenHandler = () => {
@@ -147,22 +148,27 @@ const ShowdownScreen = () => {
     const copySecondCharacterData = { ...secondCharacterData };
     if (abilityp2.value < 0) {
       copyCharacterData.hp = characterData.hp + abilityp2.value;
+      console.log("This is 1")
+    } else {
+      copySecondCharacterData.hp = secondCharacterData.hp + abilityp2.value
     }
-
-    else {
-      copySecondCharacterData.hp = secondCharacterData + abilityp2.value
-    }
-
+  
     if (abilityp1.value < 0) {
       copySecondCharacterData.hp = copySecondCharacterData.hp + abilityp1.value;
+      console.log("This is 2")
     } else {
       copyCharacterData.hp = copyCharacterData.hp + abilityp1.value
     }    
     setCharacterData(copyCharacterData);
     setSecondCharacterData(copySecondCharacterData);
-  };
-
-  
+    if (copyCharacterData.hp <= 0 || copySecondCharacterData.hp <=0 ){
+      console.log("This is 3")
+      toggleEndScreenOverlay()
+    } else {
+    setTimeout(() => {toggleAbilityOverlayp1()}, 2000)
+    }
+    
+  }
 
   return (
     <ImageBackground
@@ -429,13 +435,13 @@ const ShowdownScreen = () => {
             animationType="slide"
             supportedOrientations={["landscape"]}>
             <Text className="text-white">Winner:</Text>
-            {secondCharacterData.hp === 0 ? (
+            {secondCharacterData.hp <= 0 && secondCharacterData.hp < characterData.hp ? (
               <Image
                 source={{ uri: characterData.imgPath }}
                 style={{ width: 200, height: 100 }}
               />
             ) : null}
-            {characterData.hp === 0 ? (
+            {characterData.hp <= 0 && characterData.hp < secondCharacterData.hp ? (
               <Image
                 source={{ uri: secondCharacterData.imgPath }}
                 style={{ width: 200, height: 100 }}
