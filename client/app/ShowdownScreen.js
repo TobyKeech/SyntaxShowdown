@@ -121,7 +121,8 @@ const ShowdownScreen = () => {
   };
 
   const onShowdownPressHandler = () => {
-    toggleFaceOffOverlay(), toggleAbilityOverlayp1();
+    toggleFaceOffOverlay()
+    setTimeout(() => {toggleAbilityOverlayp1()}, 2000)
   };
 
   const endScreenHandler = () => {
@@ -146,9 +147,9 @@ const ShowdownScreen = () => {
     if (abilityp2.value < 0) {
       copyCharacterData.hp = characterData.hp + abilityp2.value;
     } else {
-      copySecondCharacterData.hp = secondCharacterData + abilityp2.value;
+      copySecondCharacterData.hp = secondCharacterData.hp + abilityp2.value
     }
-
+  
     if (abilityp1.value < 0) {
       copySecondCharacterData.hp = copySecondCharacterData.hp + abilityp1.value;
     } else {
@@ -156,7 +157,13 @@ const ShowdownScreen = () => {
     }
     setCharacterData(copyCharacterData);
     setSecondCharacterData(copySecondCharacterData);
-  };
+    if (copyCharacterData.hp <= 0 || copySecondCharacterData.hp <=0 ){
+      toggleEndScreenOverlay()
+    } else {
+    setTimeout(() => {toggleAbilityOverlayp1()}, 2000)
+    }
+    
+  }
 
   return (
     <ImageBackground
@@ -438,6 +445,8 @@ const ShowdownScreen = () => {
         {characterData && secondCharacterData ? (
           <Overlay
             overlayStyle={{
+              justifyContent:"space-between",
+              flexDirection: "column",
               alignItems: "center",
               width: overlayWidth,
               height: overlayHeight,
@@ -447,31 +456,20 @@ const ShowdownScreen = () => {
             animationType="slide"
             supportedOrientations={["landscape"]}>
             <Text className="text-white">Winner:</Text>
-            {secondCharacterData.hp === 0 ? (
+            {secondCharacterData.hp <= 0 && secondCharacterData.hp < characterData.hp ? (
               <Image
                 source={{ uri: characterData.imgPath }}
                 style={{ width: 200, height: 100 }}
               />
             ) : null}
-            {characterData.hp === 0 ? (
+            {characterData.hp <= 0 && characterData.hp < secondCharacterData.hp ? (
               <Image
                 source={{ uri: secondCharacterData.imgPath }}
                 style={{ width: 200, height: 100 }}
               />
             ) : null}
 
-            <View className="absolute bottom-10">
-              <Button
-                color="rgb(74 222 128)"
-                titleStyle={{
-                  color: "black",
-                  fontFamily: "SyneMono",
-                  fontSize: 20,
-                }}
-                title={"Kill p2"}
-                onPress={endScreenHandler}
-              />
-              <View className=" flex-column">
+              <View>
                 <Link href="/" asChild>
                   <Button
                     color={"rgb(0 0 0)"}
@@ -484,7 +482,6 @@ const ShowdownScreen = () => {
                   />
                 </Link>
               </View>
-            </View>
           </Overlay>
         ) : null}
 
@@ -493,13 +490,6 @@ const ShowdownScreen = () => {
           {secondCharacterData ? (
             <Player character={secondCharacterData} />
           ) : null}
-        </View>
-        <View className=" absolute bottom-10 right-8">
-          <Text
-            onPress={toggleEndScreenOverlay}
-            className="text-white flex-end text-xl">
-            Endscreen
-          </Text>
         </View>
       </SafeAreaView>
     </ImageBackground>

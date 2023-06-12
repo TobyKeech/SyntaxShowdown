@@ -16,9 +16,9 @@ const PlayerHP = ({ characterhp }) => {
       <View style={{ borderWidth: 2, borderColor: 'white', width: '100%', height: 30, backgroundColor: 'rgb(255,0,0)' }}>
         <View style={{ width: healthBarWidth, height: '100%', backgroundColor: 'rgb(74 222 128)' }} />
 
-        {/* <Text style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, textAlign: 'center', color: 'white' }}>
+        <Text style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, textAlign: 'center', color: 'white', fontFamily: "SyneMono", fontSize: 20}}>
           {characterhp.hp}
-        </Text> */}
+        </Text>
         
       </View>
     </View>
