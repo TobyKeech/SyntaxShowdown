@@ -30,13 +30,15 @@ const ShowdownScreen = () => {
   const [selectedDefenseIndexP2, setSelectedDefenseIndexP2] = useState(null);
 
   const fetchData = async () => {
+    const firstPlayer = Math.floor(Math.random() * 9) + 1;
+    const secondPlayer = Math.floor(Math.random() * 9) + 1;
     try {
       const [response1, response2] = await Promise.all([
         fetch(
-          "https://syntax-showdown-app.delightfulisland-96df0ba2.uksouth.azurecontainerapps.io/characters/1"
+          `https://syntax-showdown-app.delightfulisland-96df0ba2.uksouth.azurecontainerapps.io/characters/${firstPlayer}`
         ),
         fetch(
-          "https://syntax-showdown-app.delightfulisland-96df0ba2.uksouth.azurecontainerapps.io/characters/4"
+          `https://syntax-showdown-app.delightfulisland-96df0ba2.uksouth.azurecontainerapps.io/characters/${secondPlayer}`
         ),
       ]);
 
