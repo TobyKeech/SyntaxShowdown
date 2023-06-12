@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Profile("!test")
-//@Component //Comment this out if you do not to run the data loader.
+@Component //Comment this out if you do not to run the data loader.
 public class DataLoader implements ApplicationRunner {
 
     @Autowired
@@ -52,7 +52,7 @@ public class DataLoader implements ApplicationRunner {
         Character arango = new Character("Arangodb", "database", 100, "https://i.ibb.co/Q8khmfn/arangodb.png");
         characterRepository.save(arango);
 
-        Attack markePunch = new Attack("MarkePunch", -20, html);
+        Attack markePunch = new Attack("MarkePunch", -50, html);
         attackRepository.save(markePunch);
         Attack text = new Attack("Test", -20, html);
         attackRepository.save(text);
@@ -67,7 +67,7 @@ public class DataLoader implements ApplicationRunner {
         Attack execute = new Attack("Execute", -10, js);
         attackRepository.save(execute);
 
-        Attack streams = new Attack("Streams", -20, java);
+        Attack streams = new Attack("Streams", -70, java);
         attackRepository.save(streams);
         Attack statictype = new Attack("StaticType", -20, java);
         attackRepository.save(statictype);
