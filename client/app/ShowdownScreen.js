@@ -25,6 +25,8 @@ const ShowdownScreen = () => {
   const [characterData, setCharacterData] = useState(null);
   const [secondCharacterData, setSecondCharacterData] = useState(null);
   const [showPage, setShowPage] = useState(false);
+  const [abilityp1, setAbilityp1] = useState(null);
+  const [abilityp2, setAbilityp2] = useState(null);
 
   const fetchData = async () => {
     try {
@@ -101,14 +103,44 @@ const ShowdownScreen = () => {
     setCharacterData(copy);
   };
 
-  const onp1AbilityPressHandle = () => {
+  const onp1AbilityPressHandle = (item) => {
     toggleAbilityOverlayp1(), toggleAbilityOverlayp2();
+    setAbilityp1(item);
+    // P1 selected ability
   };
+
+  const onp2AbilityPressHandle = (item) => {
+    toggleAbilityOverlayp2();
+    setAbilityp2(item);
+    handleDamage();
+  };
+
+  const handleDamage = () => {
+    const copyCharacterData = { ...characterData };
+    const copySecondCharacterData = { ...secondCharacterData };
+    if (abilityp2.value < 0) {
+      copyCharacterData.hp = characterData.hp + abilityp2.value;
+    }
+
+    else {
+      copySecondCharacterData.hp = secondCharacterData + abilityp2.value
+    }
+
+    if (abilityp1.value < 0) {
+      copySecondCharacterData.hp = secondCharacterData.hp + abilityp1.value;
+    }
+    else {
+      copyCharacterData.hp = characterData + abilityp1.value
+    }    
+    setCharacterData(copyCharacterData);
+    setSecondCharacterData(copySecondCharacterData);
+  }
 
   return (
     <ImageBackground
       source={require("../assets/terminalimg.jpg")}
-      style={{ flex: 1 }}>
+      style={{ flex: 1 }}
+    >
       <SafeAreaView style={GlobalStyles.droidSafeArea}>
         <View className="absolute top-5 right-5">
           <TouchableOpacity onPress={toggleMenuOverlay}>
@@ -124,7 +156,8 @@ const ShowdownScreen = () => {
           }}
           isVisible={menuVisible}
           animationType="fade"
-          supportedOrientations={["landscape"]}>
+          supportedOrientations={["landscape"]}
+        >
           <View className="border-solid border-black border-2 m-5">
             <Button
               color="rgb(74 222 128)"
@@ -152,7 +185,8 @@ const ShowdownScreen = () => {
           }}
           isVisible={abilityvisiblep1}
           animationType="fade"
-          supportedOrientations={["landscape"]}>
+          supportedOrientations={["landscape"]}
+        >
           <View className="border-solid border-black border-2 m-5">
             <Button
               color="rgb(74 222 128)"
@@ -169,10 +203,12 @@ const ShowdownScreen = () => {
                     style={{ borderWidth: 2, borderColor: "white" }}
                     color="rgb(229,76,32)"
                     key={item.id}
-                    onPress={onp1AbilityPressHandle}>
+                    onPress={() => onp1AbilityPressHandle(item)}
+                  >
                     <Text
                       className="text-white"
-                      style={{ fontFamily: "SyneMono" }}>
+                      style={{ fontFamily: "SyneMono" }}
+                    >
                       {item.name}
                     </Text>
                   </Button>
@@ -191,10 +227,14 @@ const ShowdownScreen = () => {
                     style={{ borderWidth: 2, borderColor: "white" }}
                     color="rgb(36,75,221)"
                     key={item.id}
-                    onPress={onp1AbilityPressHandle}>
+                    onPress={() => {
+                      onp1AbilityPressHandle(item);
+                    }}
+                  >
                     <Text
                       className="text-white"
-                      style={{ fontFamily: "SyneMono" }}>
+                      style={{ fontFamily: "SyneMono" }}
+                    >
                       {item.name}
                     </Text>
                   </Button>
@@ -212,7 +252,8 @@ const ShowdownScreen = () => {
           }}
           isVisible={abilityvisiblep2}
           animationType="fade"
-          supportedOrientations={["landscape"]}>
+          supportedOrientations={["landscape"]}
+        >
           <View className="border-solid border-black border-2 m-5">
             <Button
               color="rgb(74 222 128)"
@@ -230,10 +271,14 @@ const ShowdownScreen = () => {
                     style={{ borderWidth: 2, borderColor: "white" }}
                     color="rgb(229,76,32)"
                     key={item.id}
-                    onPress={toggleAbilityOverlayp2}>
+                    onPress={() => {
+                      onp2AbilityPressHandle(item);
+                    }}
+                  >
                     <Text
                       className="text-white"
-                      style={{ fontFamily: "SyneMono" }}>
+                      style={{ fontFamily: "SyneMono" }}
+                    >
                       {item.name}
                     </Text>
                   </Button>
@@ -252,10 +297,14 @@ const ShowdownScreen = () => {
                     style={{ borderWidth: 2, borderColor: "white" }}
                     color="rgb(36,75,221)"
                     key={item.id}
-                    onPress={toggleAbilityOverlayp2}>
+                    onPress={() => {
+                      onp2AbilityPressHandle(item);
+                    }}
+                  >
                     <Text
                       className="text-white"
-                      style={{ fontFamily: "SyneMono" }}>
+                      style={{ fontFamily: "SyneMono" }}
+                    >
                       {item.name}
                     </Text>
                   </Button>
@@ -273,7 +322,8 @@ const ShowdownScreen = () => {
             }}
             isVisible={faceoffVisible}
             animationType="slide"
-            supportedOrientations={["landscape"]}>
+            supportedOrientations={["landscape"]}
+          >
             <View className="absolute left-10 bottom-20">
               <Image
                 source={{ uri: characterData.imgPath }}
@@ -287,12 +337,18 @@ const ShowdownScreen = () => {
               />
             </View>
             <View className="absolute left-24 bottom-10">
-              <Text style={{ fontFamily: "SyneMono" }} className="text-5xl italic font-semibold">
+              <Text
+                style={{ fontFamily: "SyneMono" }}
+                className="text-5xl italic font-semibold"
+              >
                 {characterData.name}
               </Text>
             </View>
             <View className="absolute right-32 bottom-10">
-              <Text style={{ fontFamily: "SyneMono" }} className="text-5xl italic font-semibold">
+              <Text
+                style={{ fontFamily: "SyneMono" }}
+                className="text-5xl italic font-semibold"
+              >
                 {secondCharacterData.name}
               </Text>
             </View>
@@ -327,7 +383,8 @@ const ShowdownScreen = () => {
             }}
             isVisible={endScreenVisible}
             animationType="slide"
-            supportedOrientations={["landscape"]}>
+            supportedOrientations={["landscape"]}
+          >
             <Text className="text-white">Winner:</Text>
             {secondCharacterData.hp === 0 ? (
               <Image
@@ -379,7 +436,8 @@ const ShowdownScreen = () => {
         <View className=" absolute bottom-10 right-8">
           <Text
             onPress={toggleEndScreenOverlay}
-            className="text-white flex-end text-xl">
+            className="text-white flex-end text-xl"
+          >
             Endscreen
           </Text>
         </View>
