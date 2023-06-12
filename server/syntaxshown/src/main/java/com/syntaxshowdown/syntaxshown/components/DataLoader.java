@@ -52,49 +52,49 @@ public class DataLoader implements ApplicationRunner {
         Character arango = new Character("Arangodb", "database", 100, "https://i.ibb.co/Q8khmfn/arangodb.png");
         characterRepository.save(arango);
 
-        Attack markePunch = new Attack("MarkePunch", 20, html);
+        Attack markePunch = new Attack("MarkePunch", -20, html);
         attackRepository.save(markePunch);
-        Attack text = new Attack("Test", 20, html);
+        Attack text = new Attack("Test", -20, html);
         attackRepository.save(text);
 
-        Attack flexbox = new Attack("Streams", 30, css);
+        Attack flexbox = new Attack("Streams", -30, css);
         attackRepository.save(flexbox);
-        Attack centrediv = new Attack("Centre Div", 10, css);
+        Attack centrediv = new Attack("Centre Div", -10, css);
         attackRepository.save(centrediv);
 
-        Attack reduce = new Attack("Reduce", 30, js);
+        Attack reduce = new Attack("Reduce", -30, js);
         attackRepository.save(reduce);
-        Attack execute = new Attack("Execute", 10, js);
+        Attack execute = new Attack("Execute", -10, js);
         attackRepository.save(execute);
 
-        Attack streams = new Attack("Streams", 20, java);
+        Attack streams = new Attack("Streams", -20, java);
         attackRepository.save(streams);
-        Attack statictype = new Attack("StaticType", 20, java);
+        Attack statictype = new Attack("StaticType", -20, java);
         attackRepository.save(statictype);
 
-        Attack listcomp = new Attack("List Comprehension", 30, python);
+        Attack listcomp = new Attack("List Comprehension", -30, python);
         attackRepository.save(listcomp);
-        Attack snakeCharmer = new Attack("snakeCharmer", 10, python);
+        Attack snakeCharmer = new Attack("snakeCharmer", -10, python);
         attackRepository.save(snakeCharmer);
 
-        Attack findenemy = new Attack("FIND enemy", 30, postgres);
+        Attack findenemy = new Attack("FIND enemy", -30, postgres);
         attackRepository.save(findenemy);
-        Attack droptable = new Attack("Droptable", 10, postgres);
+        Attack droptable = new Attack("Droptable", -10, postgres);
         attackRepository.save(droptable);
 
-        Attack create = new Attack("Create", 20, mongo);
+        Attack create = new Attack("Create", -20, mongo);
         attackRepository.save(create);
-        Attack upload = new Attack("Upload", 20, mongo);
+        Attack upload = new Attack("Upload", -20, mongo);
         attackRepository.save(upload);
 
-        Attack syntaxerror = new Attack("Syntax Error", 30, arango);
+        Attack syntaxerror = new Attack("Syntax Error", -30, arango);
         attackRepository.save(syntaxerror);
-        Attack logic = new Attack("Logic", 10, arango);
+        Attack logic = new Attack("Logic", -10, arango);
         attackRepository.save(logic);
 
-        Attack derp = new Attack("Derp", 30, ruby);
+        Attack derp = new Attack("Derp", -30, ruby);
         attackRepository.save(derp);
-        Attack shiny = new Attack("Shiny", 10, ruby);
+        Attack shiny = new Attack("Shiny", -10, ruby);
         attackRepository.save(shiny);
 
         Defence hr = new Defence("Hr", 30, html);
