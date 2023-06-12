@@ -5,7 +5,7 @@ Follow the steps below to run the application:
 
 1) Clone the repository:
 2) git clone git@github.com:TobyKeech/SyntaxShowdown.git
-3) d SyntaxShowdown
+3) cd SyntaxShowdown
 4) Install the dependencies:
 
 4) npm install
