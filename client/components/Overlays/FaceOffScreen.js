@@ -1,19 +1,24 @@
-import { View, Text, Image, StatusBar } from "react-native";
+import { View, Text, Image } from "react-native";
 import React from "react";
 import { Overlay, Button } from "@rneui/themed";
+import { StatusBar } from "expo-status-bar";
 
-const FaceOffScreen = ({faceoffVisible, characterData, secondCharacterData, onShowdownPressHandler}) => {  
+const FaceOffScreen = ({
+  faceoffVisible,
+  characterData,
+  secondCharacterData,
+  onShowdownPressHandler,
+}) => {
   return (
     <Overlay
       overlayStyle={{
         alignItems: "center",
         backgroundColor: "white",
-
       }}
       isVisible={faceoffVisible}
       animationType="slide"
       supportedOrientations={["landscape"]}
-      fullScreen = {true}
+      fullScreen={true}
       statusBarTranslucent={true}
     >
     

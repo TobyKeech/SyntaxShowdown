@@ -6,7 +6,6 @@ import {
   Pressable,
   SafeAreaView,
   ScrollView,
-  StatusBar,
 } from "react-native";
 import { Link, useNavigation } from "expo-router";
 import { useLayoutEffect, useState, useCallback } from "react";
@@ -19,6 +18,8 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { Icon } from "@rneui/themed";
 import { ImageBackground } from "react-native";
+import { StatusBar } from "expo-status-bar";
+// We could replace the splashscreen to a proper one
 
 SplashScreen.preventAutoHideAsync();
 

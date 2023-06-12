@@ -23,9 +23,9 @@ const AbilitySelect = ({
       animationType="fade"
       supportedOrientations={["landscape"]}
       statusBarTranslucent={true}
-      fullScreen = {true}
+      fullScreen={true}
     >
-    <StatusBar hidden={true} />
+      <StatusBar hidden={true} />
       <View className=" bg-green-400 border-solid border-black border-2 m-5">
         <View className="items-center justify-center">
           <Text style={{ color: "black", fontFamily: "SyneMono" }}>

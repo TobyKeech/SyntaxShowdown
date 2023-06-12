@@ -20,9 +20,9 @@ const EndScreen = ({
       animationType="slide"
       supportedOrientations={["landscape"]}
       statusBarTranslucent={true}
-      fullScreen = {true}
+      fullScreen={true}
     >
-    <StatusBar hidden={true} />
+      <StatusBar hidden={true} />
       <Text
         style={{ fontSize: 30, fontFamily: "SyneMono" }}
         className="text-green-400"
