@@ -1,10 +1,8 @@
-import { View, Text } from "react-native";
+import { View, Text, StatusBar } from "react-native";
 import React from "react";
 import { Overlay, Button } from "@rneui/themed";
 
 const AbilitySelect = ({
-  overlayWidth,
-  overlayHeight,
   title,
   abilityvisible,
   characterData,
@@ -19,14 +17,15 @@ const AbilitySelect = ({
     <Overlay
       overlayStyle={{
         alignItems: "center",
-        width: overlayWidth,
-        height: overlayHeight,
         backgroundColor: "bg-opacity-50",
       }}
       isVisible={abilityvisible}
       animationType="fade"
       supportedOrientations={["landscape"]}
+      statusBarTranslucent={true}
+      fullScreen = {true}
     >
+    <StatusBar hidden={true} />
       <View className=" bg-green-400 border-solid border-black border-2 m-5">
         <View className="items-center justify-center">
           <Text style={{ color: "black", fontFamily: "SyneMono" }}>

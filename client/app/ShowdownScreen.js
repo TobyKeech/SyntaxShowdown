@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   Dimensions,
+  StatusBar,
 } from "react-native";
 import { useNavigation, Link } from "expo-router";
 import React from "react";
@@ -106,11 +107,6 @@ const ShowdownScreen = () => {
     setEndScreenVisible(!endScreenVisible);
   };
 
-  // this is now on the slector comp
-  const { width, height } = Dimensions.get("window");
-  const overlayWidth = width;
-  const overlayHeight = height;
-
   const [abilityvisiblep1, setAbilityVisiblep1] = useState(false);
   const toggleAbilityOverlayp1 = () => {
     setAbilityVisiblep1(!abilityvisiblep1);
@@ -184,8 +180,10 @@ const ShowdownScreen = () => {
     <ImageBackground
       source={require("../assets/terminalimg.jpg")}
       style={{ flex: 1 }}
+      
     >
-      <SafeAreaView style={GlobalStyles.droidSafeArea}>
+    <StatusBar hidden={true} />
+      <SafeAreaView>
         <View className="absolute top-5 right-5">
           <TouchableOpacity onPress={toggleMenuOverlay}>
             <Bars3Icon size={50} color="rgb(74 222 128)"></Bars3Icon>
@@ -222,8 +220,6 @@ const ShowdownScreen = () => {
         </Overlay>
         <AbilitySelect
           title={"P1: Choose your Ability"}
-          overlayWidth={overlayWidth}
-          overlayHeight={overlayHeight}
           abilityvisible={abilityvisiblep1}
           characterData={characterData}
           selectedAttackIndex={selectedAttackIndexP1}
@@ -236,8 +232,6 @@ const ShowdownScreen = () => {
 
         <AbilitySelect
           title={"P2: Choose your Ability"}
-          overlayWidth={overlayWidth}
-          overlayHeight={overlayHeight}
           abilityvisible={abilityvisiblep2}
           characterData={secondCharacterData}
           selectedAttackIndex={selectedAttackIndexP2}
@@ -250,8 +244,6 @@ const ShowdownScreen = () => {
 
         {characterData && secondCharacterData ? (
           <FaceOffScreen
-            overlayWidth={overlayWidth}
-            overlayHeight={overlayHeight}
             faceoffVisible={faceoffVisible}
             characterData={characterData}
             secondCharacterData={secondCharacterData}
@@ -261,8 +253,6 @@ const ShowdownScreen = () => {
 
         {characterData && secondCharacterData ? (
           <EndScreen
-            overlayWidth={overlayWidth}
-            overlayHeight={overlayHeight}
             endScreenVisible={endScreenVisible}
             characterData={characterData}
             secondCharacterData={secondCharacterData}
