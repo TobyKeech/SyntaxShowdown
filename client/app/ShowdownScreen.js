@@ -103,16 +103,14 @@ const ShowdownScreen = () => {
     setCharacterData(copy);
   };
 
-  const onp1AbilityPressHandle = (item) => {
+  const onp1AbilityPressHandle = () => {
     toggleAbilityOverlayp1(), toggleAbilityOverlayp2();
-    setAbilityp1(item);
     // P1 selected ability
   };
 
-  const onp2AbilityPressHandle = (item) => {
-    toggleAbilityOverlayp2();
-    setAbilityp2(item);
+  const onp2AbilityPressHandle = () => {
     handleDamage();
+    toggleAbilityOverlayp2();
   };
 
   const handleDamage = () => {
@@ -203,7 +201,7 @@ const ShowdownScreen = () => {
                     style={{ borderWidth: 2, borderColor: "white" }}
                     color="rgb(229,76,32)"
                     key={item.id}
-                    onPress={() => onp1AbilityPressHandle(item)}
+                    onPress={() =>  setAbilityp1(item)}
                   >
                     <Text
                       className="text-white"
@@ -228,7 +226,7 @@ const ShowdownScreen = () => {
                     color="rgb(36,75,221)"
                     key={item.id}
                     onPress={() => {
-                      onp1AbilityPressHandle(item);
+                      setAbilityp1(item);
                     }}
                   >
                     <Text
@@ -240,6 +238,20 @@ const ShowdownScreen = () => {
                   </Button>
                 ))
               : null}
+              <Button
+                    style={{ borderWidth: 2, borderColor: "white" }}
+                    color="rgb(36,75,221)"
+                    onPress={() => {
+                      onp1AbilityPressHandle();
+                    }}
+                  >
+                    <Text
+                      className="text-white"
+                      style={{ fontFamily: "SyneMono" }}
+                    >
+                      Finish turn
+                    </Text>
+                  </Button>
           </View>
         </Overlay>
 
@@ -272,7 +284,7 @@ const ShowdownScreen = () => {
                     color="rgb(229,76,32)"
                     key={item.id}
                     onPress={() => {
-                      onp2AbilityPressHandle(item);
+                      setAbilityp2(item);
                     }}
                   >
                     <Text
@@ -298,7 +310,7 @@ const ShowdownScreen = () => {
                     color="rgb(36,75,221)"
                     key={item.id}
                     onPress={() => {
-                      onp2AbilityPressHandle(item);
+                      setAbilityp2(item);
                     }}
                   >
                     <Text
@@ -310,6 +322,20 @@ const ShowdownScreen = () => {
                   </Button>
                 ))
               : null}
+              <Button
+                    style={{ borderWidth: 2, borderColor: "white" }}
+                    color="rgb(36,75,221)"
+                    onPress={() => {
+                      onp2AbilityPressHandle();
+                    }}
+                  >
+                    <Text
+                      className="text-white"
+                      style={{ fontFamily: "SyneMono" }}
+                    >
+                      Finish turn
+                    </Text>
+                  </Button>
           </View>
         </Overlay>
         {characterData && secondCharacterData ? (
