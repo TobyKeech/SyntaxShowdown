@@ -19,7 +19,8 @@ import { Link } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Player from "../components/PlayerBox/Player";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
-// Add reminder of which turn it is and which player is active
+import AbilitySelect from "../components/AbilitySelectors/AbilitySelect";
+// Have to account for tie
 
 const ShowdownScreen = () => {
   const [characterData, setCharacterData] = useState(null);
@@ -106,6 +107,7 @@ const ShowdownScreen = () => {
     setEndScreenVisible(!endScreenVisible);
   };
 
+  // this is now on the slector comp
   const { width, height } = Dimensions.get("window");
   const overlayWidth = width;
   const overlayHeight = height;
@@ -128,22 +130,22 @@ const ShowdownScreen = () => {
   };
 
   const onp1AbilityPressHandle = () => {
-    if (selectedAttackIndexP1 !== null || selectedDefenseIndexP1 !==null ){
-      toggleAbilityOverlayp1()
-      toggleAbilityOverlayp2()
+    if (selectedAttackIndexP1 !== null || selectedDefenseIndexP1 !== null) {
+      toggleAbilityOverlayp1();
+      toggleAbilityOverlayp2();
     } else {
-      alert("Please select an attack or a defence!")
+      alert("Please select an attack or a defence!");
     }
     // P1 selected ability
   };
 
   const onp2AbilityPressHandle = () => {
-    if (selectedAttackIndexP2 !== null || selectedDefenseIndexP2 !==null ){
-    handleDamage();
-    toggleAbilityOverlayp2()
-    } else  {
-      alert("Please select an attack or a defence!")
-    };
+    if (selectedAttackIndexP2 !== null || selectedDefenseIndexP2 !== null) {
+      handleDamage();
+      toggleAbilityOverlayp2();
+    } else {
+      alert("Please select an attack or a defence!");
+    }
   };
 
   const handleDamage = () => {
@@ -160,7 +162,7 @@ const ShowdownScreen = () => {
     } else {
       copyCharacterData.hp = copyCharacterData.hp + abilityp1.value;
     }
-    
+
     if (copyCharacterData.hp >= 100) {
       copyCharacterData.hp = 100;
     }
@@ -182,7 +184,8 @@ const ShowdownScreen = () => {
   return (
     <ImageBackground
       source={require("../assets/terminalimg.jpg")}
-      style={{ flex: 1 }}>
+      style={{ flex: 1 }}
+    >
       <SafeAreaView style={GlobalStyles.droidSafeArea}>
         <View className="absolute top-5 right-5">
           <TouchableOpacity onPress={toggleMenuOverlay}>
@@ -198,7 +201,8 @@ const ShowdownScreen = () => {
           }}
           isVisible={menuVisible}
           animationType="fade"
-          supportedOrientations={["landscape"]}>
+          supportedOrientations={["landscape"]}
+        >
           <View className="border-solid border-black border-2 m-5">
             <Button
               color="rgb(74 222 128)"
@@ -217,191 +221,30 @@ const ShowdownScreen = () => {
             </Link>
           </View>
         </Overlay>
-        <Overlay
-          overlayStyle={{
-            alignItems: "center",
-            width: overlayWidth,
-            height: overlayHeight,
-            backgroundColor: "bg-opacity-50",
-          }}
-          isVisible={abilityvisiblep1}
-          animationType="fade"
-          supportedOrientations={["landscape"]}>
-          <View className=" bg-green-400 border-solid border-black border-2 m-5">
-            <View className="items-center justify-center">
-              <Text style={{ color: "black", fontFamily: "SyneMono" }}>
-                P1:Choose your Ability
-              </Text>
-            </View>
-            <View
-              color="rgb(74 222 128)"
-              titleStyle={{ color: "black", fontFamily: "SyneMono" }}
-            />
-            <View className=" bg-black items-center justify-center">
-              <Text style={{ color: "white", fontFamily: "SyneMono" }}>Choose your Attack</Text>
-            </View>
+        <AbilitySelect
+          title={"P1: Choose your Ability"}
+          abilityvisible={abilityvisiblep1}
+          characterData={characterData}
+          selectedAttackIndex={selectedAttackIndexP1}
+          selectedDefenseIndex={selectedDefenseIndexP1}
+          handleDefenseClick={handleDefenseClickP1}
+          handleAttackClick={handleAttackClickP1}
+          setAbility={setAbilityp1}
+          onAbilityPressHandle={onp1AbilityPressHandle}
+        />
+        
+        <AbilitySelect
+          title={"P2: Choose your Ability"}
+          abilityvisible={abilityvisiblep2}
+          characterData={secondCharacterData}
+          selectedAttackIndex={selectedAttackIndexP2}
+          selectedDefenseIndex={selectedDefenseIndexP2}
+          handleDefenseClick={handleDefenseClickP2}
+          handleAttackClick={handleAttackClickP2}
+          setAbility={setAbilityp2}
+          onAbilityPressHandle={onp2AbilityPressHandle}
+        />
 
-            {characterData
-              ? characterData.attackList.map((item, index) => (
-                  <Button
-                    style={{ borderWidth: 2, borderColor: "black" }}
-                    color={
-                      selectedAttackIndexP1 === index
-                        ? "rgb(74 222 128)"
-                        : "rgb(240,3,1)"
-                    }
-                    key={item.id}
-                    onPress={() => {
-                      handleDefenseClickP1(index);
-                      handleAttackClickP1(index);
-                      setAbilityp1(item);
-                    }}>
-                    <Text
-                      className="text-white"
-                      style={{ fontFamily: "SyneMono" }}>
-                      {item.name} - DMG:{Math.abs(item.value)}
-                    </Text>
-                  </Button>
-                ))
-              : null}
-
-            <View className=" bg-black items-center justify-center">
-              <Text style={{ color: "white", fontFamily: "SyneMono" }}>
-                Choose your Defence
-              </Text>
-            </View>
-
-            {characterData
-              ? characterData.defenceList.map((item, index) => (
-                  <Button
-                    style={{ borderWidth: 2, borderColor: "black" }}
-                    color={
-                      selectedDefenseIndexP1 === index
-                        ? "rgb(74 222 128)"
-                        : "rgb(36, 75, 221)"
-                    }
-                    key={item.id}
-                    onPress={() => {
-                      handleAttackClickP1(index);
-                      handleDefenseClickP1(index);
-                      setAbilityp1(item);
-                    }}>
-                    <Text
-                      className="text-white"
-                      style={{ fontFamily: "SyneMono" }}>
-                      {item.name} - PROT:{item.value}
-                    </Text>
-                  </Button>
-                ))
-              : null}
-          </View>
-          <View>
-          <Button
-              style={{ borderWidth: 2, borderColor: "rgb(74 222 128)" }}
-              color="black"
-              onPress={() => {
-                onp1AbilityPressHandle();
-              }}>
-              <Text className="text-white" style={{ fontSize:25, fontFamily: "SyneMono" }}>
-                Finish Turn
-              </Text>
-            </Button>
-          </View>
-        </Overlay>
-
-        <Overlay
-          overlayStyle={{
-            alignItems: "center",
-            width: overlayWidth,
-            height: overlayHeight,
-            backgroundColor: "bg-opacity-50",
-          }}
-          isVisible={abilityvisiblep2}
-          animationType="fade"
-          supportedOrientations={["landscape"]}>
-          <View className=" bg-green-400 border-solid border-black border-2 m-5" >
-            <View className="items-center justify-center">
-              <Text style={{ color: "black", fontFamily: "SyneMono" }}>
-                P2:Choose your Ability
-              </Text>
-            </View>
-            <View
-              color="rgb(74 222 128)"
-              titleStyle={{ color: "black", fontFamily: "SyneMono" }}
-              title={"P2:Choose your Ability"}
-            />
-
-            <View className="  bg-black items-center justify-center">
-              <Text style={{ color: "white", fontFamily: "SyneMono" }}>Choose your Attack</Text>
-            </View>
-
-            {secondCharacterData
-              ? secondCharacterData.attackList.map((item, index) => (
-                  <Button
-                    style={{ borderWidth: 2, borderColor: "black" }}
-                    color={
-                      selectedAttackIndexP2 === index
-                        ? "rgb(74 222 128)"
-                        : "rgb(240,3,1)"
-                    }
-                    key={item.id}
-                    onPress={() => {
-                      handleDefenseClickP2(index);
-                      handleAttackClickP2(index);
-                      setAbilityp2(item);
-                    }}>
-                    <Text
-                      className="text-white"
-                      style={{ fontFamily: "SyneMono" }}>
-                      {item.name} - DMG:{Math.abs(item.value)}
-                    </Text>
-                  </Button>
-                ))
-              : null}
-
-            <View className=" bg-black items-center justify-center">
-              <Text style={{ color: "white",fontFamily: "SyneMono" }}>
-                Choose your Defence
-              </Text>
-            </View>
-
-            {secondCharacterData
-              ? secondCharacterData.defenceList.map((item, index) => (
-                  <Button
-                    style={{ borderWidth: 2, borderColor: "black" }}
-                    color={
-                      selectedDefenseIndexP2 === index
-                        ? "rgb(74 222 128)"
-                        : "rgb(36, 75, 221)"
-                    }
-                    key={item.id}
-                    onPress={() => {
-                      handleAttackClickP2(index);
-                      handleDefenseClickP2(index);
-                      setAbilityp2(item);
-                    }}>
-                    <Text
-                      className="text-white"
-                      style={{ fontFamily: "SyneMono", lineHeight: "auto" }}>
-                      {item.name} - PROT:{item.value}
-                    </Text>
-                  </Button>
-                ))
-              : null}
-          </View>
-          <View>
-          <Button
-              style={{ borderWidth: 2, borderColor: "rgb(74 222 128)" }}
-              color="black"
-              onPress={() => {
-                onp2AbilityPressHandle();
-              }}>
-              <Text className="text-white" style={{ fontSize: 25, fontFamily: "SyneMono" }}>
-                Finish Turn
-              </Text>
-            </Button>
-            </View>
-        </Overlay>
         {characterData && secondCharacterData ? (
           <Overlay
             overlayStyle={{
@@ -412,7 +255,8 @@ const ShowdownScreen = () => {
             }}
             isVisible={faceoffVisible}
             animationType="slide"
-            supportedOrientations={["landscape"]}>
+            supportedOrientations={["landscape"]}
+          >
             <View className="absolute left-10 bottom-20">
               <Image
                 source={{ uri: characterData.imgPath }}
@@ -428,14 +272,16 @@ const ShowdownScreen = () => {
             <View className="absolute left-24 bottom-10">
               <Text
                 style={{ fontFamily: "SyneMono" }}
-                className="text-5xl italic font-semibold">
+                className="text-5xl italic font-semibold"
+              >
                 {characterData.name}
               </Text>
             </View>
             <View className="absolute right-32 bottom-10">
               <Text
                 style={{ fontFamily: "SyneMono" }}
-                className="text-5xl italic font-semibold">
+                className="text-5xl italic font-semibold"
+              >
                 {secondCharacterData.name}
               </Text>
             </View>
@@ -472,8 +318,14 @@ const ShowdownScreen = () => {
             }}
             isVisible={endScreenVisible}
             animationType="slide"
-            supportedOrientations={["landscape"]}>
-            <Text style={{ fontSize: 30, fontFamily: "SyneMono" }} className="text-green-400">Winner:</Text>
+            supportedOrientations={["landscape"]}
+          >
+            <Text
+              style={{ fontSize: 30, fontFamily: "SyneMono" }}
+              className="text-green-400"
+            >
+              Winner:
+            </Text>
             {secondCharacterData.hp <= 0 &&
             secondCharacterData.hp < characterData.hp ? (
               <Image
@@ -489,8 +341,7 @@ const ShowdownScreen = () => {
               />
             ) : null}
 
-
-            <View className="p-10 pt-22 flex-column" >
+            <View className="p-10 pt-22 flex-column">
               <Link href="/" asChild>
                 <Button
                   color={"rgb(74 222 128)"}
