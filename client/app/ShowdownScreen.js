@@ -19,7 +19,8 @@ import { Link } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Player from "../components/PlayerBox/Player";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
-import AbilitySelect from "../components/AbilitySelectors/AbilitySelect";
+import AbilitySelect from "../components/Overlays/AbilitySelect";
+import FaceOffScreen from "../components/Overlays/FaceOffScreen";
 // Have to account for tie
 
 const ShowdownScreen = () => {
@@ -232,7 +233,7 @@ const ShowdownScreen = () => {
           setAbility={setAbilityp1}
           onAbilityPressHandle={onp1AbilityPressHandle}
         />
-        
+
         <AbilitySelect
           title={"P2: Choose your Ability"}
           abilityvisible={abilityvisiblep2}
@@ -246,64 +247,14 @@ const ShowdownScreen = () => {
         />
 
         {characterData && secondCharacterData ? (
-          <Overlay
-            overlayStyle={{
-              alignItems: "center",
-              width: overlayWidth,
-              height: overlayHeight,
-              backgroundColor: "white",
-            }}
-            isVisible={faceoffVisible}
-            animationType="slide"
-            supportedOrientations={["landscape"]}
-          >
-            <View className="absolute left-10 bottom-20">
-              <Image
-                source={{ uri: characterData.imgPath }}
-                style={{ width: 250, height: 380 }}
-              />
-            </View>
-            <View className="absolute right-10 bottom-20">
-              <Image
-                source={{ uri: secondCharacterData.imgPath }}
-                style={{ width: 250, height: 380 }}
-              />
-            </View>
-            <View className="absolute left-24 bottom-10">
-              <Text
-                style={{ fontFamily: "SyneMono" }}
-                className="text-5xl italic font-semibold"
-              >
-                {characterData.name}
-              </Text>
-            </View>
-            <View className="absolute right-32 bottom-10">
-              <Text
-                style={{ fontFamily: "SyneMono" }}
-                className="text-5xl italic font-semibold"
-              >
-                {secondCharacterData.name}
-              </Text>
-            </View>
-            <View>
-              <Image
-                source={require("../assets/versus.png")}
-                style={{ width: 300, height: 300 }}
-              />
-            </View>
-            <View className="absolute bottom-10">
-              <Button
-                color="rgb(74 222 128)"
-                titleStyle={{
-                  color: "black",
-                  fontFamily: "SyneMono",
-                  fontSize: 40,
-                }}
-                title={"Showdown!"}
-                onPress={onShowdownPressHandler}
-              />
-            </View>
-          </Overlay>
+          <FaceOffScreen
+            overlayWidth={overlayWidth}
+            overlayHeight={overlayHeight}
+            faceoffVisible={faceoffVisible}
+            characterData={characterData}
+            secondCharacterData={secondCharacterData}
+            onShowdownPressHandler={onShowdownPressHandler}
+          />
         ) : null}
 
         {characterData && secondCharacterData ? (
