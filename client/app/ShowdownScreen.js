@@ -218,13 +218,15 @@ const ShowdownScreen = () => {
           isVisible={abilityvisiblep1}
           animationType="fade"
           supportedOrientations={["landscape"]}>
-          <View className="border-solid border-black border-2 m-5">
+          <View className=" bg-black border-solid border-black border-2 m-5">
+         <View className = "items-center justify-center">
+          <Text style={{ color:"white", fontFamily: "SyneMono" }}>P1:Choose your Ability</Text>
+          </View>
             <View
               color="rgb(74 222 128)"
               titleStyle={{ color: "black", fontFamily: "SyneMono" }}
-              title={" P1:Choose your Ability"}
             />
-            <View className="  bg-green-400 items-center justify-center">
+            <View className=" bg-green-400 items-center justify-center">
               <Text style={{ fontFamily: "SyneMono" }}>Choose your Attack</Text>
             </View>
 
@@ -294,7 +296,10 @@ const ShowdownScreen = () => {
           isVisible={abilityvisiblep2}
           animationType="fade"
           supportedOrientations={["landscape"]}>
-          <View className="border-solid border-black border-2 m-5">
+          <View className=" bg-black border-solid border-black border-2 m-5 ">
+          <View className = "items-center justify-center">
+          <Text style={{ color:"white", fontFamily: "SyneMono" }}>P2:Choose your Ability</Text>
+          </View>
             <View
               color="rgb(74 222 128)"
               titleStyle={{ color: "black", fontFamily: "SyneMono" }}
