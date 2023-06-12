@@ -1,6 +1,7 @@
-import { View, Text, StatusBar } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { Overlay, Button } from "@rneui/themed";
+import { Bars3Icon } from "react-native-heroicons/solid";
 
 const AbilitySelect = ({
   title,
@@ -12,6 +13,7 @@ const AbilitySelect = ({
   handleAttackClick,
   setAbility,
   onAbilityPressHandle,
+  toggleMenuOverlay
 }) => {
   return (
     <Overlay
@@ -25,7 +27,11 @@ const AbilitySelect = ({
       statusBarTranslucent={true}
       fullScreen={true}
     >
-      <StatusBar hidden={true} />
+      <View className="absolute top-5 right-5">
+        <TouchableOpacity onPress={toggleMenuOverlay}>
+          <Bars3Icon size={50} color="rgb(74 222 128)"></Bars3Icon>
+        </TouchableOpacity>
+      </View>
       <View className=" bg-green-400 border-solid border-black border-2 m-5">
         <View className="items-center justify-center">
           <Text style={{ color: "black", fontFamily: "SyneMono" }}>

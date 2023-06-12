@@ -1,4 +1,4 @@
-import { View, Text, Image, StatusBar } from "react-native";
+import { View, Text, Image } from "react-native";
 import React from "react";
 import { Overlay, Button } from "@rneui/themed";
 import { Link } from "expo-router";
@@ -22,7 +22,6 @@ const EndScreen = ({
       statusBarTranslucent={true}
       fullScreen={true}
     >
-      <StatusBar hidden={true} />
       <Text
         style={{ fontSize: 30, fontFamily: "SyneMono" }}
         className="text-green-400"

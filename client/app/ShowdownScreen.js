@@ -3,7 +3,6 @@ import {
   Text,
   TouchableOpacity,
   ImageBackground,
-  Dimensions,
   StatusBar,
 } from "react-native";
 import { useNavigation, Link } from "expo-router";
@@ -29,6 +28,8 @@ const ShowdownScreen = () => {
   const [selectedDefenseIndexP1, setSelectedDefenseIndexP1] = useState(null);
   const [selectedAttackIndexP2, setSelectedAttackIndexP2] = useState(null);
   const [selectedDefenseIndexP2, setSelectedDefenseIndexP2] = useState(null);
+  const [lastVisibleScreen, setLastVisibleScreen] = useState(null);
+
 
   const fetchData = async () => {
     const firstPlayer = Math.floor(Math.random() * 9) + 1;
@@ -95,6 +96,20 @@ const ShowdownScreen = () => {
 
   const [menuVisible, setMenuVisible] = useState(false);
   const toggleMenuOverlay = () => {
+    if (abilityvisiblep1 === true) {
+      setLastVisibleScreen(1)
+      toggleAbilityOverlayp1();
+    } else if (abilityvisiblep2 === true) {
+      setLastVisibleScreen(2)
+      toggleAbilityOverlayp2();
+    }
+    if (lastVisibleScreen === 1 ) {
+      toggleAbilityOverlayp1()
+      setLastVisibleScreen(null)
+    } else if (lastVisibleScreen === 2 ) {
+      toggleAbilityOverlayp2()
+      setLastVisibleScreen(null)
+    }
     setMenuVisible(!menuVisible);
   };
   const [faceoffVisible, setFaceoffVisible] = useState(true);
@@ -227,6 +242,7 @@ const ShowdownScreen = () => {
           handleAttackClick={handleAttackClickP1}
           setAbility={setAbilityp1}
           onAbilityPressHandle={onp1AbilityPressHandle}
+          toggleMenuOverlay={toggleMenuOverlay}
         />
 
         <AbilitySelect
@@ -239,6 +255,7 @@ const ShowdownScreen = () => {
           handleAttackClick={handleAttackClickP2}
           setAbility={setAbilityp2}
           onAbilityPressHandle={onp2AbilityPressHandle}
+          toggleMenuOverlay={toggleMenuOverlay}
         />
 
         {characterData && secondCharacterData ? (
@@ -259,7 +276,9 @@ const ShowdownScreen = () => {
         ) : null}
 
         <View style="flex: 1; justify-content: flex-end" className="flex-row">
-          {characterData && !faceoffVisible ? <Player character={characterData} /> : null}
+          {characterData && !faceoffVisible ? (
+            <Player character={characterData} />
+          ) : null}
           {secondCharacterData && !faceoffVisible ? (
             <Player character={secondCharacterData} />
           ) : null}

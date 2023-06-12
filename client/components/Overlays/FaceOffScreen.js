@@ -1,7 +1,6 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
 import { Overlay, Button } from "@rneui/themed";
-import { StatusBar } from "expo-status-bar";
 
 const FaceOffScreen = ({
   faceoffVisible,
