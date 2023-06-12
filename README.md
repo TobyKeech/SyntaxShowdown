@@ -9,7 +9,7 @@ Follow the steps below to run the application:
 4) Install the dependencies:
 
 4) npm install
-Start the Spring backend server : this server is currenly hosted should this may not need to be performed
+Start the Spring backend server : this server is currenly hosted therefore this may not need to be performed
 
 Make sure you have the JDK installed and set up correctly.
 Navigate to the Spring backend folder:
