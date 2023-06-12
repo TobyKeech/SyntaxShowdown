@@ -1,12 +1,20 @@
-import { View, Text, Dimensions } from "react-native";
+import { View, Text } from "react-native";
 import React from "react";
 import { Overlay, Button } from "@rneui/themed";
 
-const AbilitySelect = ({title, abilityvisible, characterData, selectedAttackIndex, selectedDefenseIndex, handleDefenseClick, handleAttackClick, setAbility, onAbilityPressHandle}) => {
-  const { width, height } = Dimensions.get("window");
-  const overlayWidth = width;
-  const overlayHeight = height;
-
+const AbilitySelect = ({
+  overlayWidth,
+  overlayHeight,
+  title,
+  abilityvisible,
+  characterData,
+  selectedAttackIndex,
+  selectedDefenseIndex,
+  handleDefenseClick,
+  handleAttackClick,
+  setAbility,
+  onAbilityPressHandle,
+}) => {
   return (
     <Overlay
       overlayStyle={{
