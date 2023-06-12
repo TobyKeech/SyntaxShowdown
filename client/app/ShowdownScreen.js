@@ -148,12 +148,10 @@ const ShowdownScreen = () => {
     const copySecondCharacterData = { ...secondCharacterData };
     if (abilityp2.value < 0) {
       copyCharacterData.hp = characterData.hp + abilityp2.value;
+    } else {
+      copySecondCharacterData.hp = secondCharacterData.hp + abilityp2.value
     }
-
-    else {
-      copySecondCharacterData.hp = secondCharacterData + abilityp2.value
-    }
-
+  
     if (abilityp1.value < 0) {
       copySecondCharacterData.hp = copySecondCharacterData.hp + abilityp1.value;
     } else {
@@ -161,9 +159,13 @@ const ShowdownScreen = () => {
     }    
     setCharacterData(copyCharacterData);
     setSecondCharacterData(copySecondCharacterData);
-  };
-
-  
+    if (characterData.hp <= 0 || secondCharacterData.hp <=0 ){
+      toggleEndScreenOverlay()
+    } else {
+    setTimeout(() => {toggleAbilityOverlayp1()}, 2000)
+    }
+    
+  }
 
   return (
     <ImageBackground
