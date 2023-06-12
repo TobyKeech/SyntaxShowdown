@@ -94,7 +94,8 @@ const ShowdownScreen = () => {
   };
 
   const onShowdownPressHandler = () => {
-    toggleFaceOffOverlay(), toggleAbilityOverlayp1();
+    toggleFaceOffOverlay()
+    setTimeout(() => {toggleAbilityOverlayp1()}, 2000)
   };
 
   const endScreenHandler = () => {
@@ -129,6 +130,12 @@ const ShowdownScreen = () => {
     }    
     setCharacterData(copyCharacterData);
     setSecondCharacterData(copySecondCharacterData);
+    if (characterData.hp <= 0 || secondCharacterData.hp <=0 ){
+      toggleEndScreenOverlay()
+    } else {
+    setTimeout(() => {toggleAbilityOverlayp1()}, 2000)
+    }
+    
   }
 
   return (
