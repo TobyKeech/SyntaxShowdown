@@ -125,20 +125,23 @@ const ShowdownScreen = () => {
     setTimeout(() => {toggleAbilityOverlayp1()}, 2000)
   };
 
-  const endScreenHandler = () => {
-    const copy = { ...characterData };
-    copy.hp = 0;
-    setCharacterData(copy);
-  };
-
   const onp1AbilityPressHandle = () => {
-    toggleAbilityOverlayp1(), toggleAbilityOverlayp2();
+    if (selectedAttackIndexP1 !== null || selectedDefenseIndexP1 !==null ){
+      toggleAbilityOverlayp1()
+      toggleAbilityOverlayp2()
+    } else {
+      alert("Please select an attack or a defence!")
+    }
     // P1 selected ability
   };
 
   const onp2AbilityPressHandle = () => {
+    if (selectedAttackIndexP2 !== null || selectedDefenseIndexP2 !==null ){
     handleDamage();
-    toggleAbilityOverlayp2();
+    toggleAbilityOverlayp2()
+    } else  {
+      alert("Please select an attack or a defence!")
+    };
   };
 
   const handleDamage = () => {
@@ -154,6 +157,14 @@ const ShowdownScreen = () => {
       copySecondCharacterData.hp = copySecondCharacterData.hp + abilityp1.value;
     } else {
       copyCharacterData.hp = copyCharacterData.hp + abilityp1.value;
+    }
+    
+    if (copyCharacterData.hp >= 100) {
+      copyCharacterData.hp = 100;
+    }
+
+    if (copySecondCharacterData.hp >= 100) {
+      copySecondCharacterData.hp = 100;
     }
     setCharacterData(copyCharacterData);
     setSecondCharacterData(copySecondCharacterData);
