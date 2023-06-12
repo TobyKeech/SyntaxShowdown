@@ -148,21 +148,18 @@ const ShowdownScreen = () => {
     const copySecondCharacterData = { ...secondCharacterData };
     if (abilityp2.value < 0) {
       copyCharacterData.hp = characterData.hp + abilityp2.value;
-      console.log("This is 1")
     } else {
       copySecondCharacterData.hp = secondCharacterData.hp + abilityp2.value
     }
   
     if (abilityp1.value < 0) {
       copySecondCharacterData.hp = copySecondCharacterData.hp + abilityp1.value;
-      console.log("This is 2")
     } else {
       copyCharacterData.hp = copyCharacterData.hp + abilityp1.value
     }    
     setCharacterData(copyCharacterData);
     setSecondCharacterData(copySecondCharacterData);
     if (copyCharacterData.hp <= 0 || copySecondCharacterData.hp <=0 ){
-      console.log("This is 3")
       toggleEndScreenOverlay()
     } else {
     setTimeout(() => {toggleAbilityOverlayp1()}, 2000)
@@ -426,6 +423,8 @@ const ShowdownScreen = () => {
         {characterData && secondCharacterData ? (
           <Overlay
             overlayStyle={{
+              justifyContent:"space-between",
+              flexDirection: "column",
               alignItems: "center",
               width: overlayWidth,
               height: overlayHeight,
@@ -448,18 +447,7 @@ const ShowdownScreen = () => {
               />
             ) : null}
 
-            <View className="absolute bottom-10">
-              <Button
-                color="rgb(74 222 128)"
-                titleStyle={{
-                  color: "black",
-                  fontFamily: "SyneMono",
-                  fontSize: 20,
-                }}
-                title={"Kill p2"}
-                onPress={endScreenHandler}
-              />
-              <View className=" flex-column">
+              <View>
                 <Link href="/" asChild>
                   <Button
                     color={"rgb(0 0 0)"}
@@ -472,7 +460,6 @@ const ShowdownScreen = () => {
                   />
                 </Link>
               </View>
-            </View>
           </Overlay>
         ) : null}
 
@@ -481,13 +468,6 @@ const ShowdownScreen = () => {
           {secondCharacterData ? (
             <Player character={secondCharacterData} />
           ) : null}
-        </View>
-        <View className=" absolute bottom-10 right-8">
-          <Text
-            onPress={toggleEndScreenOverlay}
-            className="text-white flex-end text-xl">
-            Endscreen
-          </Text>
         </View>
       </SafeAreaView>
     </ImageBackground>
