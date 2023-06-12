@@ -158,6 +158,14 @@ const ShowdownScreen = () => {
     } else {
       copyCharacterData.hp = copyCharacterData.hp + abilityp1.value;
     }
+    
+    if (copyCharacterData.hp >= 100) {
+      copyCharacterData.hp = 100;
+    }
+
+    if (copySecondCharacterData.hp >= 100) {
+      copySecondCharacterData.hp = 100;
+    }
     setCharacterData(copyCharacterData);
     setSecondCharacterData(copySecondCharacterData);
     if (copyCharacterData.hp <= 0 || copySecondCharacterData.hp <=0 ){
