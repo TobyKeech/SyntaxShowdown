@@ -127,20 +127,23 @@ const ShowdownScreen = () => {
     }, 2000);
   };
 
-  const endScreenHandler = () => {
-    const copy = { ...characterData };
-    copy.hp = 0;
-    setCharacterData(copy);
-  };
-
   const onp1AbilityPressHandle = () => {
-    toggleAbilityOverlayp1(), toggleAbilityOverlayp2();
+    if (selectedAttackIndexP1 !== null || selectedDefenseIndexP1 !==null ){
+      toggleAbilityOverlayp1()
+      toggleAbilityOverlayp2()
+    } else {
+      alert("Please select an attack or a defence!")
+    }
     // P1 selected ability
   };
 
   const onp2AbilityPressHandle = () => {
+    if (selectedAttackIndexP2 !== null || selectedDefenseIndexP2 !==null ){
     handleDamage();
-    toggleAbilityOverlayp2();
+    toggleAbilityOverlayp2()
+    } else  {
+      alert("Please select an attack or a defence!")
+    };
   };
 
   const handleDamage = () => {
@@ -156,6 +159,14 @@ const ShowdownScreen = () => {
       copySecondCharacterData.hp = copySecondCharacterData.hp + abilityp1.value;
     } else {
       copyCharacterData.hp = copyCharacterData.hp + abilityp1.value;
+    }
+    
+    if (copyCharacterData.hp >= 100) {
+      copyCharacterData.hp = 100;
+    }
+
+    if (copySecondCharacterData.hp >= 100) {
+      copySecondCharacterData.hp = 100;
     }
     setCharacterData(copyCharacterData);
     setSecondCharacterData(copySecondCharacterData);
@@ -216,9 +227,9 @@ const ShowdownScreen = () => {
           isVisible={abilityvisiblep1}
           animationType="fade"
           supportedOrientations={["landscape"]}>
-          <View className=" bg-black border-solid border-black border-2 m-5">
+          <View className=" bg-green-400 border-solid border-black border-2 m-5">
             <View className="items-center justify-center">
-              <Text style={{ color: "white", fontFamily: "SyneMono" }}>
+              <Text style={{ color: "black", fontFamily: "SyneMono" }}>
                 P1:Choose your Ability
               </Text>
             </View>
@@ -226,8 +237,8 @@ const ShowdownScreen = () => {
               color="rgb(74 222 128)"
               titleStyle={{ color: "black", fontFamily: "SyneMono" }}
             />
-            <View className=" bg-green-400 items-center justify-center">
-              <Text style={{ fontFamily: "SyneMono" }}>Choose your Attack</Text>
+            <View className=" bg-black items-center justify-center">
+              <Text style={{ color: "white", fontFamily: "SyneMono" }}>Choose your Attack</Text>
             </View>
 
             {characterData
@@ -236,8 +247,8 @@ const ShowdownScreen = () => {
                     style={{ borderWidth: 2, borderColor: "black" }}
                     color={
                       selectedAttackIndexP1 === index
-                        ? "pink"
-                        : "rgb(36, 75, 221)"
+                        ? "rgb(74 222 128)"
+                        : "rgb(240,3,1)"
                     }
                     key={item.id}
                     onPress={() => {
@@ -254,8 +265,8 @@ const ShowdownScreen = () => {
                 ))
               : null}
 
-            <View className=" bg-green-400 items-center justify-center">
-              <Text style={{ fontFamily: "SyneMono" }}>
+            <View className=" bg-black items-center justify-center">
+              <Text style={{ color: "white", fontFamily: "SyneMono" }}>
                 Choose your Defence
               </Text>
             </View>
@@ -266,7 +277,7 @@ const ShowdownScreen = () => {
                     style={{ borderWidth: 2, borderColor: "black" }}
                     color={
                       selectedDefenseIndexP1 === index
-                        ? "pink"
+                        ? "rgb(74 222 128)"
                         : "rgb(36, 75, 221)"
                     }
                     key={item.id}
@@ -283,14 +294,16 @@ const ShowdownScreen = () => {
                   </Button>
                 ))
               : null}
-            <Button
-              style={{ borderWidth: 2, borderColor: "black" }}
-              color="rgb(36,75,221)"
+          </View>
+          <View>
+          <Button
+              style={{ borderWidth: 2, borderColor: "rgb(74 222 128)" }}
+              color="black"
               onPress={() => {
                 onp1AbilityPressHandle();
               }}>
-              <Text className="text-white" style={{ fontFamily: "SyneMono" }}>
-                Finish turn
+              <Text className="text-white" style={{ fontSize:25, fontFamily: "SyneMono" }}>
+                Finish Turn
               </Text>
             </Button>
           </View>
@@ -306,9 +319,9 @@ const ShowdownScreen = () => {
           isVisible={abilityvisiblep2}
           animationType="fade"
           supportedOrientations={["landscape"]}>
-          <View className=" bg-black border-solid border-black border-2 m-5 ">
+          <View className=" bg-green-400 border-solid border-black border-2 m-5" >
             <View className="items-center justify-center">
-              <Text style={{ color: "white", fontFamily: "SyneMono" }}>
+              <Text style={{ color: "black", fontFamily: "SyneMono" }}>
                 P2:Choose your Ability
               </Text>
             </View>
@@ -318,8 +331,8 @@ const ShowdownScreen = () => {
               title={"P2:Choose your Ability"}
             />
 
-            <View className="  bg-green-400 items-center justify-center">
-              <Text style={{ fontFamily: "SyneMono" }}>Choose your Attack</Text>
+            <View className="  bg-black items-center justify-center">
+              <Text style={{ color: "white", fontFamily: "SyneMono" }}>Choose your Attack</Text>
             </View>
 
             {secondCharacterData
@@ -328,8 +341,8 @@ const ShowdownScreen = () => {
                     style={{ borderWidth: 2, borderColor: "black" }}
                     color={
                       selectedAttackIndexP2 === index
-                        ? "pink"
-                        : "rgb(36, 75, 221)"
+                        ? "rgb(74 222 128)"
+                        : "rgb(240,3,1)"
                     }
                     key={item.id}
                     onPress={() => {
@@ -346,8 +359,8 @@ const ShowdownScreen = () => {
                 ))
               : null}
 
-            <View className=" bg-green-400 items-center justify-center">
-              <Text style={{ fontFamily: "SyneMono" }}>
+            <View className=" bg-black items-center justify-center">
+              <Text style={{ color: "white",fontFamily: "SyneMono" }}>
                 Choose your Defence
               </Text>
             </View>
@@ -358,7 +371,7 @@ const ShowdownScreen = () => {
                     style={{ borderWidth: 2, borderColor: "black" }}
                     color={
                       selectedDefenseIndexP2 === index
-                        ? "pink"
+                        ? "rgb(74 222 128)"
                         : "rgb(36, 75, 221)"
                     }
                     key={item.id}
@@ -375,17 +388,19 @@ const ShowdownScreen = () => {
                   </Button>
                 ))
               : null}
-            <Button
-              style={{ borderWidth: 2, borderColor: "black" }}
-              color="rgb(36,75,221)"
+          </View>
+          <View>
+          <Button
+              style={{ borderWidth: 2, borderColor: "rgb(74 222 128)" }}
+              color="black"
               onPress={() => {
                 onp2AbilityPressHandle();
               }}>
-              <Text className="text-white" style={{ fontFamily: "SyneMono" }}>
-                Finish turn
+              <Text className="text-white" style={{ fontSize: 25, fontFamily: "SyneMono" }}>
+                Finish Turn
               </Text>
             </Button>
-          </View>
+            </View>
         </Overlay>
         {characterData && secondCharacterData ? (
           <Overlay
@@ -393,7 +408,7 @@ const ShowdownScreen = () => {
               alignItems: "center",
               width: overlayWidth,
               height: overlayHeight,
-              backgroundColor: "grey",
+              backgroundColor: "white",
             }}
             isVisible={faceoffVisible}
             animationType="slide"
