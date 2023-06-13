@@ -149,9 +149,6 @@ const ShowdownScreen = () => {
 
   const onShowdownPressHandler = () => {
     toggleFaceOffOverlay();
-    setTimeout(() => {
-      toggleAbilityOverlayp1();
-    }, 2000);
   };
 
   const onp1AbilityPressHandle = () => {
