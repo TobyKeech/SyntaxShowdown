@@ -164,17 +164,23 @@ const ShowdownScreen = () => {
     const copyCharacterData = { ...characterData };
     const copySecondCharacterData = { ...secondCharacterData };
     if (abilityp2.value < 0) {
-      copyCharacterData.hp = Math.ceil(characterData.hp + (abilityp2.value * ((Math.random() * 1.5) + 0.5)));
-      console.log(characterData.hp - copyCharacterData.hp) //console logging hit value
+      const calculatedDamageP1 = Math.ceil(abilityp2.value * ((Math.random() * 1.5) + 0.5))
+      copyCharacterData.hp = characterData.hp + calculatedDamageP1;
+      console.log("P1 received damage: " + calculatedDamageP1) //console logging hit value
     } else {
-      copySecondCharacterData.hp =  Math.ceil(secondCharacterData.hp + (abilityp2.value * ((Math.random() * 1.5) + 0.5)));
+      const calculatedHealP2 = Math.ceil(abilityp2.value * ((Math.random() * 1.5) + 0.5))
+      copySecondCharacterData.hp =  secondCharacterData.hp + calculatedHealP2;
+      console.log("P2 received heal: " + calculatedHealP2) //console logging defense value
     }
 
     if (abilityp1.value < 0) {
-      copySecondCharacterData.hp = Math.ceil(copySecondCharacterData.hp + (abilityp1.value * ((Math.random() * 1.5) + 0.5)));
-      console.log(secondCharacterData.hp - copySecondCharacterData.hp) //console logging hit value
+      const calculatedDamageP2 = Math.ceil(abilityp1.value * ((Math.random() * 1.5) + 0.5))
+      copySecondCharacterData.hp = copySecondCharacterData.hp + calculatedDamageP2;
+      console.log("P2 received damage: " + calculatedDamageP2) //console logging hit value
     } else {
-      copyCharacterData.hp = Math.ceil(copyCharacterData.hp + (abilityp1.value * ((Math.random() * 1.5) + 0.5)));
+      const calculatedHealP1 = Math.ceil(abilityp1.value * ((Math.random() * 1.5) + 0.5))
+      copyCharacterData.hp = copyCharacterData.hp + calculatedHealP1;
+      console.log("P1 received heal: " + calculatedHealP1) //console logging defense value
     }
 
     if (copyCharacterData.hp >= 100) {
