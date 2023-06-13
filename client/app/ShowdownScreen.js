@@ -17,6 +17,7 @@ import { FlatList, ScrollView } from "react-native-gesture-handler";
 import AbilitySelect from "../components/Overlays/AbilitySelect";
 import FaceOffScreen from "../components/Overlays/FaceOffScreen";
 import EndScreen from "../components/Overlays/EndScreen";
+import { color } from "@rneui/base";
 // Have to account for tie
 
 const ShowdownScreen = () => {
@@ -72,6 +73,11 @@ const ShowdownScreen = () => {
       },
     });
   }, []);
+
+  let calculatedDamageP1 = 0;
+  let calculatedDamageP2 = 0;
+  let calculatedHealP1 = 0;
+  let calculatedHealP2 = 0;
 
   const handleAttackClickP1 = (index) => {
     setSelectedAttackIndexP1(index);
@@ -145,7 +151,7 @@ const ShowdownScreen = () => {
     setTimeout(() => {
       toggleAbilityOverlayp1();
     }, 1500);
-  }
+  };
 
   const onShowdownPressHandler = () => {
     toggleFaceOffOverlay();
@@ -183,7 +189,7 @@ const ShowdownScreen = () => {
       } else {
         hitChance = Math.random() < 0.25 ? 0 : 1;
       }
-      const calculatedDamageP1 = Math.ceil(
+      calculatedDamageP1 = Math.ceil(
         hitChance * abilityp2.value * (Math.random() * 1.5 + 0.5)
       );
       copyCharacterData.hp = characterData.hp + calculatedDamageP1;
@@ -195,7 +201,7 @@ const ShowdownScreen = () => {
       } else {
         defenceChance = Math.random() < 0.25 ? 0 : 1;
       }
-      const calculatedHealP2 = Math.ceil(
+      calculatedHealP2 = Math.ceil(
         defenceChance * abilityp2.value * (Math.random() * 1.5 + 0.5)
       );
       copySecondCharacterData.hp = secondCharacterData.hp + calculatedHealP2;
@@ -209,7 +215,7 @@ const ShowdownScreen = () => {
       } else {
         hitChance = Math.random() < 0.25 ? 0 : 1;
       }
-      const calculatedDamageP2 = Math.ceil(
+      calculatedDamageP2 = Math.ceil(
         hitChance * abilityp1.value * (Math.random() * 1.5 + 0.5)
       );
       copySecondCharacterData.hp =
@@ -222,7 +228,7 @@ const ShowdownScreen = () => {
       } else {
         defenceChance = Math.random() < 0.25 ? 0 : 1;
       }
-      const calculatedHealP1 = Math.ceil(
+      calculatedHealP1 = Math.ceil(
         defenceChance * abilityp1.value * (Math.random() * 1.5 + 0.5)
       );
       copyCharacterData.hp = copyCharacterData.hp + calculatedHealP1;
@@ -287,7 +293,12 @@ const ShowdownScreen = () => {
         </Overlay>
         <AbilitySelect
           title={
-            <Text style={{ fontSize: 20, fontFamily: "SyneMono", fontWeight: 'bold' }}>
+            <Text
+              style={{
+                fontSize: 20,
+                fontFamily: "SyneMono",
+                fontWeight: "bold",
+              }}>
               P1: Choose your Ability
             </Text>
           }
@@ -303,9 +314,16 @@ const ShowdownScreen = () => {
         />
 
         <AbilitySelect
-          title={<Text style={{ fontSize: 20, fontFamily: "SyneMono", fontWeight: 'bold' }}>
+          title={
+            <Text
+              style={{
+                fontSize: 20,
+                fontFamily: "SyneMono",
+                fontWeight: "bold",
+              }}>
               P2: Choose your Ability
-            </Text>}
+            </Text>
+          }
           abilityvisible={abilityvisiblep2}
           characterData={secondCharacterData}
           selectedAttackIndex={selectedAttackIndexP2}
@@ -341,12 +359,26 @@ const ShowdownScreen = () => {
             <Player character={secondCharacterData} />
           ) : null}
         </View>
-        <Overlay
-          isVisible={showdownLogVisible}
-          supportedOrientations={["landscape"]}>
-          <Text>TEST TEXT PLEASE SHOW UP TY X</Text>
-          <Button onPress={onNextRoundButtonPressHandler}>Next Round...</Button>
-        </Overlay>
+        {characterData && secondCharacterData ? (
+          <Overlay
+            overlayStyle={{
+              backgroundColor: "rgb(0 0 0)",
+              alignItems: "center",
+              width: 300,
+              height: 225,
+            }}
+            isVisible={showdownLogVisible}
+            supportedOrientations={["landscape"]}>
+            <Text style={{color: "white"}}>
+              {characterData.name} attacked {secondCharacterData.name} for {calculatedDamageP2} damage!
+            </Text>
+            <Button
+              onPress={onNextRoundButtonPressHandler}
+              title={"Next Round -->"}
+              color={"rgb(74 222 128)"}
+            />
+          </Overlay>
+        ) : null}
       </SafeAreaView>
     </ImageBackground>
   );
