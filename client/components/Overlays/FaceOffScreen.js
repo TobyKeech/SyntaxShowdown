@@ -33,7 +33,7 @@ const FaceOffScreen = ({
           style={{ width: 260, height: 320 }}
         />
       </View>
-      <View className="absolute left-20 bottom-10">
+      <View className="absolute left-24 bottom-12">
         <Text
           style={{ fontFamily: "SyneMono" }}
           className="text-4xl text-green-400 italic font-semibold"
@@ -41,7 +41,7 @@ const FaceOffScreen = ({
           {characterData.name}
         </Text>
       </View>
-      <View className="absolute right-20 bottom-10">
+      <View className="absolute right-24 bottom-10">
         <Text
           style={{ fontFamily: "SyneMono" }}
           className="text-4xl text-green-400 italic font-semibold"
