@@ -85,9 +85,9 @@ const Index = () => {
           <View className="p-10 pt-20 flex-column">
             <Link href="/ShowdownScreen" asChild>
               <Button
-                color={"rgb(0 0 0)"}
+                color={"rgb(74 222 128)"}
                 titleStyle={{
-                  color: "rgb(74 222 128)",
+                  color: "black",
                   fontFamily: "SyneMono",
                   fontSize: 35,
                 }}
@@ -127,7 +127,13 @@ const Index = () => {
               style={{ fontFamily: "SyneMono", textAlign: "center" }}
               className="mb-5"
             >
-              Choose your abilities carefully to defeat your opponent.
+              Heavy attacks have a 25% chance to hit but light attacks are more reliable at 75%. Choose your abilities carefully to defeat your opponent.
+            </Text>
+            <Text
+              style={{ fontFamily: "SyneMono", textAlign: "center" }}
+              className="mb-5"
+            >
+             Choose your abilities carefully to defeat your opponent.
             </Text>
           </Overlay>
         </View>

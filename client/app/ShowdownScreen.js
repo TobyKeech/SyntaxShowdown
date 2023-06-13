@@ -37,6 +37,7 @@ const ShowdownScreen = () => {
       secondPlayer = Math.floor(Math.random() * 9) + 1;
     }
 
+
     try {
       const [response1, response2] = await Promise.all([
         fetch(
@@ -177,26 +178,17 @@ const ShowdownScreen = () => {
     const copyCharacterData = { ...characterData };
     const copySecondCharacterData = { ...secondCharacterData };
     if (abilityp2.value < 0) {
-      copyCharacterData.hp = Math.ceil(
-        characterData.hp + abilityp2.value * (Math.random() * 1.5 + 0.5)
-      );
-      console.log(characterData.hp - copyCharacterData.hp); //console logging hit value
+      copyCharacterData.hp = Math.ceil(characterData.hp + (abilityp2.value * ((Math.random() * 1.5) + 0.5)));
+      console.log(characterData.hp - copyCharacterData.hp) //console logging hit value
     } else {
-      copySecondCharacterData.hp = Math.ceil(
-        secondCharacterData.hp + abilityp2.value * (Math.random() * 1.5 + 0.5)
-      );
+      copySecondCharacterData.hp =  Math.ceil(secondCharacterData.hp + (abilityp2.value * ((Math.random() * 1.5) + 0.5)));
     }
 
     if (abilityp1.value < 0) {
-      copySecondCharacterData.hp = Math.ceil(
-        copySecondCharacterData.hp +
-          abilityp1.value * (Math.random() * 1.5 + 0.5)
-      );
-      console.log(secondCharacterData.hp - copySecondCharacterData.hp); //console logging hit value
+      copySecondCharacterData.hp = Math.ceil(copySecondCharacterData.hp + (abilityp1.value * ((Math.random() * 1.5) + 0.5)));
+      console.log(secondCharacterData.hp - copySecondCharacterData.hp) //console logging hit value
     } else {
-      copyCharacterData.hp = Math.ceil(
-        copyCharacterData.hp + abilityp1.value * (Math.random() * 1.5 + 0.5)
-      );
+      copyCharacterData.hp = Math.ceil(copyCharacterData.hp + (abilityp1.value * ((Math.random() * 1.5) + 0.5)));
     }
 
     if (copyCharacterData.hp >= 100) {
@@ -256,7 +248,11 @@ const ShowdownScreen = () => {
           </View>
         </Overlay>
         <AbilitySelect
-          title={"P1: Choose your Ability"}
+          title={
+            <Text style={{ fontSize: 20, fontFamily: "SyneMono", fontWeight: 'bold' }}>
+              P1: Choose your Ability
+            </Text>
+          }
           abilityvisible={abilityvisiblep1}
           characterData={characterData}
           selectedAttackIndex={selectedAttackIndexP1}
@@ -269,7 +265,9 @@ const ShowdownScreen = () => {
         />
 
         <AbilitySelect
-          title={"P2: Choose your Ability"}
+          title={<Text style={{ fontSize: 20, fontFamily: "SyneMono", fontWeight: 'bold' }}>
+              P2: Choose your Ability
+            </Text>}
           abilityvisible={abilityvisiblep2}
           characterData={secondCharacterData}
           selectedAttackIndex={selectedAttackIndexP2}
