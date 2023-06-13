@@ -8,6 +8,10 @@ const EndScreen = ({
   characterData,
   secondCharacterData,
 }) => {
+  let itsaTie
+  if (characterData.hp === secondCharacterData.hp) {
+    itsaTie = <Text style={{ fontFamily: "SyneMono" }} className="text-4xl text-white pt-12">It's a tie!</Text>
+  }
   return (
     <Overlay
       overlayStyle={{
@@ -28,6 +32,8 @@ const EndScreen = ({
       >
         Winner:
       </Text>
+
+      {itsaTie}
       {secondCharacterData.hp <= 0 &&
       secondCharacterData.hp < characterData.hp ? (
         <Image
