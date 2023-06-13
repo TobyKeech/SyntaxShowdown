@@ -167,14 +167,14 @@ const ShowdownScreen = () => {
       copyCharacterData.hp = Math.ceil(characterData.hp + (abilityp2.value * ((Math.random() * 1.5) + 0.5)));
       console.log(characterData.hp - copyCharacterData.hp) //console logging hit value
     } else {
-      copySecondCharacterData.hp = secondCharacterData.hp + abilityp2.value;
+      copySecondCharacterData.hp =  Math.ceil(secondCharacterData.hp + (abilityp2.value * ((Math.random() * 1.5) + 0.5)));
     }
 
     if (abilityp1.value < 0) {
       copySecondCharacterData.hp = Math.ceil(copySecondCharacterData.hp + (abilityp1.value * ((Math.random() * 1.5) + 0.5)));
       console.log(secondCharacterData.hp - copySecondCharacterData.hp) //console logging hit value
     } else {
-      copyCharacterData.hp = copyCharacterData.hp + abilityp1.value;
+      copyCharacterData.hp = Math.ceil(copyCharacterData.hp + (abilityp1.value * ((Math.random() * 1.5) + 0.5)));
     }
 
     if (copyCharacterData.hp >= 100) {
