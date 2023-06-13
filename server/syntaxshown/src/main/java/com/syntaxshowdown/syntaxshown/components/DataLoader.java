@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Profile("!test")
-//@Component //Comment this out if you do not to run the data loader.
+@Component //Comment this out if you do not to run the data loader.
 public class DataLoader implements ApplicationRunner {
 
     @Autowired
@@ -49,7 +49,7 @@ public class DataLoader implements ApplicationRunner {
         characterRepository.save(postgres);
         Character mongo = new Character("Mongodb", "database", 100, "https://i.ibb.co/wz7NZ8Q/mongodb.png");
         characterRepository.save(mongo);
-        Character arango = new Character("Arangodb", "database", 100, "https://i.ibb.co/Q8khmfn/arangodb.png");
+        Character arango = new Character("Arangodb", "database", 100, "https://i.ibb.co/DDrZgMr/Blank-1-Panel-Landscape-Comic-Strip-1.png");
         characterRepository.save(arango);
 
         Attack marquee = new Attack("Marquee Punch", -30, html);
