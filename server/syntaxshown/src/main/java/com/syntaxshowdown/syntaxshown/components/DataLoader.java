@@ -52,10 +52,10 @@ public class DataLoader implements ApplicationRunner {
         Character arango = new Character("Arangodb", "database", 100, "https://i.ibb.co/Q8khmfn/arangodb.png");
         characterRepository.save(arango);
 
-        Attack markePunch = new Attack("MarkePunch", -50, html);
-        attackRepository.save(markePunch);
-        Attack text = new Attack("Test", -20, html);
-        attackRepository.save(text);
+        Attack marquee = new Attack("Marquee Punch", -30, html);
+        attackRepository.save(marquee);
+        Attack deprecation = new Attack("Deprecation", -10, html);
+        attackRepository.save(deprecation);
 
         Attack flexbox = new Attack("Streams", -30, css);
         attackRepository.save(flexbox);
@@ -67,35 +67,35 @@ public class DataLoader implements ApplicationRunner {
         Attack execute = new Attack("Execute", -10, js);
         attackRepository.save(execute);
 
-        Attack streams = new Attack("Streams", -70, java);
+        Attack streams = new Attack("Streams", -30, java);
         attackRepository.save(streams);
-        Attack statictype = new Attack("StaticType", -20, java);
+        Attack statictype = new Attack("StaticType", -10, java);
         attackRepository.save(statictype);
 
         Attack listcomp = new Attack("List Comprehension", -30, python);
         attackRepository.save(listcomp);
-        Attack snakeCharmer = new Attack("snakeCharmer", -10, python);
+        Attack snakeCharmer = new Attack("SnakeCharmer", -10, python);
         attackRepository.save(snakeCharmer);
 
-        Attack findenemy = new Attack("FIND enemy", -30, postgres);
+        Attack findenemy = new Attack("FIND Enemy", -30, postgres);
         attackRepository.save(findenemy);
         Attack droptable = new Attack("Droptable", -10, postgres);
         attackRepository.save(droptable);
 
-        Attack create = new Attack("Create", -20, mongo);
-        attackRepository.save(create);
-        Attack upload = new Attack("Upload", -20, mongo);
-        attackRepository.save(upload);
+        Attack dropuser = new Attack("dropUser", -30, mongo);
+        attackRepository.save(dropuser);
+        Attack runCommand = new Attack("runCommand", -10, mongo);
+        attackRepository.save(runCommand);
 
         Attack syntaxerror = new Attack("Syntax Error", -30, arango);
         attackRepository.save(syntaxerror);
-        Attack logic = new Attack("Logic", -10, arango);
-        attackRepository.save(logic);
+        Attack throwSeed = new Attack("Throw Seed", -10, arango);
+        attackRepository.save(throwSeed);
 
-        Attack derp = new Attack("Derp", -30, ruby);
-        attackRepository.save(derp);
-        Attack shiny = new Attack("Shiny", -10, ruby);
-        attackRepository.save(shiny);
+        Attack gem = new Attack("Gem", -30, ruby);
+        attackRepository.save(gem);
+        Attack puts = new Attack("Puts", -10, ruby);
+        attackRepository.save(puts);
 
         Defence hr = new Defence("Hr", 30, html);
         defenceRepository.save(hr);
@@ -109,7 +109,7 @@ public class DataLoader implements ApplicationRunner {
 
         Defence instandRefresh = new Defence("Instant Refresh", 30, js);
         defenceRepository.save(instandRefresh);
-        Defence filter = new Defence("Filter", 30, js);
+        Defence filter = new Defence("Filter", 10, js);
         defenceRepository.save(filter);
 
         Defence nullpointer = new Defence("Nullpointer Exception", 30, java);
@@ -124,7 +124,7 @@ public class DataLoader implements ApplicationRunner {
 
         Defence deflect = new Defence("Deflect", 30, ruby);
         defenceRepository.save(deflect);
-        Defence rebound = new Defence("Rebound", 30, ruby);
+        Defence rebound = new Defence("Rebound", 10, ruby);
         defenceRepository.save(rebound);
 
         Defence wheredefence = new Defence("WHERE Defence", 30, postgres);
@@ -132,15 +132,15 @@ public class DataLoader implements ApplicationRunner {
         Defence createt = new Defence("Create Table", 10, postgres);
         defenceRepository.save(createt);
 
-        Defence reflect = new Defence("Reflect", 30, mongo);
-        defenceRepository.save(reflect);
-        Defence block = new Defence("Block", 10, mongo);
-        defenceRepository.save(block);
+        Defence repel = new Defence("Repel", 30, mongo);
+        defenceRepository.save(repel);
+        Defence cleanUp = new Defence("cleanUp", 10, mongo);
+        defenceRepository.save(cleanUp);
 
-        Defence bigseed = new Defence("Big Seed", 30, arango);
-        defenceRepository.save(bigseed);
-        Defence avacado = new Defence("Avacado", 30, arango);
-        defenceRepository.save(avacado);
+        Defence arangosh = new Defence("Arangosh", 30, arango);
+        defenceRepository.save(arangosh);
+        Defence ripe = new Defence("Ripe", 10, arango);
+        defenceRepository.save(ripe);
 
     }
 }
