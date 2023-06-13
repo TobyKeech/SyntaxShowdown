@@ -21,30 +21,30 @@ const FaceOffScreen = ({
       statusBarTranslucent={true}
     >
     
-      <View className="absolute left-10 bottom-20">
+      <View className="absolute left-8 bottom-20">
         <Image
           source={{ uri: characterData.imgPath }}
-          style={{ width: 250, height: 380 }}
+          style={{ width: 260, height: 320 }}
         />
       </View>
-      <View className="absolute right-10 bottom-20">
+      <View className="absolute right-8 bottom-20">
         <Image
           source={{ uri: secondCharacterData.imgPath }}
-          style={{ width: 250, height: 380 }}
+          style={{ width: 260, height: 320 }}
         />
       </View>
-      <View className="absolute left-24 bottom-10">
+      <View className="absolute left-20 bottom-10">
         <Text
           style={{ fontFamily: "SyneMono" }}
-          className="text-5xl italic font-semibold"
+          className="text-4xl italic font-semibold"
         >
           {characterData.name}
         </Text>
       </View>
-      <View className="absolute right-32 bottom-10">
+      <View className="absolute right-20 bottom-10">
         <Text
           style={{ fontFamily: "SyneMono" }}
-          className="text-5xl italic font-semibold"
+          className="text-4xl italic font-semibold"
         >
           {secondCharacterData.name}
         </Text>
@@ -61,7 +61,7 @@ const FaceOffScreen = ({
           titleStyle={{
             color: "black",
             fontFamily: "SyneMono",
-            fontSize: 40,
+            fontSize: 30,
           }}
           title={"Showdown!"}
           onPress={onShowdownPressHandler}

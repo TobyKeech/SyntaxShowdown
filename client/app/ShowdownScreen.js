@@ -146,7 +146,7 @@ const ShowdownScreen = () => {
     } else {
       alert("Please select an attack or a defence!");
     }
-    // P1 selected ability
+   
   };
 
   const onp2AbilityPressHandle = () => {
