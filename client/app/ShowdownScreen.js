@@ -276,10 +276,10 @@ const ShowdownScreen = () => {
         ) : null}
 
         <View style="flex: 1; justify-content: flex-end" className="flex-row">
-          {characterData && !faceoffVisible ? (
+          {characterData && !faceoffVisible && !endScreenVisible ? (
             <Player character={characterData} />
           ) : null}
-          {secondCharacterData && !faceoffVisible ? (
+          {secondCharacterData && !faceoffVisible && !endScreenVisible ? (
             <Player character={secondCharacterData} />
           ) : null}
         </View>
