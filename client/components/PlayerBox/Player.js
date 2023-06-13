@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const Player = ({ character }) => {
 
-  console.log(character)
+  // console.log(character)
 
   return (
     <SafeAreaView>
