@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Profile("!test")
-@Component //Comment this out if you do not to run the data loader.
+//@Component //Comment this out if you do not to run the data loader.
 public class DataLoader implements ApplicationRunner {
 
     @Autowired

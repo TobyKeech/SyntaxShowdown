@@ -200,7 +200,6 @@ const ShowdownScreen = () => {
       source={require("../assets/terminalimg.jpg")}
       style={{ flex: 1 }}
     >
-      <StatusBar hidden={true} />
       <SafeAreaView>
         <View className="absolute top-5 right-5">
           <TouchableOpacity onPress={toggleMenuOverlay}>
@@ -278,8 +277,7 @@ const ShowdownScreen = () => {
             secondCharacterData={secondCharacterData}
           />
         ) : null}
-
-        <View style="flex: 1; justify-content: flex-end" className="flex-row">
+        <View className="flex-row">
           {characterData && !faceoffVisible && !endScreenVisible ? (
             <Player character={characterData} />
           ) : null}
