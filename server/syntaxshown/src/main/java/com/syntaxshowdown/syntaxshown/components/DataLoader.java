@@ -49,7 +49,7 @@ public class DataLoader implements ApplicationRunner {
         characterRepository.save(postgres);
         Character mongo = new Character("Mongodb", "database", 100, "https://i.ibb.co/wz7NZ8Q/mongodb.png");
         characterRepository.save(mongo);
-        Character arango = new Character("Arangodb", "database", 100, "https://i.ibb.co/DDrZgMr/Blank-1-Panel-Landscape-Comic-Strip-1.png");
+        Character arango = new Character("Arangodb", "database", 100, "https://i.ibb.co/fqLPgK6/Blank-1-Panel-Landscape-Comic-Strip-2.png");
         characterRepository.save(arango);
 
         Attack marquee = new Attack("Marquee Punch", -30, html);
