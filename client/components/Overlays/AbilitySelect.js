@@ -102,14 +102,14 @@ const AbilitySelect = ({
       </View>
       <View>
         <Button
-          style={{ borderWidth: 2, borderColor: "rgb(74 222 128)" }}
-          color="black"
+          style={{ borderWidth: 2, borderColor: "black" }}
+          color="rgb(74 222 128)"
           onPress={() => {
             onAbilityPressHandle();
           }}
         >
           <Text
-            className="text-white"
+            className="text-black"
             style={{ fontSize: 25, fontFamily: "SyneMono" }}
           >
             Finish Turn

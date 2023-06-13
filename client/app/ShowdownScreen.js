@@ -135,6 +135,18 @@ const ShowdownScreen = () => {
     setAbilityVisiblep2(!abilityvisiblep2);
   };
 
+  const [showdownLogVisible, setShowdownLogVisible] = useState(false);
+  const toggleShowdownLog = () => {
+    setShowdownLogVisible(!showdownLogVisible);
+  };
+
+  const onNextRoundButtonPressHandler = () => {
+    toggleShowdownLog();
+    setTimeout(() => {
+      toggleAbilityOverlayp1();
+    }, 1500);
+  }
+
   const onShowdownPressHandler = () => {
     toggleFaceOffOverlay();
     setTimeout(() => {
@@ -155,6 +167,7 @@ const ShowdownScreen = () => {
     if (selectedAttackIndexP2 !== null || selectedDefenseIndexP2 !== null) {
       handleDamage();
       toggleAbilityOverlayp2();
+      toggleShowdownLog();
     } else {
       alert("Please select an attack or a defence!");
     }
@@ -237,8 +250,7 @@ const ShowdownScreen = () => {
   return (
     <ImageBackground
       source={require("../assets/terminalimg.jpg")}
-      style={{ flex: 1 }}
-    >
+      style={{ flex: 1 }}>
       <SafeAreaView>
         <View className="absolute top-5 right-5">
           <TouchableOpacity onPress={toggleMenuOverlay}>
@@ -254,8 +266,7 @@ const ShowdownScreen = () => {
           }}
           isVisible={menuVisible}
           animationType="fade"
-          supportedOrientations={["landscape"]}
-        >
+          supportedOrientations={["landscape"]}>
           <View className="border-solid border-black border-2 m-5">
             <Button
               color="rgb(74 222 128)"
@@ -275,7 +286,11 @@ const ShowdownScreen = () => {
           </View>
         </Overlay>
         <AbilitySelect
-          title={"P1: Choose your Ability"}
+          title={
+            <Text style={{ fontSize: 20, fontFamily: "SyneMono", fontWeight: 'bold' }}>
+              P1: Choose your Ability
+            </Text>
+          }
           abilityvisible={abilityvisiblep1}
           characterData={characterData}
           selectedAttackIndex={selectedAttackIndexP1}
@@ -288,7 +303,9 @@ const ShowdownScreen = () => {
         />
 
         <AbilitySelect
-          title={"P2: Choose your Ability"}
+          title={<Text style={{ fontSize: 20, fontFamily: "SyneMono", fontWeight: 'bold' }}>
+              P2: Choose your Ability
+            </Text>}
           abilityvisible={abilityvisiblep2}
           characterData={secondCharacterData}
           selectedAttackIndex={selectedAttackIndexP2}
@@ -324,6 +341,12 @@ const ShowdownScreen = () => {
             <Player character={secondCharacterData} />
           ) : null}
         </View>
+        <Overlay
+          isVisible={showdownLogVisible}
+          supportedOrientations={["landscape"]}>
+          <Text>TEST TEXT PLEASE SHOW UP TY X</Text>
+          <Button onPress={onNextRoundButtonPressHandler}>Next Round...</Button>
+        </Overlay>
       </SafeAreaView>
     </ImageBackground>
   );
