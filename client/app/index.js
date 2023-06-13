@@ -18,6 +18,8 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { Icon } from "@rneui/themed";
 import { ImageBackground } from "react-native";
+import { StatusBar } from "expo-status-bar";
+// We could replace the splashscreen to a proper one
 
 SplashScreen.preventAutoHideAsync();
 
@@ -53,10 +55,12 @@ const Index = () => {
   return (
     <ImageBackground
       source={require("../assets/terminalimg.jpg")}
-      style={{ flex: 1 }}>
+      style={{ flex: 1 }}
+    >
       <SafeAreaView
         style={GlobalStyles.droidSafeArea}
-        onLayout={onLayoutRootView}>
+        onLayout={onLayoutRootView}
+      >
         <View className="items-end mr-5">
           <Icon
             size={50}
@@ -65,13 +69,15 @@ const Index = () => {
             color="rgb(74 222 128)"
             onPress={toggleOverlay}
           />
+          <StatusBar hidden={true} />
         </View>
 
         <View className="items-center justify-center">
           <View className="bg-black  p-2">
-            <Text 
+            <Text
               className="text-green-400 text-6xl p-1"
-              style={{ fontFamily: "SyneMono" }}>
+              style={{ fontFamily: "SyneMono" }}
+            >
               syntax_showdown
             </Text>
           </View>
@@ -99,17 +105,28 @@ const Index = () => {
             isVisible={visible}
             onBackdropPress={toggleOverlay}
             animationType="fade"
-            supportedOrientations={["landscape"]}>
+            supportedOrientations={["landscape"]}
+          >
             <Text style={{ fontFamily: "SyneMono" }} className="mb-5">
               Welcome to syntax showdown
             </Text>
-            <Text style={{ fontFamily: "SyneMono", textAlign: 'center' }} className="mb-5">
-              This is a turned based battle game where you will take on a programming language and fight to the the death. 
+            <Text
+              style={{ fontFamily: "SyneMono", textAlign: "center" }}
+              className="mb-5"
+            >
+              This is a turned based battle game where you will take on a
+              programming language and fight to the the death.
             </Text>
-            <Text style={{ fontFamily: "SyneMono", textAlign: 'center' }} className="mb-5">
+            <Text
+              style={{ fontFamily: "SyneMono", textAlign: "center" }}
+              className="mb-5"
+            >
               You have two attacks and two defences per langauge.
             </Text>
-            <Text style={{ fontFamily: "SyneMono", textAlign: 'center' }} className="mb-5">
+            <Text
+              style={{ fontFamily: "SyneMono", textAlign: "center" }}
+              className="mb-5"
+            >
               Choose your abilities carefully to defeat your opponent.
             </Text>
           </Overlay>

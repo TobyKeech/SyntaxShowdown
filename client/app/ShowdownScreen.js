@@ -3,7 +3,7 @@ import {
   Text,
   TouchableOpacity,
   ImageBackground,
-  Dimensions,
+  StatusBar,
 } from "react-native";
 import { useNavigation, Link } from "expo-router";
 import React from "react";
@@ -28,15 +28,19 @@ const ShowdownScreen = () => {
   const [selectedDefenseIndexP1, setSelectedDefenseIndexP1] = useState(null);
   const [selectedAttackIndexP2, setSelectedAttackIndexP2] = useState(null);
   const [selectedDefenseIndexP2, setSelectedDefenseIndexP2] = useState(null);
+  const [lastVisibleScreen, setLastVisibleScreen] = useState(null);
+
 
   const fetchData = async () => {
+    const firstPlayer = Math.floor(Math.random() * 9) + 1;
+    const secondPlayer = Math.floor(Math.random() * 9) + 1;
     try {
       const [response1, response2] = await Promise.all([
         fetch(
-          "https://syntax-showdown-app.delightfulisland-96df0ba2.uksouth.azurecontainerapps.io/characters/1"
+          `https://syntax-showdown-app.delightfulisland-96df0ba2.uksouth.azurecontainerapps.io/characters/${firstPlayer}`
         ),
         fetch(
-          "https://syntax-showdown-app.delightfulisland-96df0ba2.uksouth.azurecontainerapps.io/characters/4"
+          `https://syntax-showdown-app.delightfulisland-96df0ba2.uksouth.azurecontainerapps.io/characters/${secondPlayer}`
         ),
       ]);
 
@@ -92,6 +96,20 @@ const ShowdownScreen = () => {
 
   const [menuVisible, setMenuVisible] = useState(false);
   const toggleMenuOverlay = () => {
+    if (abilityvisiblep1 === true) {
+      setLastVisibleScreen(1)
+      toggleAbilityOverlayp1();
+    } else if (abilityvisiblep2 === true) {
+      setLastVisibleScreen(2)
+      toggleAbilityOverlayp2();
+    }
+    if (lastVisibleScreen === 1 ) {
+      toggleAbilityOverlayp1()
+      setLastVisibleScreen(null)
+    } else if (lastVisibleScreen === 2 ) {
+      toggleAbilityOverlayp2()
+      setLastVisibleScreen(null)
+    }
     setMenuVisible(!menuVisible);
   };
   const [faceoffVisible, setFaceoffVisible] = useState(true);
@@ -103,11 +121,6 @@ const ShowdownScreen = () => {
   const toggleEndScreenOverlay = () => {
     setEndScreenVisible(!endScreenVisible);
   };
-
-  // this is now on the slector comp
-  const { width, height } = Dimensions.get("window");
-  const overlayWidth = width;
-  const overlayHeight = height;
 
   const [abilityvisiblep1, setAbilityVisiblep1] = useState(false);
   const toggleAbilityOverlayp1 = () => {
@@ -183,7 +196,8 @@ const ShowdownScreen = () => {
       source={require("../assets/terminalimg.jpg")}
       style={{ flex: 1 }}
     >
-      <SafeAreaView style={GlobalStyles.droidSafeArea}>
+      <StatusBar hidden={true} />
+      <SafeAreaView>
         <View className="absolute top-5 right-5">
           <TouchableOpacity onPress={toggleMenuOverlay}>
             <Bars3Icon size={50} color="rgb(74 222 128)"></Bars3Icon>
@@ -220,8 +234,6 @@ const ShowdownScreen = () => {
         </Overlay>
         <AbilitySelect
           title={"P1: Choose your Ability"}
-          overlayWidth={overlayWidth}
-          overlayHeight={overlayHeight}
           abilityvisible={abilityvisiblep1}
           characterData={characterData}
           selectedAttackIndex={selectedAttackIndexP1}
@@ -230,12 +242,11 @@ const ShowdownScreen = () => {
           handleAttackClick={handleAttackClickP1}
           setAbility={setAbilityp1}
           onAbilityPressHandle={onp1AbilityPressHandle}
+          toggleMenuOverlay={toggleMenuOverlay}
         />
 
         <AbilitySelect
           title={"P2: Choose your Ability"}
-          overlayWidth={overlayWidth}
-          overlayHeight={overlayHeight}
           abilityvisible={abilityvisiblep2}
           characterData={secondCharacterData}
           selectedAttackIndex={selectedAttackIndexP2}
@@ -244,12 +255,11 @@ const ShowdownScreen = () => {
           handleAttackClick={handleAttackClickP2}
           setAbility={setAbilityp2}
           onAbilityPressHandle={onp2AbilityPressHandle}
+          toggleMenuOverlay={toggleMenuOverlay}
         />
 
         {characterData && secondCharacterData ? (
           <FaceOffScreen
-            overlayWidth={overlayWidth}
-            overlayHeight={overlayHeight}
             faceoffVisible={faceoffVisible}
             characterData={characterData}
             secondCharacterData={secondCharacterData}
@@ -259,8 +269,6 @@ const ShowdownScreen = () => {
 
         {characterData && secondCharacterData ? (
           <EndScreen
-            overlayWidth={overlayWidth}
-            overlayHeight={overlayHeight}
             endScreenVisible={endScreenVisible}
             characterData={characterData}
             secondCharacterData={secondCharacterData}
@@ -268,8 +276,10 @@ const ShowdownScreen = () => {
         ) : null}
 
         <View style="flex: 1; justify-content: flex-end" className="flex-row">
-          {characterData ? <Player character={characterData} /> : null}
-          {secondCharacterData ? (
+          {characterData && !faceoffVisible ? (
+            <Player character={characterData} />
+          ) : null}
+          {secondCharacterData && !faceoffVisible ? (
             <Player character={secondCharacterData} />
           ) : null}
         </View>

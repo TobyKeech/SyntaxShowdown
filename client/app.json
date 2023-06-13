@@ -5,7 +5,7 @@
     "slug": "client",
     "version": "1.0.0",
     "orientation": "landscape",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/ruby.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",

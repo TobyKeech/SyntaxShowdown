@@ -2,19 +2,25 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 import { Overlay, Button } from "@rneui/themed";
 
-const FaceOffScreen = ({overlayWidth, overlayHeight, faceoffVisible, characterData, secondCharacterData, onShowdownPressHandler}) => {
+const FaceOffScreen = ({
+  faceoffVisible,
+  characterData,
+  secondCharacterData,
+  onShowdownPressHandler,
+}) => {
   return (
     <Overlay
       overlayStyle={{
         alignItems: "center",
-        width: overlayWidth,
-        height: overlayHeight,
         backgroundColor: "white",
       }}
       isVisible={faceoffVisible}
       animationType="slide"
       supportedOrientations={["landscape"]}
+      fullScreen={true}
+      statusBarTranslucent={true}
     >
+    
       <View className="absolute left-10 bottom-20">
         <Image
           source={{ uri: characterData.imgPath }}

@@ -1,10 +1,9 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { Overlay, Button } from "@rneui/themed";
+import { Bars3Icon } from "react-native-heroicons/solid";
 
 const AbilitySelect = ({
-  overlayWidth,
-  overlayHeight,
   title,
   abilityvisible,
   characterData,
@@ -14,19 +13,25 @@ const AbilitySelect = ({
   handleAttackClick,
   setAbility,
   onAbilityPressHandle,
+  toggleMenuOverlay
 }) => {
   return (
     <Overlay
       overlayStyle={{
         alignItems: "center",
-        width: overlayWidth,
-        height: overlayHeight,
         backgroundColor: "bg-opacity-50",
       }}
       isVisible={abilityvisible}
       animationType="fade"
       supportedOrientations={["landscape"]}
+      statusBarTranslucent={true}
+      fullScreen={true}
     >
+      <View className="absolute top-5 right-5">
+        <TouchableOpacity onPress={toggleMenuOverlay}>
+          <Bars3Icon size={50} color="rgb(74 222 128)"></Bars3Icon>
+        </TouchableOpacity>
+      </View>
       <View className=" bg-green-400 border-solid border-black border-2 m-5">
         <View className="items-center justify-center">
           <Text style={{ color: "black", fontFamily: "SyneMono" }}>
