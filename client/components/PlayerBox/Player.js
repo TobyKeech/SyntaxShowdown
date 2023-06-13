@@ -13,7 +13,7 @@ const Player = ({ character }) => {
 
       <Image
         source={{ uri: character.imgPath }}
-        style={{ width: 250, height: 250 }}
+        style={{ width: 300, height: 290 }}
       />
 
       <View>
