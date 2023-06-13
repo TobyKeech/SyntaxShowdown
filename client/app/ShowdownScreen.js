@@ -241,9 +241,7 @@ const ShowdownScreen = () => {
     if (copyCharacterData.hp <= 0 || copySecondCharacterData.hp <= 0) {
       toggleEndScreenOverlay();
     } else {
-      setTimeout(() => {
-        toggleAbilityOverlayp1();
-      }, 2000);
+      toggleShowdownLog()
     }
   };
 
