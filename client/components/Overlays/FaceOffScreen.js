@@ -12,7 +12,7 @@ const FaceOffScreen = ({
     <Overlay
       overlayStyle={{
         alignItems: "center",
-        backgroundColor: "white",
+        backgroundColor: "(74 222 128)",
       }}
       isVisible={faceoffVisible}
       animationType="slide"
@@ -36,7 +36,7 @@ const FaceOffScreen = ({
       <View className="absolute left-20 bottom-10">
         <Text
           style={{ fontFamily: "SyneMono" }}
-          className="text-4xl italic font-semibold"
+          className="text-4xl text-green-400 italic font-semibold"
         >
           {characterData.name}
         </Text>
@@ -44,7 +44,7 @@ const FaceOffScreen = ({
       <View className="absolute right-20 bottom-10">
         <Text
           style={{ fontFamily: "SyneMono" }}
-          className="text-4xl italic font-semibold"
+          className="text-4xl text-green-400 italic font-semibold"
         >
           {secondCharacterData.name}
         </Text>
