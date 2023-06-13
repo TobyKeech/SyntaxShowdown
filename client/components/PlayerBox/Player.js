@@ -10,16 +10,14 @@ const Player = ({ character }) => {
   return (
     <SafeAreaView>
 
-
       <Image
         source={{ uri: character.imgPath }}
         style={{ width: 300, height: 290 }}
       />
 
-      <View>
-        <Text style={{ fontFamily: "SyneMono" }} className=" text-white text-3xl">{character.name}</Text>
+      <View className="items-center justify-center" >
+        <Text style={{ alignItems: "center", fontFamily: "SyneMono" }} className=" text-white text-3xl">{character.name}</Text>
       </View>
-
 
       <View style="flex: 1; justify-content: flex-end" >
         <PlayerHP characterhp={character} />
