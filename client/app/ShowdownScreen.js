@@ -30,10 +30,13 @@ const ShowdownScreen = () => {
   const [selectedDefenseIndexP2, setSelectedDefenseIndexP2] = useState(null);
   const [lastVisibleScreen, setLastVisibleScreen] = useState(null);
 
-
   const fetchData = async () => {
-    const firstPlayer = Math.floor(Math.random() * 9) + 1;
-    const secondPlayer = Math.floor(Math.random() * 9) + 1;
+    let firstPlayer = Math.floor(Math.random() * 9) + 1;
+    let secondPlayer = Math.floor(Math.random() * 9) + 1;
+    while (secondPlayer === firstPlayer) {
+      secondPlayer = Math.floor(Math.random() * 9) + 1;
+    }
+    
     try {
       const [response1, response2] = await Promise.all([
         fetch(
@@ -97,18 +100,18 @@ const ShowdownScreen = () => {
   const [menuVisible, setMenuVisible] = useState(false);
   const toggleMenuOverlay = () => {
     if (abilityvisiblep1 === true) {
-      setLastVisibleScreen(1)
+      setLastVisibleScreen(1);
       toggleAbilityOverlayp1();
     } else if (abilityvisiblep2 === true) {
-      setLastVisibleScreen(2)
+      setLastVisibleScreen(2);
       toggleAbilityOverlayp2();
     }
-    if (lastVisibleScreen === 1 ) {
-      toggleAbilityOverlayp1()
-      setLastVisibleScreen(null)
-    } else if (lastVisibleScreen === 2 ) {
-      toggleAbilityOverlayp2()
-      setLastVisibleScreen(null)
+    if (lastVisibleScreen === 1) {
+      toggleAbilityOverlayp1();
+      setLastVisibleScreen(null);
+    } else if (lastVisibleScreen === 2) {
+      toggleAbilityOverlayp2();
+      setLastVisibleScreen(null);
     }
     setMenuVisible(!menuVisible);
   };
@@ -146,7 +149,6 @@ const ShowdownScreen = () => {
     } else {
       alert("Please select an attack or a defence!");
     }
-   
   };
 
   const onp2AbilityPressHandle = () => {
