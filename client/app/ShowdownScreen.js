@@ -37,6 +37,7 @@ const ShowdownScreen = () => {
       secondPlayer = Math.floor(Math.random() * 9) + 1;
     }
 
+
     try {
       const [response1, response2] = await Promise.all([
         fetch(
@@ -135,6 +136,18 @@ const ShowdownScreen = () => {
     setAbilityVisiblep2(!abilityvisiblep2);
   };
 
+  const [showdownLogVisible, setShowdownLogVisible] = useState(false);
+  const toggleShowdownLog = () => {
+    setShowdownLogVisible(!showdownLogVisible);
+  };
+
+  const onNextRoundButtonPressHandler = () => {
+    toggleShowdownLog();
+    setTimeout(() => {
+      toggleAbilityOverlayp1();
+    }, 1500);
+  }
+
   const onShowdownPressHandler = () => {
     toggleFaceOffOverlay();
     setTimeout(() => {
@@ -155,6 +168,7 @@ const ShowdownScreen = () => {
     if (selectedAttackIndexP2 !== null || selectedDefenseIndexP2 !== null) {
       handleDamage();
       toggleAbilityOverlayp2();
+      toggleShowdownLog();
     } else {
       alert("Please select an attack or a defence!");
     }
@@ -164,23 +178,17 @@ const ShowdownScreen = () => {
     const copyCharacterData = { ...characterData };
     const copySecondCharacterData = { ...secondCharacterData };
     if (abilityp2.value < 0) {
-      const calculatedDamageP1 = Math.ceil(abilityp2.value * ((Math.random() * 1.5) + 0.5))
-      copyCharacterData.hp = characterData.hp + calculatedDamageP1;
-      console.log("P1 received damage: " + calculatedDamageP1) //console logging hit value
+      copyCharacterData.hp = Math.ceil(characterData.hp + (abilityp2.value * ((Math.random() * 1.5) + 0.5)));
+      console.log(characterData.hp - copyCharacterData.hp) //console logging hit value
     } else {
-      const calculatedHealP2 = Math.ceil(abilityp2.value * ((Math.random() * 1.5) + 0.5))
-      copySecondCharacterData.hp =  secondCharacterData.hp + calculatedHealP2;
-      console.log("P2 received heal: " + calculatedHealP2) //console logging defense value
+      copySecondCharacterData.hp =  Math.ceil(secondCharacterData.hp + (abilityp2.value * ((Math.random() * 1.5) + 0.5)));
     }
 
     if (abilityp1.value < 0) {
-      const calculatedDamageP2 = Math.ceil(abilityp1.value * ((Math.random() * 1.5) + 0.5))
-      copySecondCharacterData.hp = copySecondCharacterData.hp + calculatedDamageP2;
-      console.log("P2 received damage: " + calculatedDamageP2) //console logging hit value
+      copySecondCharacterData.hp = Math.ceil(copySecondCharacterData.hp + (abilityp1.value * ((Math.random() * 1.5) + 0.5)));
+      console.log(secondCharacterData.hp - copySecondCharacterData.hp) //console logging hit value
     } else {
-      const calculatedHealP1 = Math.ceil(abilityp1.value * ((Math.random() * 1.5) + 0.5))
-      copyCharacterData.hp = copyCharacterData.hp + calculatedHealP1;
-      console.log("P1 received heal: " + calculatedHealP1) //console logging defense value
+      copyCharacterData.hp = Math.ceil(copyCharacterData.hp + (abilityp1.value * ((Math.random() * 1.5) + 0.5)));
     }
 
     if (copyCharacterData.hp >= 100) {
@@ -204,8 +212,7 @@ const ShowdownScreen = () => {
   return (
     <ImageBackground
       source={require("../assets/terminalimg.jpg")}
-      style={{ flex: 1 }}
-    >
+      style={{ flex: 1 }}>
       <SafeAreaView>
         <View className="absolute top-5 right-5">
           <TouchableOpacity onPress={toggleMenuOverlay}>
@@ -221,8 +228,7 @@ const ShowdownScreen = () => {
           }}
           isVisible={menuVisible}
           animationType="fade"
-          supportedOrientations={["landscape"]}
-        >
+          supportedOrientations={["landscape"]}>
           <View className="border-solid border-black border-2 m-5">
             <Button
               color="rgb(74 222 128)"
@@ -297,6 +303,12 @@ const ShowdownScreen = () => {
             <Player character={secondCharacterData} />
           ) : null}
         </View>
+        <Overlay
+          isVisible={showdownLogVisible}
+          supportedOrientations={["landscape"]}>
+          <Text>TEST TEXT PLEASE SHOW UP TY X</Text>
+          <Button onPress={onNextRoundButtonPressHandler}>Next Round...</Button>
+        </Overlay>
       </SafeAreaView>
     </ImageBackground>
   );
