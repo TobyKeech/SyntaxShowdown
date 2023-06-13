@@ -13,7 +13,7 @@ const AbilitySelect = ({
   handleAttackClick,
   setAbility,
   onAbilityPressHandle,
-  toggleMenuOverlay,
+  toggleMenuOverlay
 }) => {
   return (
     <Overlay
@@ -25,7 +25,8 @@ const AbilitySelect = ({
       animationType="fade"
       supportedOrientations={["landscape"]}
       statusBarTranslucent={true}
-      fullScreen={true}>
+      fullScreen={true}
+    >
       <View className="absolute top-5 right-5">
         <TouchableOpacity onPress={toggleMenuOverlay}>
           <Bars3Icon size={50} color="rgb(74 222 128)"></Bars3Icon>
@@ -61,7 +62,8 @@ const AbilitySelect = ({
                   handleDefenseClick(index);
                   handleAttackClick(index);
                   setAbility(item);
-                }}>
+                }}
+              >
                 <Text className="text-white" style={{ fontFamily: "SyneMono" }}>
                   {item.name} - {item.value === -30 ? "HEAVY" : "LIGHT"}
                 </Text>
@@ -89,7 +91,8 @@ const AbilitySelect = ({
                   handleAttackClick(index);
                   handleDefenseClick(index);
                   setAbility(item);
-                }}>
+                }}
+              >
                 <Text className="text-white" style={{ fontFamily: "SyneMono" }}>
                   {item.name} - {item.value === 30 ? "HEAVY" : "LIGHT"}
                 </Text>
@@ -99,14 +102,16 @@ const AbilitySelect = ({
       </View>
       <View>
         <Button
-          style={{ borderWidth: 2, borderColor: "rgb(74 222 128)" }}
-          color="black"
+          style={{ borderWidth: 2, borderColor: "black" }}
+          color="rgb(74 222 128)"
           onPress={() => {
             onAbilityPressHandle();
-          }}>
+          }}
+        >
           <Text
-            className="text-white"
-            style={{ fontSize: 25, fontFamily: "SyneMono" }}>
+            className="text-black"
+            style={{ fontSize: 25, fontFamily: "SyneMono" }}
+          >
             Finish Turn
           </Text>
         </Button>
