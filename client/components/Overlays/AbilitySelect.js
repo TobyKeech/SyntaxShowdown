@@ -65,7 +65,7 @@ const AbilitySelect = ({
                 }}
               >
                 <Text className="text-white" style={{ fontFamily: "SyneMono" }}>
-                  {item.name} - DMG:{Math.abs(item.value)}
+                  {item.name} - {item.value === -30 ? "HEAVY" : "LIGHT"}
                 </Text>
               </Button>
             ))
@@ -94,7 +94,7 @@ const AbilitySelect = ({
                 }}
               >
                 <Text className="text-white" style={{ fontFamily: "SyneMono" }}>
-                  {item.name} - PROT:{item.value}
+                  {item.name} - {item.value === 30 ? "HEAVY" : "LIGHT"}
                 </Text>
               </Button>
             ))
