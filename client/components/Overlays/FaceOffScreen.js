@@ -24,18 +24,18 @@ const FaceOffScreen = ({
       <View className="absolute left-8 bottom-20">
         <Image
           source={{ uri: characterData.imgPath }}
-          style={{ width: 260, height: 320 }}
+          style={{ width: 290, height: 320 }}
         />
       </View>
       <View className="absolute right-8 bottom-20">
         <Image
           source={{ uri: secondCharacterData.imgPath }}
-          style={{ width: 260, height: 320 }}
+          style={{ width: 290, height: 320 }}
         />
       </View>
-      <View className="absolute left-24 bottom-12">
+      <View className="absolute left-24 bottom-10">
         <Text
-          style={{ fontFamily: "SyneMono" }}
+          style={{  alignItems: "center", fontFamily: "SyneMono" }}
           className="text-4xl text-green-400 italic font-semibold"
         >
           {characterData.name}
