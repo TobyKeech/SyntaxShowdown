@@ -26,6 +26,11 @@ const EndScreen = ({
       statusBarTranslucent={true}
       fullScreen={true}
     >
+    <Image
+          source={require("../../assets/2r67.gif")}
+          style={{ width: 400, height: 500 }}
+          className="absolute"
+        />
       <Text
         style={{ fontSize: 30, fontFamily: "SyneMono" }}
         className="text-green-400"
@@ -38,17 +43,17 @@ const EndScreen = ({
       secondCharacterData.hp < characterData.hp ? (
         <Image
           source={{ uri: characterData.imgPath }}
-          style={{ width: 300, height: 200 }}
+          style={{ width: 500, height: 300 }}
         />
       ) : null}
       {characterData.hp <= 0 && characterData.hp < secondCharacterData.hp ? (
         <Image
           source={{ uri: secondCharacterData.imgPath }}
-          style={{ width: 300, height: 200 }}
+          style={{ width: 500, height: 300 }}
         />
       ) : null}
 
-      <View className="p-10 pt-22 flex-column">
+      <View className="flex-column">
         <Link href="/" asChild>
           <Button
             color={"rgb(74 222 128)"}
