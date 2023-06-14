@@ -28,11 +28,11 @@ const EndScreen = ({
     >
     <Image
           source={require("../../assets/2r67.gif")}
-          style={{ width: 400, height: 500 }}
+          style={{ width: 400, height: 600 }}
           className="absolute"
         />
       <Text
-        style={{ fontSize: 30, fontFamily: "SyneMono" }}
+        style={{ fontSize: 30, fontFamily: "SyneMono" , margin: 15}}
         className="text-green-400"
       >
         Winner:
@@ -43,24 +43,24 @@ const EndScreen = ({
       secondCharacterData.hp < characterData.hp ? (
         <Image
           source={{ uri: characterData.imgPath }}
-          style={{ width: 500, height: 300 }}
+          style={{ width: 480, height: 300 }}
         />
       ) : null}
       {characterData.hp <= 0 && characterData.hp < secondCharacterData.hp ? (
         <Image
           source={{ uri: secondCharacterData.imgPath }}
-          style={{ width: 500, height: 300 }}
+          style={{ width: 480, height: 300 }}
         />
       ) : null}
 
-      <View className="flex-column">
+      <View  style={{ position: 'absolute', top: 0, left: 0, margin: 30 }} className="flex-column">
         <Link href="/" asChild>
           <Button
             color={"rgb(74 222 128)"}
             titleStyle={{
-              color: "white",
+              color: "black",
               fontFamily: "SyneMono",
-              fontSize: 29,
+              fontSize: 24,
             }}
             title={"Main menu"}
           />

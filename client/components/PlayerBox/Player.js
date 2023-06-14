@@ -5,6 +5,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const Player = ({ character }) => {
 
+  console.log(character)
+
   return (
     <SafeAreaView>
 
@@ -14,7 +16,7 @@ const Player = ({ character }) => {
       />
 
       <View className="items-center justify-center" >
-        <Text style={{ alignItems: "center", fontFamily: "SyneMono" }} className=" text-white text-3xl">{character.name}</Text>
+        <Text style={{ alignItems: "center", fontFamily: "SyneMono" }} className=" text-white text-3xl"> {character.name}</Text>
       </View>
 
       <View style="flex: 1; justify-content: flex-end" >
