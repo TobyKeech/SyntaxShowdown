@@ -31,25 +31,25 @@ public class DataLoader implements ApplicationRunner {
     }
     public void run(ApplicationArguments args) {
 
-        Character html = new Character("HTML", "frontend", 100, "https://i.ibb.co/GWN62pv/html.png  ");
+        Character html = new Character("HTML", "frontend", 100, "https://i.ibb.co/zJqy5G8/html.gif");
         characterRepository.save(html);
-        Character css = new Character("CSS", "frontend", 100, "https://i.ibb.co/fQJwZ71/css.png");
+        Character css = new Character("CSS", "frontend", 100, "https://i.ibb.co/hyD57DQ/css.gif");
         characterRepository.save(css);
-        Character js = new Character("Javascript", "frontend", 100, "https://i.ibb.co/0JZJc5d/js.png");
+        Character js = new Character("Javascript", "frontend", 100, "https://i.ibb.co/M5b5Ms5/js.gif");
         characterRepository.save(js);
 
-        Character java = new Character("Java", "backend", 100, "https://i.ibb.co/zrrJDDs/java.png" );
+        Character java = new Character("Java", "backend", 100, "https://i.ibb.co/cb4KxZ1/java.gif" );
         characterRepository.save(java);
-        Character python = new Character("Python", "backend", 100, "https://i.ibb.co/QkhfLt0/py.png");
+        Character python = new Character("Python", "backend", 100, "https://i.ibb.co/82gNY9b/python.gif");
         characterRepository.save(python);
-        Character ruby = new Character("Ruby", "backend", 100, "https://i.ibb.co/9TPXD6B/ruby.png");
+        Character ruby = new Character("Ruby", "backend", 100, "https://i.ibb.co/ngzwNNY/ruby.gif");
         characterRepository.save(ruby);
 
-        Character postgres = new Character("Postgres", "database", 100, "https://i.ibb.co/x3MHXS7/postgres.png");
+        Character postgres = new Character("Postgres", "database", 100, "https://i.ibb.co/fqfmNGp/postgres.gif");
         characterRepository.save(postgres);
-        Character mongo = new Character("Mongodb", "database", 100, "https://i.ibb.co/wz7NZ8Q/mongodb.png");
+        Character mongo = new Character("Mongodb", "database", 100, "https://i.ibb.co/KNJ7YWj/mongo.gif");
         characterRepository.save(mongo);
-        Character arango = new Character("Arangodb", "database", 100, "https://i.ibb.co/fqLPgK6/Blank-1-Panel-Landscape-Comic-Strip-2.png");
+        Character arango = new Character("Arangodb", "database", 100, "https://i.ibb.co/0CsN1Fs/arango.gif");
         characterRepository.save(arango);
 
         Attack marquee = new Attack("Marquee Punch", -30, html);
