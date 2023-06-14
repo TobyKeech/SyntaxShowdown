@@ -30,6 +30,14 @@ const ShowdownScreen = () => {
   const [selectedAttackIndexP2, setSelectedAttackIndexP2] = useState(null);
   const [selectedDefenseIndexP2, setSelectedDefenseIndexP2] = useState(null);
   const [lastVisibleScreen, setLastVisibleScreen] = useState(null);
+  const [damageP1Visible, setDamageP1Visible] = useState(false);
+  const [healP1Visible, setHealP1Visible] = useState(false);
+  const [damageP2Visible, setDamageP2Visible] = useState(false);
+  const [healP2Visible, setHealP2Visible] = useState(false);
+  const [calculatedDamageP1, setCalculatedDamageP1] = useState(0);
+  const [calculatedHealP1, setCalculatedHealP1] = useState(0);
+  const [calculatedDamageP2, setCalculatedDamageP2] = useState(0);
+  const [calculatedHealP2, setCalculatedHealP2] = useState(0);
 
   const fetchData = async () => {
     let firstPlayer = Math.floor(Math.random() * 9) + 1;
@@ -73,11 +81,6 @@ const ShowdownScreen = () => {
       },
     });
   }, []);
-
-  let calculatedDamageP1 = 0;
-  let calculatedDamageP2 = 0;
-  let calculatedHealP1 = 0;
-  let calculatedHealP2 = 0;
 
   const handleAttackClickP1 = (index) => {
     setSelectedAttackIndexP1(index);
@@ -151,6 +154,14 @@ const ShowdownScreen = () => {
     setTimeout(() => {
       toggleAbilityOverlayp1();
     }, 1500);
+    setDamageP1Visible(false);
+    setDamageP2Visible(false);
+    setHealP1Visible(false);
+    setHealP2Visible(false);
+    setCalculatedDamageP1(0);
+    setCalculatedDamageP2(0);
+    setCalculatedHealP1(0);
+    setCalculatedHealP2(0);
   };
 
   const onShowdownPressHandler = () => {
@@ -189,11 +200,13 @@ const ShowdownScreen = () => {
       } else {
         hitChance = Math.random() < 0.25 ? 0 : 1;
       }
-      calculatedDamageP1 = Math.ceil(
+      const damageP1 = Math.ceil(
         hitChance * abilityp2.value * (Math.random() * 1.5 + 0.5)
       );
-      copyCharacterData.hp = characterData.hp + calculatedDamageP1;
-      console.log("P1 received damage: " + calculatedDamageP1); //console logging hit value
+      setCalculatedDamageP1(damageP1);
+      setDamageP1Visible(true);
+      copyCharacterData.hp = copyCharacterData.hp + damageP1 
+      setCharacterData(copyCharacterData);
     } else {
       let defenceChance;
       if (abilityp2.value === 30) {
@@ -201,11 +214,13 @@ const ShowdownScreen = () => {
       } else {
         defenceChance = Math.random() < 0.25 ? 0 : 1;
       }
-      calculatedHealP2 = Math.ceil(
+      const healP2 = Math.ceil(
         defenceChance * abilityp2.value * (Math.random() * 1.5 + 0.5)
       );
-      copySecondCharacterData.hp = secondCharacterData.hp + calculatedHealP2;
-      console.log("P2 received heal: " + calculatedHealP2); //console logging defense value
+      setCalculatedHealP2(healP2);
+      setHealP2Visible(true);
+      copySecondCharacterData.hp = copySecondCharacterData.hp + healP2 
+      setSecondCharacterData(copySecondCharacterData);
     }
 
     if (abilityp1.value < 0) {
@@ -215,12 +230,13 @@ const ShowdownScreen = () => {
       } else {
         hitChance = Math.random() < 0.25 ? 0 : 1;
       }
-      calculatedDamageP2 = Math.ceil(
+      const damageP2 = Math.ceil(
         hitChance * abilityp1.value * (Math.random() * 1.5 + 0.5)
       );
-      copySecondCharacterData.hp =
-        copySecondCharacterData.hp + calculatedDamageP2;
-      console.log("P2 received damage: " + calculatedDamageP2); //console logging hit value
+      setCalculatedDamageP2(damageP2);
+      setDamageP2Visible(true);
+      copySecondCharacterData.hp = copySecondCharacterData.hp + damageP2
+      setSecondCharacterData(copySecondCharacterData);
     } else {
       let defenceChance;
       if (abilityp2.value === 30) {
@@ -228,11 +244,13 @@ const ShowdownScreen = () => {
       } else {
         defenceChance = Math.random() < 0.25 ? 0 : 1;
       }
-      calculatedHealP1 = Math.ceil(
+      const healP1 = Math.ceil(
         defenceChance * abilityp1.value * (Math.random() * 1.5 + 0.5)
       );
-      copyCharacterData.hp = copyCharacterData.hp + calculatedHealP1;
-      console.log("P1 received heal: " + calculatedHealP1); //console logging defense value
+      setCalculatedHealP1(healP1);
+      setHealP1Visible(true);
+      copyCharacterData.hp = copyCharacterData.hp + healP1 
+      setCharacterData(copyCharacterData);
     }
 
     if (copyCharacterData.hp >= 100) {
@@ -247,7 +265,7 @@ const ShowdownScreen = () => {
     if (copyCharacterData.hp <= 0 || copySecondCharacterData.hp <= 0) {
       toggleEndScreenOverlay();
     } else {
-      toggleShowdownLog()
+      toggleShowdownLog();
     }
   };
 
@@ -351,10 +369,13 @@ const ShowdownScreen = () => {
         ) : null}
         <View className="flex-row">
           {characterData && !faceoffVisible && !endScreenVisible ? (
-            <Player character={characterData} />
+            <Player character={characterData} key={characterData.id} />
           ) : null}
           {secondCharacterData && !faceoffVisible && !endScreenVisible ? (
-            <Player character={secondCharacterData} />
+            <Player
+              character={secondCharacterData}
+              key={secondCharacterData.id}
+            />
           ) : null}
         </View>
         {characterData && secondCharacterData ? (
@@ -367,9 +388,28 @@ const ShowdownScreen = () => {
             }}
             isVisible={showdownLogVisible}
             supportedOrientations={["landscape"]}>
-            <Text style={{color: "white"}}>
-              {characterData.name} attacked {secondCharacterData.name} for {calculatedDamageP2} damage!
-            </Text>
+            {damageP2Visible && (
+              <Text style={{ color: "white" }}>
+                {characterData.name} attacked {secondCharacterData.name} for{" "}
+                {Math.abs(calculatedDamageP2)} damage!
+              </Text>
+            )}
+            {healP1Visible && (
+              <Text style={{ color: "white" }}>
+                {characterData.name} healed {calculatedHealP1} HP!
+              </Text>
+            )}
+            {damageP1Visible && (
+              <Text style={{ color: "white" }}>
+                {secondCharacterData.name} attacked {characterData.name} for{" "}
+                {Math.abs(calculatedDamageP1)} damage!
+              </Text>
+            )}
+            {healP2Visible && (
+              <Text style={{ color: "white" }}>
+                {secondCharacterData.name} healed {calculatedHealP2} HP!
+              </Text>
+            )}
             <Button
               onPress={onNextRoundButtonPressHandler}
               title={"Next Round -->"}
