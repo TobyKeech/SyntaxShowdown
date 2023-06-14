@@ -307,6 +307,7 @@ const ShowdownScreen = () => {
             </Link>
           </View>
         </Overlay>
+        
         <AbilitySelect
           title={
             <Text
@@ -315,7 +316,7 @@ const ShowdownScreen = () => {
                 fontFamily: "SyneMono",
                 fontWeight: "bold",
               }}>
-              P1: Choose your Ability
+             P1: Choose your Ability
             </Text>
           }
           abilityvisible={abilityvisiblep1}
@@ -383,15 +384,15 @@ const ShowdownScreen = () => {
     overlayStyle={{
       backgroundColor: "(74 222 128)",
       alignItems: "center",
-      width: 600,
+      width: 620,
       height: 260,
     }}
     isVisible={showdownLogVisible}
     supportedOrientations={["landscape"]}
   >
     {damageP2Visible && (
-      <View style={{ borderWidth: 3, borderColor: 'rgb(74 222 128)', padding: 10,  margin: 10}}>
-        <Text style={{ fontFamily: "SyneMono", color: "white" }} className="text-green-400 text-2xl">
+      <View style={{ borderWidth: 3, borderColor: 'rgb(74 222 128)', backgroundColor: 'rgba(0, 0, 0, 0.4)', padding: 10,  margin: 10}}>
+        <Text style={{ fontFamily: "SyneMono", color: "white" }} className="text-2xl">
           {characterData.name} attacked {secondCharacterData.name} for{" "}
           {Math.abs(calculatedDamageP2)} damage!
         </Text>
@@ -399,7 +400,7 @@ const ShowdownScreen = () => {
     )}
 
     {healP1Visible && (
-      <View style={{ borderWidth: 3, borderColor: 'rgb(74 222 128)', padding: 10,  margin: 10}}>
+      <View style={{ borderWidth: 3, borderColor: 'rgb(74 222 128)', backgroundColor: 'rgba(0, 0, 0, 0.4)',padding: 10,  margin: 10}}>
         <Text style={{ fontFamily: "SyneMono", color: "white" }} className="text-green-400 text-2xl">
           {characterData.name} healed {calculatedHealP1} HP!
         </Text>
@@ -407,7 +408,7 @@ const ShowdownScreen = () => {
     )}
 
     {damageP1Visible && (
-      <View style={{ borderWidth: 3, borderColor: 'rgb(74 222 128)', padding: 10,  margin: 10}}>
+      <View style={{ borderWidth: 3, borderColor: 'rgb(74 222 128)', backgroundColor: 'rgba(0, 0, 0, 0.4)', padding: 10,  margin: 10}}>
         <Text style={{ fontFamily: "SyneMono", color: "white" }} className="text-green-400 text-2xl">
           {secondCharacterData.name} attacked {characterData.name} for{" "}
           {Math.abs(calculatedDamageP1)} damage!
@@ -416,7 +417,7 @@ const ShowdownScreen = () => {
     )}
 
     {healP2Visible && (
-      <View style={{ borderWidth: 3, borderColor: 'rgb(74 222 128)', padding: 10, margin: 10}}>
+      <View style={{ borderWidth: 3, borderColor: 'rgb(74 222 128)', backgroundColor: 'rgba(0, 0, 0, 0.4)', padding: 10, margin: 10}}>
         <Text style={{ fontFamily: "SyneMono", color: "white" }} className="text-green-400 text-2xl">
           {secondCharacterData.name} healed {calculatedHealP2} HP!
         </Text>
