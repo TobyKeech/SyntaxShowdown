@@ -271,7 +271,7 @@ const ShowdownScreen = () => {
 
   return (
     <ImageBackground
-      source={require("../assets/terminalimg.jpg")}
+      source={require("../assets/terminalnewgif.gif")}
       style={{ flex: 1 }}>
       <SafeAreaView>
         <View className="absolute top-5 right-5">

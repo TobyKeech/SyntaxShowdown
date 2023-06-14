@@ -54,7 +54,7 @@ const Index = () => {
 
   return (
     <ImageBackground
-      source={require("../assets/terminalimg.jpg")}
+      source={require("../assets/terminalnewgif.gif")}
       style={{ flex: 1 }}
     >
       <SafeAreaView
