@@ -379,44 +379,58 @@ const ShowdownScreen = () => {
           ) : null}
         </View>
         {characterData && secondCharacterData ? (
-          <Overlay
-            overlayStyle={{
-              backgroundColor: "rgb(0 0 0)",
-              alignItems: "center",
-              width: 300,
-              height: 225,
-            }}
-            isVisible={showdownLogVisible}
-            supportedOrientations={["landscape"]}>
-            {damageP2Visible && (
-              <Text style={{ color: "white" }}>
-                {characterData.name} attacked {secondCharacterData.name} for{" "}
-                {Math.abs(calculatedDamageP2)} damage!
-              </Text>
-            )}
-            {healP1Visible && (
-              <Text style={{ color: "white" }}>
-                {characterData.name} healed {calculatedHealP1} HP!
-              </Text>
-            )}
-            {damageP1Visible && (
-              <Text style={{ color: "white" }}>
-                {secondCharacterData.name} attacked {characterData.name} for{" "}
-                {Math.abs(calculatedDamageP1)} damage!
-              </Text>
-            )}
-            {healP2Visible && (
-              <Text style={{ color: "white" }}>
-                {secondCharacterData.name} healed {calculatedHealP2} HP!
-              </Text>
-            )}
-            <Button
-              onPress={onNextRoundButtonPressHandler}
-              title={"Next Round -->"}
-              color={"rgb(74 222 128)"}
-            />
-          </Overlay>
-        ) : null}
+  <Overlay
+    overlayStyle={{
+      backgroundColor: "(74 222 128)",
+      alignItems: "center",
+      width: 600,
+      height: 260,
+    }}
+    isVisible={showdownLogVisible}
+    supportedOrientations={["landscape"]}
+  >
+    {damageP2Visible && (
+      <View style={{ borderWidth: 3, borderColor: 'rgb(74 222 128)', padding: 10,  margin: 10}}>
+        <Text style={{ fontFamily: "SyneMono", color: "white" }} className="text-green-400 text-2xl">
+          {characterData.name} attacked {secondCharacterData.name} for{" "}
+          {Math.abs(calculatedDamageP2)} damage!
+        </Text>
+      </View>
+    )}
+
+    {healP1Visible && (
+      <View style={{ borderWidth: 3, borderColor: 'rgb(74 222 128)', padding: 10,  margin: 10}}>
+        <Text style={{ fontFamily: "SyneMono", color: "white" }} className="text-green-400 text-2xl">
+          {characterData.name} healed {calculatedHealP1} HP!
+        </Text>
+      </View>
+    )}
+
+    {damageP1Visible && (
+      <View style={{ borderWidth: 3, borderColor: 'rgb(74 222 128)', padding: 10,  margin: 10}}>
+        <Text style={{ fontFamily: "SyneMono", color: "white" }} className="text-green-400 text-2xl">
+          {secondCharacterData.name} attacked {characterData.name} for{" "}
+          {Math.abs(calculatedDamageP1)} damage!
+        </Text>
+      </View>
+    )}
+
+    {healP2Visible && (
+      <View style={{ borderWidth: 3, borderColor: 'rgb(74 222 128)', padding: 10, margin: 10}}>
+        <Text style={{ fontFamily: "SyneMono", color: "white" }} className="text-green-400 text-2xl">
+          {secondCharacterData.name} healed {calculatedHealP2} HP!
+        </Text>
+      </View>
+    )}
+
+    <Button
+      onPress={onNextRoundButtonPressHandler}
+      title={"Next Round -->"}
+      titleStyle={{ color: "black", fontFamily: "SyneMono" }}
+      color={"rgb(74 222 128)"}
+    />
+  </Overlay>
+) : null}
       </SafeAreaView>
     </ImageBackground>
   );
