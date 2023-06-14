@@ -15,6 +15,7 @@ const AbilitySelect = ({
   onAbilityPressHandle,
   toggleMenuOverlay
 }) => {
+
   return (
     <Overlay
       overlayStyle={{

@@ -54,7 +54,7 @@ const Index = () => {
 
   return (
     <ImageBackground
-      source={require("../assets/terminalimg.jpg")}
+      source={require("../assets/terminalnewgif.gif")}
       style={{ flex: 1 }}
     >
       <SafeAreaView
@@ -114,8 +114,17 @@ const Index = () => {
               style={{ fontFamily: "SyneMono", textAlign: "center" }}
               className="mb-5"
             >
-              This is a turned based battle game where you will take on a
-              programming language and fight to the the death.
+              This is a turned based battle game where two players will take on a
+              programming language and fight to the the death. 
+            </Text>
+            <Text
+              style={{ fontFamily: "SyneMono", textAlign: "center" }}
+              className="mb-5"
+            >
+
+              Heavy attacks/defences have a 25% chance to hit but light attacks/defences are more reliable at 75%. 
+              There is also a random ability multiplier between 0.5-1%.
+
             </Text>
             <Text
               style={{ fontFamily: "SyneMono", textAlign: "center" }}
@@ -127,13 +136,7 @@ const Index = () => {
               style={{ fontFamily: "SyneMono", textAlign: "center" }}
               className="mb-5"
             >
-              Heavy attacks have a 25% chance to hit but light attacks are more reliable at 75%. Choose your abilities carefully to defeat your opponent.
-            </Text>
-            <Text
-              style={{ fontFamily: "SyneMono", textAlign: "center" }}
-              className="mb-5"
-            >
-             Choose your abilities carefully to defeat your opponent.
+              Choose your abilities carefully to defeat your opponent and emerge victorious.
             </Text>
           </Overlay>
         </View>
