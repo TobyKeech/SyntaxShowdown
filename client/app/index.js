@@ -114,8 +114,8 @@ const Index = () => {
               style={{ fontFamily: "SyneMono", textAlign: "center" }}
               className="mb-5"
             >
-              This is a turned based battle game where two players will take on a
-              programming language and fight to the the death. 
+              This is a turn based battle game where two players will take on a
+              programming language and fight to the death. 
             </Text>
             <Text
               style={{ fontFamily: "SyneMono", textAlign: "center" }}
@@ -130,13 +130,14 @@ const Index = () => {
               style={{ fontFamily: "SyneMono", textAlign: "center" }}
               className="mb-5"
             >
-              You have two attacks and two defences per langauge.
+              You have two attacks and two defences per language.
             </Text>
             <Text
               style={{ fontFamily: "SyneMono", textAlign: "center" }}
               className="mb-5"
             >
               Choose your abilities carefully to defeat your opponent and emerge victorious.
+              
             </Text>
           </Overlay>
         </View>
